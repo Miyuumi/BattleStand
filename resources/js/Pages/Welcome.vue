@@ -35,12 +35,8 @@ const setPlant = (index)=>{
 
     selected.value.location = [index[0], index[1]];
     fields.value[index[0]][index[1]] = selected.value;
-    let existing = inventory.value.find(f => f.name === selected.value.name);
-    if(existing.count > 1){
-        existing.count -= 1;
-    }else{
-        inventory.value = inventory.value.filter(f => f.name !== existing.name);
-    }
+    
+    inventory.value = inventory.value.filter(f => f.name !== selected.value.name);
     selected.value = null;
 }
 
@@ -54,20 +50,22 @@ const viewPlant = (plant,x ,y)=>{
 
 const digPlant = ()=>{
 
-    let existing = inventory.value.find(f => f.name === description.value.name);
     if(location.value.x == -1 && location.value.y == -1 ) return;
-    if(existing){
-        existing.count += 1;
-    }else{
-        inventory.value.push(fields.value[location.value.x][location.value.y]);
-    }
+    inventory.value.push(fields.value[location.value.x][location.value.y]);
+    
 
     fields.value[location.value.x][location.value.y] = null;
     descriptionDialog.value = false;
 }
 
 onMounted(()=>{
+    inventory.value.push(Units[0]);
     inventory.value.push(Units[1]);
+    inventory.value.push(Units[2]);
+    inventory.value.push(Units[3]);
+    inventory.value.push(Units[4]);
+    inventory.value.push(Units[5]);
+    inventory.value.push(Units[6]);
 });
 
 const start = ()=>{

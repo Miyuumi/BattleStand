@@ -16,6 +16,7 @@ const enemyValue = ref(0);
 const projectiles = ref([]);
 const gameUpdate = ref(()=>{});
 const damageTexts = ref([]);
+const hitEffects = ref([]);
 
 const canvasRef = ref(null);
 let ctx = null;
@@ -103,7 +104,7 @@ const update = ()=>{
         plant.onTurn(plant, resources, fields, enemies, projectiles, rowIndex, colIndex);
 
         if(plant.mana < plant.maxmana){
-          plant.mana += 0.1;
+          plant.mana += (0.1 * plant.manaRegen);
           if(plant.mana > plant.maxmana) plant.mana = plant.maxmana;
         }
       }
@@ -162,7 +163,7 @@ function draw() {
     row.forEach((plant, colIndex) => {
       if (plant && plant.image) {
         updatePlantAnimation(plant, 0.1); // advance animation
-        drawPlant(ctx, plant, rowIndex, colIndex);
+        drawPlant(ctx, plant, colIndex, rowIndex);
       }
     });
   });
@@ -183,7 +184,7 @@ function draw() {
       let source = fields.value[proj.location.x][proj.location.y]
       // console.log(proj);
       
-      proj.target.onTakeDamage(proj.damage, proj, damageTexts, resources, fields, enemies, source, projectiles, proj.location.x, proj.location.y);
+      proj.target.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, resources, fields, enemies, source, projectiles, proj.location.x, proj.location.y);
 
       projectiles.value.splice(index, 1);
     } else {
@@ -232,6 +233,23 @@ function draw() {
       ctx.fill();
     }
   });
+
+  for (let i = hitEffects.value.length - 1; i >= 0; i--) {
+    const fx = hitEffects.value[i];
+
+    ctx.globalAlpha = fx.alpha;
+    ctx.beginPath();
+    ctx.fillStyle = fx.color;
+    ctx.arc(fx.x, fx.y, fx.radius, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Animate
+    fx.alpha -= fx.decay;
+    fx.radius += fx.grow;
+
+    if (fx.alpha <= 0) hitEffects.value.splice(i, 1);
+  }
+  ctx.globalAlpha = 1;
 
   for (let i = damageTexts.value.length - 1; i >= 0; i--) {
     let dmg = damageTexts.value[i];

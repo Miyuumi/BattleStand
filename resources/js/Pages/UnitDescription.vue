@@ -112,7 +112,7 @@ onMounted(()=>{
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2" style="font-size: 21px">Damage</td>
-                          <td class="border-b p-2">{{ unit.damage }}</td>
+                          <td class="border-b p-2">{{ (unit.damage).toFixed(3) }}</td>
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2" style="font-size: 21px">Crit. Chance / Damage</td>
@@ -128,7 +128,7 @@ onMounted(()=>{
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2" style="font-size: 21px">Attackspeed</td>
-                          <td class="border-b p-2">{{ unit.cooldown }}</td>
+                          <td class="border-b p-2">{{ (unit.cooldown).toFixed(3) }}</td>
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2" style="font-size: 21px">Ability Cooldown</td>

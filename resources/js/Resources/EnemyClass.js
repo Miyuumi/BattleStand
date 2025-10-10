@@ -19,7 +19,7 @@ export class Enemy {
     this.sprite = null;
   }
 
-  onTakeDamage(damage, projectile, damageTexts, resources, plants, enemies, source, projectiles, x, y) {
+  onTakeDamage(damage, projectile, damageTexts, hitEffects,  resources, plants, enemies, source, projectiles, x, y, recurse = true) {
     let dam = damage;
     if(critChance(source.critChance)){
       dam *= source.critDamage;
@@ -34,13 +34,13 @@ export class Enemy {
         vy: -0.8, // upward speed
       });
 
-      source.onCrit(source, this, damageTexts, resources, plants, enemies, projectiles, x, y);
+      source.onCrit(source, this, damageTexts, hitEffects,  resources, plants, enemies, projectiles, x, y);
     }
     this.health -= dam;
     source.damageDealt += dam;
-    source.onDamage(source, this, damageTexts, resources, plants, enemies, projectiles, x, y);
+    if(recurse) source.onDamage(source, this, damageTexts, hitEffects,  resources, plants, enemies, projectiles, x, y);
     if (this.health <= 0) {
-      this.onDeath(source, damage, resources, enemies, plants, projectiles, x, y);
+      this.onDeath(source, damage, damageTexts, hitEffects,  resources, enemies, plants, projectiles, x, y);
     }
   }
 
@@ -48,7 +48,7 @@ export class Enemy {
     // custom AI per tick
   }
 
-  onDeath(source, damage, resources, enemies, plants, projectiles, x, y) {
+  onDeath(source, damage, damageTexts, hitEffects,  resources, enemies, plants, projectiles, x, y) {
     source.kills += 1;
     source.experience += this.experience;
     resources.value.Coins += this.coins;
@@ -57,7 +57,7 @@ export class Enemy {
       source.onLevel(source, resources, plants, enemies, projectiles, x, y);
     }
     
-    source.onKill(source, resources, plants, enemies, projectiles, x, y)
+    source.onKill(source, damageTexts, hitEffects,  resources, plants, enemies, projectiles, x, y)
     enemies.value = enemies.value.filter(e => e !== this);
   }
 }
