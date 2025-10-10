@@ -2,15 +2,16 @@
 
 import { getUnits } from '@/Resources/Units';
 import { Rarity } from '@/Resources/Rarity';
-import { computed, onMounted, ref } from 'vue';
-import FlowerDescription from './UnitDescription.vue';
+import { computed, nextTick, onMounted, ref } from 'vue';
+import UnitDescription from './UnitDescription.vue';
 const dialog = defineModel("show");
 
 const descriptionDialog = ref(false);
 const description = ref(null);
-const viewUnit = (unit)=>{
+const viewUnit = async (unit)=>{
     if(!unit) return;
     description.value = unit;
+    await nextTick();
     descriptionDialog.value = true;
 }
 
@@ -23,7 +24,7 @@ const filters = ref({
 
 const seasons = ['All', 'Spring', 'Summer', 'Fall', 'Winter'];
 const rarities = ['All', 'Common', 'Uncommon', 'Rare', 'Epic', 'Legendary'];
-const resources = ['All', 'Nectar', 'Pollen Dust', 'Petal Essence', 'Flower Crystals',];
+const resources = ['All', 'Natura', 'Machina', 'Magika', 'Techno', 'Metio'];
 
 const FilteredUnits = computed(()=>{
   return Units.filter(unit=>{
@@ -51,16 +52,16 @@ onMounted(()=>{
             @click="dialog = false"
           ></v-btn>
 
-          <!-- <v-toolbar-title>
+          <v-toolbar-title>
             <div class="flex justify-between w-full items-center w-full">
               <div>List of Units</div>
               <div class="flex gap-2 justify-between w-full max-w-[600px]">
-                <v-select v-model="filters.season" class="w-full" label="Seasons" hide-details density="compact" :items="seasons"></v-select>
+                <!-- <v-select v-model="filters.season" class="w-full" label="Seasons" hide-details density="compact" :items="seasons"></v-select> -->
                 <v-select v-model="filters.rarity" class="w-full" label="Rarities" hide-details density="compact" :items="rarities"></v-select>
                 <v-select v-model="filters.resource" class="w-full" label="Resources" hide-details density="compact" :items="resources"></v-select>
               </div>
             </div>
-          </v-toolbar-title> -->
+          </v-toolbar-title>
         </v-toolbar>
 
          <div class="flex flex-wrap justify-center items-center h-full w-full">
@@ -80,5 +81,5 @@ onMounted(()=>{
       </v-card>
     </v-dialog>
 
-    <FlowerDescription v-model:show="descriptionDialog" v-model:flower="description" v-model:location="location" @dig="digUnit"></FlowerDescription>
+    <UnitDescription v-model:show="descriptionDialog" v-model:unit="description" v-model:location="location" @dig="digUnit"></UnitDescription>
 </template>

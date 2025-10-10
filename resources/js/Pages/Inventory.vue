@@ -14,7 +14,7 @@ const filters = ref({
 
 const seasons = ['All', 'Spring', 'Summer', 'Fall', 'Winter'];
 const rarities = ['All', 'Common', 'Uncommon', 'Rare', 'Epic', 'Legendary'];
-const resources = ['All', 'Nectar', 'Pollen Dust', 'Petal Essence', 'Unit Crystals',];
+const resources = ['All', 'Natura', 'Machina', 'Magika', 'Techno', 'Metio'];
 
 const FilteredUnits = computed(()=>{
   return inventory.value.filter(unit=>{
@@ -49,7 +49,7 @@ const select = (item)=>{
             <div class="flex justify-between w-full items-center w-full">
               <div>Inventory</div>
               <div class="flex gap-2 justify-between w-full max-w-[600px]">
-                <v-select v-model="filters.season" class="w-full" label="Seasons" hide-details density="compact" :items="seasons"></v-select>
+                <!-- <v-select v-model="filters.season" class="w-full" label="Seasons" hide-details density="compact" :items="seasons"></v-select> -->
                 <v-select v-model="filters.rarity" class="w-full" label="Rarities" hide-details density="compact" :items="rarities"></v-select>
                 <v-select v-model="filters.resource" class="w-full" label="Resources" hide-details density="compact" :items="resources"></v-select>
               </div>

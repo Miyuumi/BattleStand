@@ -42,15 +42,11 @@ const pick = (res)=>{
   plants.value.forEach((plant, index)=>{
     setTimeout(()=>{
       resources.value[res] -= 1;
-      const existing = inventory.value.find(f => f.name === plants.value[index].name);
-      if (existing) {
-        existing.count += 1;
-      } else {
-        inventory.value.push({
-          ...plants.value[index],
-          count: 1,
-        });
-      }
+      
+      inventory.value.push({
+        ...plants.value[index],
+        count: 1,
+      });
 
       locked.value.push(index);
     }, 500 * (index + 1));

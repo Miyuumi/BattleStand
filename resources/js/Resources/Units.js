@@ -14,10 +14,10 @@ export const getUnits = () => {
                 frameHeight: 96,
             },
             "resource": "Natura",
-            "description": "A skilled ranged fighter who strikes from afar with precise, rapid shots. Excels at dealing piercing damage to lightly armored foes.",
+            "description": "A skilled ranged fighter who strikes from afar with precise, rapid shots. Excels at shooting rapid shots to lightly armored foes.",
             "rarity": "Common",
             "damageType": "Piercing",
-            "damage" : 3.25,
+            "damage" : 3.35,
             "ability" : 1,
             "mana" : 21,
             "manaRegen": 1,
@@ -34,6 +34,8 @@ export const getUnits = () => {
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
                 unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
             },
             onTurn: (unit, resource, units, enemies, projectiles, x, y)=>{
@@ -58,8 +60,8 @@ export const getUnits = () => {
 
                 if (nearest) {
                     projectiles.value.push({
-                        x: (x * 40) + 45,
-                        y: (y * 40) + 45,
+                        x: (x * 40) + 30,
+                        y: (y * 40) + 30,
                         size: 15,
                         speed: 7,
                         damage: unit.damage,
@@ -166,6 +168,8 @@ export const getUnits = () => {
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
                 unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
             },
             onTurn: (unit, resource, units, enemies, projectiles, x, y)=>{
@@ -188,8 +192,8 @@ export const getUnits = () => {
 
                 if (nearest) {
                     projectiles.value.push({
-                        x: (x * 40) + 45,
-                        y: (y * 40) + 45,
+                        x: (x * 40) + 30,
+                        y: (y * 40) + 30,
                         size: 15,
                         speed: 8,
                         damage: unit.damage,
@@ -234,6 +238,8 @@ export const getUnits = () => {
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
                 unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
             },
             onTurn: (unit, resource, units, enemies, projectiles, x, y)=>{
@@ -294,8 +300,8 @@ export const getUnits = () => {
                 frameHeight: 96,
             },
             "resource": "Metio",
-            "description": "",
-            "rarity": "Common",
+            "description": "A swift fighter who fights by throwing spears at a lightning speed. Excels at dealing damage to many enemies.",
+            "rarity": "Rare",
             "damageType": "",
             "damage" : 0.75,
             "ability" : 1,
@@ -314,6 +320,8 @@ export const getUnits = () => {
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
                 unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
             },
             onTurn: (unit, resource, units, enemies, projectiles, x, y)=>{
@@ -335,10 +343,10 @@ export const getUnits = () => {
 
                 if (nearest) {
                     projectiles.value.push({
-                        x: (x * 40) + 45,
-                        y: (y * 40) + 45,
-                        size: 2.5,
-                        speed: 6.5,
+                        x: (x * 40) + 30,
+                        y: (y * 40) + 30,
+                        size: 12.5,
+                        speed: 7.35,
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -361,7 +369,7 @@ export const getUnits = () => {
                 frameHeight: 96,
             },
             "resource": "Metio",
-            "description": "Star-shaped Units in purple, blue, and pink, blooming late into the season.",
+            "description": "A skilled demolisher who bring damage and destruction to those nearby.",
             "rarity": "Uncommon",
             "damageType": "",
             "damage" : 2.45,
@@ -407,6 +415,8 @@ export const getUnits = () => {
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
                 unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
             },
             onTurn: (unit, resource, units, enemies, projectiles, x, y)=>{
@@ -429,8 +439,8 @@ export const getUnits = () => {
 
                 if (nearest) {
                     projectiles.value.push({
-                        x: (x * 40) + 45,
-                        y: (y * 40) + 45,
+                        x: (x * 40) + 30,
+                        y: (y * 40) + 30,
                         size: 10,
                         speed: 7,
                         damage: unit.damage,
@@ -454,7 +464,7 @@ export const getUnits = () => {
                 frameHeight: 96,
             },
             "resource": "Metio",
-            "description": "",
+            "description": "A skilled worker forging not only for himself but also for his allies.",
             "rarity": "Uncommon",
             "damageType": "",
             "damage" : 3.5,
@@ -474,6 +484,8 @@ export const getUnits = () => {
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
                 unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
             },
             onTurn: (unit, resource, units, enemies, projectiles, x, y)=>{
@@ -496,9 +508,9 @@ export const getUnits = () => {
 
                 if (nearest) {
                     projectiles.value.push({
-                        x: (y * 40) + 45,
-                        y: (x * 40) + 45,
-                        size: 15.65,
+                        x: (x * 40) + 30,
+                        y: (y * 40) + 30,
+                        size: 12.65,
                         speed: 5.25,
                         damage: unit.damage,
                         target: nearest.enemy,
@@ -624,6 +636,8 @@ export const getUnits = () => {
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
                 unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
             },
             onTurn: (unit, resource, units, enemies, projectiles, x, y)=>{
