@@ -1,10 +1,12 @@
 import { critChance } from "./Critical";
 
 export class Enemy {
-  constructor({ name, x, y, health = 10, damage = 1, wave = 1, level = 1, speed = 1, size = 30, image = null }) {
+  constructor({ name, x, y, health = 10, mana = 1, damage = 1, wave = 1, level = 1, speed = 1, size = 30, image = null }) {
     this.name = name;
     this.health = health;
     this.maxhealth = health;
+    this.mana = mana;
+    this.maxmana = mana;
     this.damage = 1;
     this.wave = 1;
     this.level = 1;

@@ -5,7 +5,8 @@ export const getEnemies = (wave) => {
     let fairy = new Enemy(
          {
             name: "Fairy",
-            health: 4,
+            health: 3,
+            mana: 1,
             damage: 1,
             wave: 1,
             level: 1,
