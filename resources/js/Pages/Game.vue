@@ -46,8 +46,8 @@ const update = ()=>{
                   buff.duration = Math.max(buff.duration, otherBuff.duration);
                   plant.buffs.splice(plant.buffs.indexOf(otherBuff), 1);
                   damageTexts.value.push({
-                    x: colIndex * 30 + 65,
-                    y: rowIndex * 30 + 60,
+                    x: (colIndex * 32) + 65,
+                    y: (rowIndex * 32) + 60,
                     text: buff.name + " Refreshed",
                     color: "green",
                     size: 12,
@@ -57,8 +57,8 @@ const update = ()=>{
                 }else{
                   if (buff.onApply) buff.onApply(plant, buff);
                   damageTexts.value.push({
-                    x: colIndex * 30 + 65,
-                    y: rowIndex * 30 + 60,
+                    x: colIndex * 32 + 65,
+                    y: rowIndex * 32 + 60,
                     text: buff.name + " Applied",
                     color: "green",
                     size: 12,
@@ -69,8 +69,8 @@ const update = ()=>{
               }else{
                 if (buff.onApply) buff.onApply(plant, buff);
                 damageTexts.value.push({
-                  x: colIndex * 30 + 65,
-                  y: rowIndex * 30 + 60,
+                  x: (colIndex * 32) + 65,
+                  y: (rowIndex * 32) + 60,
                   text: buff.name + " Applied",
                   color: "green",
                   size: 12,
@@ -89,8 +89,8 @@ const update = ()=>{
               if (buff.onRemove) buff.onRemove(plant, buff);
               plant.buffs.splice(i, 1);
               damageTexts.value.push({
-                  x: colIndex * 30 + 65,
-                  y: rowIndex * 30 + 60,
+                  x: (colIndex * 32) + 65,
+                  y: (rowIndex * 32) + 60,
                   text: buff.name + " Ended",
                   color: "red",
                   size: 12,
@@ -101,7 +101,7 @@ const update = ()=>{
           }
         }
 
-        plant.onTurn(plant, resources, fields, enemies, projectiles, rowIndex, colIndex);
+        plant.onTurn(plant, damageTexts, hitEffects, resources, fields, enemies, projectiles, rowIndex, colIndex);
 
         if(plant.mana < plant.maxmana){
           plant.mana += (0.1 * plant.manaRegen);
@@ -300,14 +300,49 @@ function drawPlant(ctx, plant, gridX, gridY) {
   const frameX = frame * imgData.frameWidth;
 
   // Target size (final size on canvas)
-  const drawSize = 30;
+  const drawSize = 32;
 
   ctx.drawImage(
     imgData.sprite,
     frameX, 0, imgData.frameWidth, imgData.frameHeight, // source (frame)
-    30 + (gridY * drawSize), 30 + (gridX * drawSize),                 // destination position
+    30 + (gridY * (drawSize + 13)), 30 + (gridX * (drawSize + 13)),                 // destination position
     drawSize, drawSize                                  // destination size (scaled)
   );
+
+  const y = 30 + (gridX * (drawSize + 13));
+  const x = 30 + (gridY * (drawSize + 13));
+
+  // === Draw resource bars ===
+  const barWidth = drawSize;
+  const barHeight = 4;
+
+  // ---- MANA BAR (blue, below plant) ----
+  if (plant.maxmana !== undefined) {
+    const manaPercent = Math.min(plant.mana / plant.maxmana, 1);
+    const manaY = y + drawSize + 2;
+
+    // Background
+    ctx.fillStyle = "rgba(0,0,0,0.3)";
+    ctx.fillRect(x, manaY, barWidth, barHeight);
+
+    // Mana fill
+    ctx.fillStyle = "rgba(0, 150, 255, 0.9)";
+    ctx.fillRect(x, manaY, barWidth * manaPercent, barHeight);
+  }
+
+  // ---- ENERGY BAR (yellow, below mana) ----
+  if (plant.cooldown !== undefined) {
+    const energyPercent = Math.min(plant.timer / plant.cooldown, 1);
+    const energyY = y + drawSize + 8;
+
+    // Background
+    ctx.fillStyle = "rgba(0,0,0,0.3)";
+    ctx.fillRect(x, energyY, barWidth, barHeight);
+
+    // Energy fill
+    ctx.fillStyle = "rgba(255, 215, 0, 0.9)";
+    ctx.fillRect(x, energyY, barWidth * energyPercent, barHeight);
+  }
 }
 
 function preloadEnemyImages() {

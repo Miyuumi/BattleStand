@@ -33,7 +33,7 @@ onMounted(()=>{
           <v-toolbar-title>
             <div class="flex justify-between">
               <div>{{ unit?.name }}</div>
-              <div><v-btn prepend-icon="mdi-shovel" variant="outlined" @click="dig">Dig Up</v-btn></div>
+              <div><v-btn prepend-icon="mdi-hand-extended" variant="outlined" @click="dig">Retrieve</v-btn></div>
             </div>
           </v-toolbar-title>
         </v-toolbar>
@@ -120,11 +120,11 @@ onMounted(()=>{
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2" style="font-size: 21px">Mana</td>
-                          <td class="border-b p-2">{{unit?.mana}} / {{ unit?.maxmana }}</td>
+                          <td class="border-b p-2">{{(unit?.mana).toFixed(2)}} / {{ (unit?.maxmana).toFixed(2) }}</td>
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2" style="font-size: 21px">Mana Regen</td>
-                          <td class="border-b p-2">{{unit?.manaRegen}}</td>
+                          <td class="border-b p-2">{{(unit?.manaRegen).toFixed(2)}}</td>
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2" style="font-size: 21px">Attackspeed</td>
@@ -132,15 +132,19 @@ onMounted(()=>{
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2" style="font-size: 21px">Ability Cooldown</td>
-                          <td class="border-b p-2">{{ unit?.abilityCooldown }}</td>
+                          <td class="border-b p-2">{{ (unit?.abilityCooldown).toFixed(2) }}</td>
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2" style="font-size: 21px">Trigger Chance</td>
-                          <td class="border-b p-2">{{ unit?.triggerChance }}</td>
+                          <td class="border-b p-2">{{ (unit?.triggerChance).toFixed(2) }}</td>
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2" style="font-size: 21px">Buff / Debuff Duration</td>
                           <td class="border-b p-2">{{ (unit?.buffDuration * 100).toFixed(2) }}% / {{ (unit?.debuffDuration * 100).toFixed(2) }}%</td>
+                        </tr>
+                        <tr>
+                          <td class="font-bold border-b p-2" style="font-size: 21px">XP / Bounty Gain</td>
+                          <td class="border-b p-2">{{ (unit?.xpGain * 100).toFixed(2) }}% / {{ (unit?.bountyGain * 100).toFixed(2) }}%</td>
                         </tr>
                       </tbody>
                     </table>
@@ -155,11 +159,11 @@ onMounted(()=>{
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2" style="font-size: 21px">Damage Dealt</td>
-                          <td class="border-b p-2">{{ unit?.damageDealt }}</td>
+                          <td class="border-b p-2">{{ (unit?.damageDealt).toFixed(2) }}</td>
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2" style="font-size: 21px">Mana Spent</td>
-                          <td class="border-b p-2">{{ unit?.manaSpent }}</td>
+                          <td class="border-b p-2">{{ (unit?.manaSpent).toFixed(2) }}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -169,7 +173,7 @@ onMounted(()=>{
                       <tbody>
                         <tr v-for="buff in unit?.buffs">
                           <td class="font-bold border-b p-2" style="font-size: 21px">{{buff.name}}</td>
-                          <td class="border-b p-2">{{ buff.description }}. Duration: {{ buff.duration }}</td>
+                          <td class="border-b p-2">{{ buff.description }}. Duration: {{ (buff.duration).toFixed(2) }}</td>
                         </tr>
                       </tbody>
                     </table>

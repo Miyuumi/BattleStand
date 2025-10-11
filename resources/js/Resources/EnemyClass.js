@@ -50,11 +50,11 @@ export class Enemy {
 
   onDeath(source, damage, damageTexts, hitEffects,  resources, enemies, plants, projectiles, x, y) {
     source.kills += 1;
-    source.experience += this.experience;
-    resources.value.Coins += this.coins;
+    source.experience += (this.experience * source.xpGain);
+    resources.value.Coins += (this.coins * source.bountyGain);
 
     if(source.experience >= source.nextLevelExp){
-      source.onLevel(source, resources, plants, enemies, projectiles, x, y);
+      source.onLevel(source, damageTexts, hitEffects, resources, plants, enemies, projectiles, x, y);
     }
     
     source.onKill(source, damageTexts, hitEffects,  resources, plants, enemies, projectiles, x, y)

@@ -59,13 +59,7 @@ const digPlant = ()=>{
 }
 
 onMounted(()=>{
-    inventory.value.push(Units[0]);
-    inventory.value.push(Units[1]);
-    inventory.value.push(Units[2]);
-    inventory.value.push(Units[3]);
-    inventory.value.push(Units[4]);
-    inventory.value.push(Units[5]);
-    inventory.value.push(Units[6]);
+    inventory.value.push(...Units);
 });
 
 const start = ()=>{
