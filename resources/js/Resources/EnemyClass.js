@@ -1,3 +1,4 @@
+import { ref } from "vue";
 import { critChance } from "./Critical";
 
 export class Enemy {
@@ -17,12 +18,19 @@ export class Enemy {
     this.x = x;
     this.y = y;
     this.speed = speed;
+    this.baseSpeed = speed;
     this.image = image;
     this.sprite = null;
+    this.buffDuration = 1;
+    this.debuffDuration = 1;
+    this.dropChance = 1;
+    this.dropQuality = 1;
+    this.slowEffectivity = 1;
   }
 
   onTakeDamage(damage, projectile, damageTexts, hitEffects,  resources, plants, enemies, source, projectiles, x, y, recurse = true) {
     let dam = damage;
+    let self = this;
     if(critChance(source.critChance)){
       dam *= source.critDamage;
 
@@ -39,19 +47,24 @@ export class Enemy {
       source.onCrit(source, this, damageTexts, hitEffects,  resources, plants, enemies, projectiles, x, y);
     }
     this.health -= dam;
-    source.damageDealt += dam;
-    if(recurse) source.onDamage(source, this, damageTexts, hitEffects,  resources, plants, enemies, projectiles, x, y);
-    if (this.health <= 0) {
-      this.onDeath(source, damage, damageTexts, hitEffects,  resources, enemies, plants, projectiles, x, y);
+    source.record.damageDealt += parseFloat((dam).toFixed(2));
+    if(recurse) {
+      source.onDamage(source, this, damageTexts, hitEffects,  resources, plants, enemies, projectiles, x, y);
+      if (this.health <= 0) {
+        this.onDeath(source, damage, damageTexts, hitEffects,  resources, enemies, plants, projectiles, x, y);
+      }
     }
   }
 
-  onTurn(enemies, plants, projectiles) {
+  onTurn(damage, damageTexts, hitEffects,  resources, plants, enemies, source, projectiles, x, y) {
     // custom AI per tick
   }
 
   onDeath(source, damage, damageTexts, hitEffects,  resources, enemies, plants, projectiles, x, y) {
-    source.kills += 1;
+    source.record.kills += 1;
+    source.record.xpGained += (this.experience * source.xpGain);
+    source.record.coinsGained += (this.coins * source.bountyGain);
+    
     source.experience += (this.experience * source.xpGain);
     resources.value.Coins += (this.coins * source.bountyGain);
 

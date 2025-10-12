@@ -30,6 +30,85 @@ const battleField = ref({
 
 const update = ()=>{
   console.log("Turn");
+  
+  enemies.value.forEach((enem) => {
+    if (enem && typeof enem.onTurn === "function") {
+
+      if (enem.buffs && enem.buffs.length > 0) {
+        
+        for (let i = enem.buffs.length - 1; i >= 0; i--) {
+          const buff = enem.buffs[i];
+          if (!buff.isApplied) {
+            if (!buff.stacking) {
+              const otherBuff = enem.buffs.find(b => b !== buff && b.name === buff.name);
+              if (otherBuff) {
+                buff.duration = Math.max(buff.duration, otherBuff.duration);
+                enem.buffs.splice(enem.buffs.indexOf(otherBuff), 1);
+
+                damageTexts.value.push({
+                  x: enem.x + enem.size / 2,
+                  y: enem.y - 10,
+                  text: buff.name + " Refreshed",
+                  color: "darkblue",
+                  size: 12,
+                  alpha: 1,
+                  vy: -0.8,
+                });
+              } else {
+                if (buff.onApply) buff.onApply(enem, buff);
+                damageTexts.value.push({
+                  x: enem.x + enem.size / 2,
+                  y: enem.y - 10,
+                  text: buff.name + " Applied",
+                  color: "darkblue",
+                  size: 12,
+                  alpha: 1,
+                  vy: -0.8,
+                });
+              }
+            } else {
+              if (buff.onApply) buff.onApply(enem, buff);
+              damageTexts.value.push({
+                x: enem.x + enem.size / 2,
+                y: enem.y - 10,
+                text: buff.name + " Applied",
+                color: "darkblue",
+                size: 12,
+                alpha: 1,
+                vy: -0.8,
+              });
+            }
+            buff.isApplied = true;
+          }
+
+          // ② Per-turn effect
+          if (buff.onTurn) buff.onTurn(enem, buff);
+
+          // ③ Decrease duration
+          buff.duration -= 0.1;
+
+          // ④ Remove when finished
+          if (buff.duration <= 0) {
+            if (buff.onRemove) buff.onRemove(enem, buff);
+            enem.buffs.splice(i, 1);
+            damageTexts.value.push({
+              x: enem.x + enem.size / 2,
+              y: enem.y - 10,
+              text: buff.name + " Ended",
+              color: "red",
+              size: 12,
+              alpha: 1,
+              vy: -0.8,
+            });
+          }
+        }
+      }
+
+      // === Enemy behavior ===
+      enem.onTurn(enem, damageTexts, hitEffects, resources, fields, enemies, projectiles, enem.x, enem.y);
+    }
+  });
+
   fields.value.forEach((row, rowIndex) => {
     row.forEach((plant, colIndex) => {
       if (plant && typeof plant.onTurn === "function") {
@@ -169,29 +248,75 @@ function draw() {
   });
 
   projectiles.value.forEach((proj, index) => {
-    if (!proj.target || proj.target.health <= 0) {
-      projectiles.value.splice(index, 1);
-      return;
+    // === Lifetime system ===
+    if (proj.lifetime !== undefined) {
+      proj.lifetime--;
+      if (proj.lifetime <= 0) {
+        projectiles.value.splice(index, 1);
+        return;
+      }
     }
 
-    // Vector toward target
-    const dx = (proj.target.x + proj.target.size/2) - proj.x;
-    const dy = (proj.target.y + proj.target.size/2) - proj.y;
-    const dist = Math.sqrt(dx*dx + dy*dy);
+    // === MOVEMENT ===
+    if (proj.direction !== undefined) {
+      // ➤ Directional projectile (like Cavalier)
+      proj.x += Math.cos(proj.direction) * proj.speed;
+      proj.y += Math.sin(proj.direction) * proj.speed;
+    } 
+    else if (proj.target) {
+      // ➤ Tracking projectile (like Archer arrow)
+      if (!proj.target || proj.target.health <= 0) {
+        projectiles.value.splice(index, 1);
+        return;
+      }
 
-    if (dist < proj.speed) {
-      // Hit!
-      let source = fields.value[proj.location.x][proj.location.y]
-      // console.log(proj);
-      
-      proj.target.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, resources, fields, enemies, source, projectiles, proj.location.x, proj.location.y);
+      const dx = (proj.target.x + proj.target.size / 2) - proj.x;
+      const dy = (proj.target.y + proj.target.size / 2) - proj.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
 
-      projectiles.value.splice(index, 1);
-    } else {
-      proj.x += (dx / dist) * proj.speed;
-      proj.y += (dy / dist) * proj.speed;
+      if (dist < proj.speed) {
+        // Hit!
+        let source = fields.value[proj.location.x][proj.location.y];
+        proj.target.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, resources, fields, enemies, source, projectiles, proj.location.x, proj.location.y);
+        projectiles.value.splice(index, 1);
+        return;
+      } else {
+        proj.x += (dx / dist) * proj.speed;
+        proj.y += (dy / dist) * proj.speed;
+      }
     }
 
+    // === COLLISION HANDLING ===
+    if (proj.piercing) {
+      // Only for directional or piercing projectiles
+      enemies.value.forEach(enemy => {
+        const dx = (enemy.x + enemy.size / 2) - proj.x;
+        const dy = (enemy.y + enemy.size / 2) - proj.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < (proj.size + enemy.size) / 2) {
+          if (!proj.hitEnemies) proj.hitEnemies = new Set();
+          if (!proj.hitEnemies.has(enemy)) {
+            proj.hitEnemies.add(enemy);
+            let source = fields.value[proj.location.x][proj.location.y];
+            enemy.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, resources, fields, enemies, source, projectiles, proj.location.x, proj.location.y);
+
+            // Add fading hit effect
+            hitEffects.value.push({
+              x: proj.x,
+              y: proj.y,
+              radius: 5,
+              alpha: 0.6,
+              decay: 0.05,
+              grow: 0.8,
+              color: "white",
+            });
+          }
+        }
+      });
+    }
+
+    // === DRAW PROJECTILE ===
     if (proj.image) {
       if (!proj.sprite) {
         proj.sprite = new Image();
@@ -199,34 +324,18 @@ function draw() {
       }
 
       if (proj.sprite.complete) {
-          // Calculate angle between projectile and target
-          const dx = (proj.target.x + proj.target.size / 2) - proj.x;
-          const dy = (proj.target.y + proj.target.size / 2) - proj.y;
-          const angle = Math.atan2(dy, dx); // radians
-
-          ctx.save();
-          ctx.translate(proj.x, proj.y); // move origin to projectile center
-          ctx.rotate(angle); // rotate to face target
-
-          // Draw image centered & rotated
-          ctx.drawImage(
-            proj.sprite,
-            -proj.size / 2,
-            -proj.size / 2,
-            proj.size,
-            proj.size
-          );
-
-          ctx.restore();
-      } else {
-        // fallback circle while image is loading
-        ctx.fillStyle = proj.color || "white";
-        ctx.beginPath();
-        ctx.arc(proj.x, proj.y, proj.size / 2, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.save();
+        ctx.translate(proj.x, proj.y);
+        const angle = proj.direction !== undefined
+          ? proj.direction
+          : proj.target
+            ? Math.atan2((proj.target.y + proj.target.size / 2) - proj.y, (proj.target.x + proj.target.size / 2) - proj.x)
+            : 0;
+        ctx.rotate(angle);
+        ctx.drawImage(proj.sprite, -proj.size / 2, -proj.size / 2, proj.size, proj.size);
+        ctx.restore();
       }
     } else {
-      // if no image at all, just draw color
       ctx.fillStyle = proj.color || "white";
       ctx.beginPath();
       ctx.arc(proj.x, proj.y, proj.size / 2, 0, Math.PI * 2);
@@ -395,6 +504,7 @@ watch(dialog, (val) => {
   enemyValue.value = 0;
   Enemies.value = getEnemies(stage.value);
   enemies.value = [];
+  let index = 0;
   while(enemyValue.value < stage.value * 10){
     let template = Enemies.value[Math.floor(Math.random() * Enemies.value.length)];
     let enemy = Object.assign(
@@ -404,6 +514,9 @@ watch(dialog, (val) => {
     
     enemy.x = 1200 + (Math.random() * 600);
     enemy.y = 100 + (Math.random() * ((battleField.value.height - 100) - enemy.size));
+    enemy.name = enemy.name + ' ' + index++;
+    enemy.buffs = [];
+    enemy.debuffs = [];
     enemies.value.push(enemy);
     enemyValue.value += enemy.value;
   }
