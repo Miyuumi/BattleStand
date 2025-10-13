@@ -17,13 +17,13 @@ export const getUnits = () => {
             "description": "A skilled ranged fighter who strikes from afar with precise, rapid shots. Excels at shooting rapid shots to lightly armored foes.",
             "rarity": "Common",
             "damageType": "Piercing",
-            "damage" : 3.35,
+            "damage" : 2.35,
             "ability" : 1,
             "mana" : 21,
             "manaRegen": 1,
             "abilityCooldown": 3,
             "cooldown": 2.17,
-            "abilityDescription": "<b>Speed Boost (Active)</b>: Grants +50% base attack speed for 5 turns. <div class='flex justify-between'><div><b>Casting</b>: On Attack</div><div><b>Manacost</b>: 20</div><div><b>Cooldown</b>: 3</div></div>",
+            "abilityDescription": "<b>Speed Boost (Active)</b>: Grants +50% base attack and projectile speed for 5 turns. <div class='flex justify-between'><div><b>Casting</b>: On Attack</div><div><b>Manacost</b>: 20</div><div><b>Cooldown</b>: 3</div></div>",
             onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
@@ -73,7 +73,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 15,
-                        speed: 7,
+                        speed: 7 * (unit?.projectileSpeed),
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -113,10 +113,13 @@ export const getUnits = () => {
                     variable: {}, // stores internal state
                     onApply: (p, buff) => {
                         buff.variable.speedGained = parseFloat(p.baseCooldown) * 0.5; // store how much was added
+                        buff.variable.projectileSpeedGained = 0.5; // store how much was added
                         p.cooldown -= parseFloat(buff?.variable?.speedGained || 0);
+                        p.projectileSpeed += buff.variable.projectileSpeedGained;
                     },
                     onRemove: (p, buff) => {
                         p.cooldown += parseFloat(buff?.variable?.speedGained || 0);
+                        p.projectileSpeed -= buff.variable.projectileSpeedGained;
                     },
                 });
             },
@@ -173,7 +176,7 @@ export const getUnits = () => {
                             x: (x * 45) + 40,
                             y: (y * 45) + 40,
                             size: 15,
-                            speed: 8,
+                            speed: 8 * (unit?.projectileSpeed),
                             damage: unit.damage,
                             target: nearest.enemy,
                             location: {x:x,y:y},
@@ -228,7 +231,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 15,
-                        speed: 8,
+                        speed: 8 * (unit?.projectileSpeed),
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -308,7 +311,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 16,
-                        speed: 10,
+                        speed: 10 * (unit?.projectileSpeed),
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -401,7 +404,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 12.5,
-                        speed: 7.35,
+                        speed: 7.35 * (unit?.projectileSpeed),
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -426,7 +429,7 @@ export const getUnits = () => {
             },
             "resource": "Metio",
             "description": "A skilled demolisher who bring damage and destruction to those nearby.",
-            "rarity": "Uncommon",
+            "rarity": "Common",
             "damageType": "",
             "damage" : 2.65,
             "ability" : 1,
@@ -459,7 +462,7 @@ export const getUnits = () => {
                     if (dist <= splashRadius) {
                         // Deal splash damage
                         if(!unit.record.explosionTotalDamage) unit.record.explosionTotalDamage = 0;
-                        unit.record.explosionTotalDamage += (splashDamage).toFixed(2);
+                        unit.record.explosionTotalDamage += parseFloat((splashDamage).toFixed(2));
                         enemy.onTakeDamage(splashDamage,null,damageTexts, hitEffects, resource,units,enemies,unit,projectiles,x, y, false);
                     }
                 });
@@ -509,7 +512,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 10,
-                        speed: 7,
+                        speed: 7 * (unit?.projectileSpeed),
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -537,11 +540,11 @@ export const getUnits = () => {
             "damageType": "",
             "damage" : 3.5,
             "ability" : 1,
-            "mana" : 3,
+            "mana" : 4,
             "manaRegen": 1,
             "abilityCooldown": 0,
             "cooldown": 2.4,
-            "abilityDescription": "<b>Upgrade!</b> : Gives an ally +10% damage for 6 turns",
+            "abilityDescription": "<b>Upgrade!</b> : Gives an ally +10% (+1% per Ability) damage for 6 turns. <div class='flex justify-between'><div><b>Casting</b>: On Attack</div><div><b>Manacost</b>: 3</div><div><b>Cooldown</b>: 0</div></div>",
             onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
@@ -588,7 +591,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 12.65,
-                        speed: 5.25,
+                        speed: 5.25 * (unit?.projectileSpeed),
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -625,7 +628,7 @@ export const getUnits = () => {
                         owner: target,
                         variable: {}, // stores internal state
                         onApply: (p, buff) => {
-                            buff.variable.damageGained = parseFloat(p.damage) * 0.1; // store how much was added
+                            buff.variable.damageGained = parseFloat(p.damage * 0.1) + (0.01 * buff.source.ability); // store how much was added
                             p.damage += parseFloat(buff?.variable?.damageGained || 0);
                         },
                         onRemove: (p, buff) => {
@@ -648,16 +651,16 @@ export const getUnits = () => {
                 frameHeight: 96,
             },
             "resource": "Natura",
-            "description": "",
-            "rarity": "Rare",
+            "description": "A mystical creature that supports allies with magical blessings. Excels at boosting attack speed for nearby units.",
+            "rarity": "Uncommon",
             "damageType": "",
-            "damage" : 0,
+            "damage" : 2.18,
             "ability" : 1,
-            "mana" : 0,
-            "manaRegen": 0,
+            "mana" : 6,
+            "manaRegen": 1,
             "abilityCooldown": 0,
-            "cooldown": 0,
-            "abilityDescription": "",
+            "cooldown": 2.73,
+            "abilityDescription": "<b>Blessing!</b> : Gives an ally +10% (+1% per Ability) attackspeed for 3 turns. <div class='flex justify-between'><div><b>Casting</b>: On Attack</div><div><b>Manacost</b>: 5</div><div><b>Cooldown</b>: 0</div></div>",
             onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
@@ -682,7 +685,72 @@ export const getUnits = () => {
                 });
             },
             onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) return;
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+
+                if (nearest) {
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 12.65,
+                        speed: 5.25 * (unit?.projectileSpeed),
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        color: "lightgreen",
+                        owner: unit,
+                    });
+                }
                 
+                  // === Buff allies ===
+                const manaCost = 5; // adjust as needed
+                if (unit.mana < manaCost) return; // not enough mana
+
+                // Find allies without the "Astilbe Grace" buff
+                const targets = priorityBuffs(units.value, [{ name: "Blessing!" }]);
+
+                if (targets.length > 0) {
+                    const target = targets[Math.floor(Math.random() * targets.length)];
+
+                    unit.mana -= manaCost;
+                    unit.record.manaSpent += manaCost;
+                    if(!unit.record.abilityUses) unit.record.abilityUses = 0;
+                    unit.record.abilityUses += 1;
+
+                    target.buffs = target.buffs || [];
+                    target.buffs.push({
+                        name: "Blessing!",
+                        description: "Gain "+parseFloat(unit.baseCooldown * 0.1)+" increased damage",
+                        duration: 3 * unit.buffDuration,
+                        baseDuration: 3,
+                        isApplied: false,
+                        stacking: false,
+                        source: unit,
+                        owner: target,
+                        variable: {}, // stores internal state
+                        onApply: (p, buff) => {
+                            buff.variable.cooldownGained = parseFloat(p.baseCooldown * 0.1) + (0.01 * buff.source.ability); // store how much was added
+                            p.cooldown -= parseFloat(buff?.variable?.cooldownGained || 0);
+                        },
+                        onRemove: (p, buff) => {
+                            p.cooldown += parseFloat(buff?.variable?.cooldownGained || 0);
+                        },
+                    });
+                }
             },
             onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
@@ -758,7 +826,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 15,
-                        speed: 8,
+                        speed: 8 * (unit?.projectileSpeed),
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -796,7 +864,7 @@ export const getUnits = () => {
                             x: (x * 45) + 40,
                             y: (y * 45) + 40,
                             size: 15,
-                            speed: 8,
+                            speed: 8 * (unit?.projectileSpeed),
                             damage: unit.damage,
                             target: nearest_2.enemy,
                             location: {x:x,y:y},
@@ -898,7 +966,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 15,
-                        speed: 12,
+                        speed: 12 * (unit?.projectileSpeed),
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -922,17 +990,47 @@ export const getUnits = () => {
                 frameHeight: 96,
             },
             "resource": "Techno",
-            "description": "",
+            "description": "A disciplined combatant trained in modern warfare. Excels at using grenades to damage multiple enemies in close proximity.",
             "rarity": "Common",
             "damageType": "",
-            "damage" : 0,
+            "damage" : 1.94,
             "ability" : 1,
             "mana" : 0,
             "manaRegen": 0,
             "abilityCooldown": 0,
-            "cooldown": 0,
-            "abilityDescription": "",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            "cooldown": 2.34,
+            "abilityDescription": "Grenade! : Has 25% chance to use a grenade, dealing 125% ability to enemies nearby.",
+            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
+                if(triggerChance(0.25 * unit.triggerChance)){
+                    const splashRadius = (75); // how close other enemies must be (in pixels)
+                    const splashDamage = parseFloat(unit.ability * 1.25);
+                    
+                    hitEffects.value.push({
+                        x: target.x + target.size / 2,
+                        y: target.y + target.size / 2,
+                        radius: 20,
+                        alpha: 1,
+                        color: "rgba(255, 200, 0, 1)", // yellowish glow
+                        decay: 0.03, // how fast it fades
+                        grow: 0.5, // how fast it expands
+                    });
+                    
+                    enemies.value.forEach((enemy) => {
+                        const dx = (enemy.x + enemy.size / 2) - (target.x + target.size / 2);
+                        const dy = (enemy.y + enemy.size / 2) - (target.y + target.size / 2);
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist <= splashRadius) {
+                            // Deal splash damage
+                            if(!unit.record.explosionTotalDamage) unit.record.explosionTotalDamage = 0;
+                            unit.record.explosionTotalDamage += parseFloat((splashDamage).toFixed(2));
+                            enemy.onTakeDamage(splashDamage,null,damageTexts, hitEffects, resource,units,enemies,unit,projectiles,x, y, false);
+                        }
+                    });
+                }
+                
+            },
+            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -954,7 +1052,41 @@ export const getUnits = () => {
                     vy: -0.4, // upward speed
                 });
             },
-            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) {
+                    return;
+                };
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+
+                unit.timer = 0;
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+
+                if (nearest) {
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 12,
+                        speed: 12 * (unit?.projectileSpeed),
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        image: "/Images/Projectiles/Bullet.png",
+                        color: "blue",
+                        owner: unit,
+                    });
+                }
+            },
             onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
@@ -1051,6 +1183,8 @@ export const getUnits = () => {
                             const dist = Math.sqrt(dx * dx + dy * dy);
 
                             if (dist <= splashRadius) {
+                                if(!unit.record.abilityTotalDamage) unit.record.abilityTotalDamage = 0;
+                                unit.record.abilityTotalDamage += parseFloat((splashDamage).toFixed(2));
                                 enemy.onTakeDamage(splashDamage,null,damageTexts, hitEffects, resource,units,enemies,unit,projectiles,x,y, false);
                             }
                         });
@@ -1074,7 +1208,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 7,
-                        speed: 5,
+                        speed: 5 * (unit?.projectileSpeed),
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -1159,7 +1293,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 18,
-                        speed: 13,
+                        speed: 13 * (unit?.projectileSpeed),
                         damage: (unit.damage * (0.4 * unit.ability)),
                         target: nearest.enemy, // optional — might not be needed for straight-line shots
                         direction: nearest.enemy ? Math.atan2(nearest.enemy.y - (y * 45), nearest.enemy.x - (x * 45)) : 0,
@@ -1269,7 +1403,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 18,
-                        speed: 7,
+                        speed: 7 * (unit?.projectileSpeed),
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -1405,7 +1539,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 7,
-                        speed: 5,
+                        speed: 5 * (unit?.projectileSpeed),
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -1510,7 +1644,7 @@ export const getUnits = () => {
                                 x: (x * 45) + 40,
                                 y: (y * 45) + 40,
                                 size: 15,
-                                speed: 10,
+                                speed: 10 * (unit?.projectileSpeed),
                                 damage: 2 * unit.ability,
                                 direction: finalAngle,     
                                 location: { x: x, y: y },
@@ -1542,7 +1676,7 @@ export const getUnits = () => {
                         x: (x * 45) + 40,
                         y: (y * 45) + 40,
                         size: 7,
-                        speed: 5,
+                        speed: 5 * (unit?.projectileSpeed),
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
@@ -1578,6 +1712,7 @@ export const getUnits = () => {
         critChance: 0.05,
         critDamage: 1.5,
 
+        projectileSpeed: 1,
         buffDuration: 1,
         debuffDuration: 1,
         triggerChance: 1,

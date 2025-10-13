@@ -78,7 +78,21 @@ watch(dialog, (newVal)=>{
       let temp = plants.value;
       temp.forEach((plant, index)=>{
         if(locked.value.includes(index)) return;
-        plants.value[index] = Unit.value[Math.floor(Math.random() * Unit.value.length)];
+        const weightedUnits = [];
+
+        Unit.value.forEach(unit => {
+          const rarityChance = Rarity[unit.rarity]?.chance || 0;
+          const count = Math.floor(rarityChance * 1000);
+          for(let i = 0; i < count; i++) {
+            weightedUnits.push(unit);
+          }
+        });
+        
+        if(weightedUnits.length > 0) {
+          plants.value[index] = weightedUnits[Math.floor(Math.random() * weightedUnits.length)];
+        } else {
+          plants.value[index] = Unit.value[Math.floor(Math.random() * Unit.value.length)];
+        }
       });
     },100);
   }
@@ -103,7 +117,7 @@ onMounted(()=>{
             @click="dialog = false"
           ></v-btn>
 
-          <v-toolbar-title>Roll a Flower</v-toolbar-title>
+          <v-toolbar-title>Roll a Unit</v-toolbar-title>
         </v-toolbar>
 
         <div class="flex justify-center w-full text-gray-500 mt-5" style="font-size: 26px">{{description}}</div>

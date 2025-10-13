@@ -5,6 +5,7 @@ import { Enemy } from '@/Resources/EnemyClass';
 import { getUnits } from '@/Resources/Units';
 import { Rarity } from '@/Resources/Rarity';
 import { nextTick, onMounted, ref, watch } from 'vue';
+
 const dialog = defineModel("show");
 const inventory = defineModel("inventory");
 const resources = defineModel("resources");
@@ -17,12 +18,12 @@ const projectiles = ref([]);
 const gameUpdate = ref(()=>{});
 const damageTexts = ref([]);
 const hitEffects = ref([]);
+const started = ref(false);
 
 const canvasRef = ref(null);
 let ctx = null;
 let animationId = null;
 
-// Square properties
 const battleField = ref({
   width: 1200,
   height: 400,
@@ -190,11 +191,13 @@ const update = ()=>{
     });
   });
 
-  if(enemies.value.length === 0){
+  if(enemies.value.length === 0 && started.value){
     dialog.value = false;
     clearInterval(gameUpdate.value);
     gameUpdate.value = null;
-
+    console.log(inventory.value);
+    console.log(fields.value);
+    console.log(resources.value);
   }
 }
 
@@ -500,13 +503,15 @@ async function initCanvas() {
 }
 
 watch(dialog, (val) => {
-  
+
   enemyValue.value = 0;
   Enemies.value = getEnemies(stage.value);
   enemies.value = [];
   let index = 0;
-  while(enemyValue.value < stage.value * 10){
-    let template = Enemies.value[Math.floor(Math.random() * Enemies.value.length)];
+  started.value = false;
+  while(Enemies.value.length > enemies.value.length){
+    
+    let template = Enemies.value[index];
     let enemy = Object.assign(
       Object.create(Object.getPrototypeOf(template)), 
       template
@@ -518,8 +523,9 @@ watch(dialog, (val) => {
     enemy.buffs = [];
     enemy.debuffs = [];
     enemies.value.push(enemy);
-    enemyValue.value += enemy.value;
   }
+
+  started.value = true;
 
   if (val) {
     initCanvas();
@@ -527,6 +533,7 @@ watch(dialog, (val) => {
     cancelAnimationFrame(animationId);
   }
 });
+
 </script>
 
 <template>

@@ -127,8 +127,8 @@ onMounted(()=>{
                           <td class="border-b p-2" >{{(unit?.mana).toFixed(2)}} / {{ (unit?.maxmana).toFixed(2) }} - [{{(unit?.manaRegen).toFixed(2)}}]</td>
                         </tr>
                         <tr>
-                          <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">Attackspeed</td>
-                          <td class="border-b p-2" >{{ (unit?.cooldown).toFixed(3) }}</td>
+                          <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">Attack / Projectile Speed</td>
+                          <td class="border-b p-2" >{{ (unit?.cooldown).toFixed(3) }} / {{ (unit?.projectileSpeed * 100).toFixed(2) }}%</td>
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">Ability Cooldown</td>

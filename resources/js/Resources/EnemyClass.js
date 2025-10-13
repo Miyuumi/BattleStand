@@ -50,7 +50,7 @@ export class Enemy {
     source.record.damageDealt += parseFloat((dam).toFixed(2));
     if(recurse) {
       source.onDamage(source, this, damageTexts, hitEffects,  resources, plants, enemies, projectiles, x, y);
-      if (this.health <= 0) {
+      if (isNaN(this.health) || this.health <= 0) {
         this.onDeath(source, damage, damageTexts, hitEffects,  resources, enemies, plants, projectiles, x, y);
       }
     }

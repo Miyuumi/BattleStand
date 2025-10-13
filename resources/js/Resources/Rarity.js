@@ -2,19 +2,19 @@ export const Rarity = {
     'Common': 
         {
             color: 'gray',
-            chace: 0.5,
+            chance: 0.5,
         },
     'Uncommon': {
             color: 'blue',
-            chace: 0.25,
+            chance: 0.25,
         },
     'Rare': {
             color: 'gold',
-            chace: 0.125,
+            chance: 0.125,
         },
     'Epic' : {
             color: 'violet',
-            chace: 0.0625,
+            chance: 0.0625,
         },
     'Legendary': {
         color: 'orange',   

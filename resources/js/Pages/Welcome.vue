@@ -9,6 +9,8 @@ import Roll from './Roll.vue';
 import UnitDescription from './UnitDescription.vue';
 import Game from './Game.vue';
 import Shop from './Shop.vue';
+import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 
 const Units = getUnits();
 
@@ -27,6 +29,11 @@ const rollDialog = ref(false);
 const descriptionDialog = ref(false);
 const shopDialog = ref(false);
 const gameDialog = ref(false);
+
+const logout = ()=>{
+    axios.post('logout', {});
+    window.location.href = "/";
+}
 
 const setPlant = (index)=>{
     if(fields.value[index[0]][index[1]]){
@@ -78,16 +85,27 @@ const start = ()=>{
 <template>
     <Head title="Welcome" />
     <v-card class="absolute top-0 w-screen h-[50px]">
-        <div class="flex w-full h-full items-center gap-5">
-            <div class="flex items-center mx-4 gap-1" v-for="res in Object.entries(resources)">
-                <div v-if="res[0] !== 'currentSeason'" class="flex items-center gap-1">
-                    <img class="w-[30px]" :src="'/icons/'+res[0]+'.png'"></img>
-                    <span>{{ res[1].toFixed(0) }}</span>
-                </div>
-                <div v-else>
+        <div class="flex justify-between w-full h-full items-center">
+            <div class="flex w-full h-full items-center gap-5">
+                <div class="flex items-center mx-4 gap-1" v-for="res in Object.entries(resources)">
+                    <div v-if="res[0] !== 'currentSeason'" class="flex items-center gap-1">
+                        <img class="w-[30px]" :src="'/icons/'+res[0]+'.png'"></img>
+                        <span>{{ res[1].toFixed(0) }}</span>
+                    </div>
+                    <div v-else>
 
+                    </div>
+                    
                 </div>
-                
+            </div>
+            <div>
+                <div class="">
+                    <div class="me-3">
+                            <v-btn @click="logout" class="me-3">
+                                Log Out
+                        </v-btn>
+                    </div>
+                </div>
             </div>
         </div>
     </v-card>
@@ -100,7 +118,7 @@ const start = ()=>{
                 <v-btn icon @click="start">{{stage + 1}}</v-btn>
             </div>
             <div class="flex gap-2">
-                <v-btn icon @click="listDialog = true"><v-icon>mdi-unit</v-icon></v-btn>
+                <v-btn icon @click="listDialog = true"><v-icon>mdi-account-multiple</v-icon></v-btn>
             </div>
         </div>
     </div>
