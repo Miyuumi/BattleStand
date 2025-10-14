@@ -5,12 +5,21 @@ import { Rarity } from '@/Resources/Rarity';
 import { onMounted, ref } from 'vue';
 const dialog = defineModel("show");
 const unit = defineModel("unit");
+const resources = defineModel("resource");
+const fields = defineModel("fields");
+const items = defineModel("items");
 const location = defineModel("location");
 const tab = ref("one");
 const emits = defineEmits(['dig']);
 
 const dig = ()=>{
   emits('dig');
+}
+
+const unequip = (item)=>{
+  item.onUnequip(item, unit.value, resources, fields, unit.x, unit.y);
+  unit.value.items = unit.value.items.filter(f => f !== item);
+  items.value.push(item);
 }
 
 const formatLabel = (key) => {
@@ -181,14 +190,21 @@ onMounted(()=>{
                   </v-tabs-window-item>
                   <v-tabs-window-item value="five">
                     <div class="h-[675px] overflow-y-auto">
-                    <!-- <table class="w-full border-collapse" style="font-size: 18px">
+                    <table class="w-full border-collapse" style="font-size: 18px">
                       <tbody>
-                        <tr v-for="buff in unit?.buffs">
-                          <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">{{buff.name}}</td>
-                          <td class="border-b p-2">{{ buff.description }}. Duration: {{ (buff.duration).toFixed(2) }}</td>
+                        <tr v-for="item in unit?.items">
+                          <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">
+                            <div class="flex items-center">
+                              <img class="w-[50px] min-h-[50px]" :src="item.image" style="object-fit: contain; height: 100%"/>
+                              <span>{{item.name}}</span>
+                            </div>
+                            
+                          </td>
+                          <td class="border-b p-2" v-html="item.abilityDescription"></td>
+                          <td class="border-b p-2"><v-btn prepend-icon="mdi-shield-remove" @click="unequip(item)">Unequip</v-btn></td>
                         </tr>
                       </tbody>
-                    </table> -->
+                    </table>
                     </div>
                   </v-tabs-window-item>
                   <v-tabs-window-item value="six">
