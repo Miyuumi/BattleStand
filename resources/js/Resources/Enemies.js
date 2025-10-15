@@ -11,27 +11,32 @@ export const getEnemies = (wave) => {
     let count = 10;
     let balance = 1;
     let antibalance = 1;
+    let type = "Normal";
     
     switch(rand){
         case 0:
             count = 10;
             balance = 1;
             antibalance = 1;
+            type = "Normal";
             break;
         case 1:
             count = 10;
             balance = 1;
             antibalance = 1;
+            type = "Normal";
             break;
         case 2:
             count = 1;
             balance = 10;
             antibalance = 0.5;
+            type = "Boss";
             break;
         case 3:
             count = 20;
             balance = 0.5;
             antibalance = 1;
+            type = "Mass";
             break;
     }
 
@@ -48,7 +53,9 @@ export const getEnemies = (wave) => {
                 wave: wave,
                 level: 1,
                 value: 1 * balance,
+                bounty: 1 * balance,
                 experience: 1 * balance,
+                type: type,
                 size: 30,
                 x: 1200,
                 y: 100,

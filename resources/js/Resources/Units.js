@@ -24,8 +24,8 @@ export const getUnits = () => {
             "abilityCooldown": 3,
             "cooldown": 2.17,
             "abilityDescription": "<b>Speed Boost (Active)</b>: Grants +50% base attack and projectile speed for 5 turns. <div class='flex justify-between'><div><b>Casting</b>: On Attack</div><div><b>Manacost</b>: 20</div><div><b>Cooldown</b>: 3</div></div>",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -123,7 +123,7 @@ export const getUnits = () => {
                     },
                 });
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -147,8 +147,8 @@ export const getUnits = () => {
             "abilityCooldown": 0,
             "cooldown": 3.8,
             "abilityDescription": "<b>Quick Attack</b>: Whenever this unit crits, has 40% chance to attack again a random enemy",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
                 if(triggerChance(0.4 * unit.triggerChance)){
                     const randomIndex = Math.floor(Math.random() * enemies.value.length);
                     let nearest = { 
@@ -241,7 +241,7 @@ export const getUnits = () => {
                     });
                 }
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -265,8 +265,8 @@ export const getUnits = () => {
             "abilityCooldown": 0,
             "cooldown": 2.875,
             "abilityDescription": "<b>Bloodline</b> : Gain (0.2 * Ability) Damage on Kills",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -359,8 +359,8 @@ export const getUnits = () => {
             "abilityCooldown": 0,
             "cooldown": 0.5,
             "abilityDescription": "<b>Mounted</b> : Attacks Random Enemies",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -414,7 +414,7 @@ export const getUnits = () => {
                     });
                 }
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -438,7 +438,7 @@ export const getUnits = () => {
             "abilityCooldown": 0,
             "cooldown": 2.625,
             "abilityDescription": "<b>Explosion</b> : Attacks deals extra damage to all enemies in (60 * Ability) range of the target, dealing (25% * Ability) area damage.",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
                 const splashRadius = (60 * unit.ability); // how close other enemies must be (in pixels)
                 const splashPercent = (0.25 * unit.ability); // nearby enemies take 50% damage
                 const splashDamage = unit.damage * splashPercent;
@@ -467,7 +467,7 @@ export const getUnits = () => {
                     }
                 });
             },
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -521,7 +521,7 @@ export const getUnits = () => {
                     });
                 }
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -545,8 +545,8 @@ export const getUnits = () => {
             "abilityCooldown": 0,
             "cooldown": 2.4,
             "abilityDescription": "<b>Upgrade!</b> : Gives an ally +10% (+1% per Ability) damage for 6 turns. <div class='flex justify-between'><div><b>Casting</b>: On Attack</div><div><b>Manacost</b>: 3</div><div><b>Cooldown</b>: 0</div></div>",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -637,7 +637,7 @@ export const getUnits = () => {
                     });
                 }
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -661,8 +661,8 @@ export const getUnits = () => {
             "abilityCooldown": 0,
             "cooldown": 2.73,
             "abilityDescription": "<b>Blessing!</b> : Gives an ally +10% (+1% per Ability) attackspeed for 3 turns. <div class='flex justify-between'><div><b>Casting</b>: On Attack</div><div><b>Manacost</b>: 5</div><div><b>Cooldown</b>: 0</div></div>",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -752,7 +752,7 @@ export const getUnits = () => {
                     });
                 }
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -776,8 +776,8 @@ export const getUnits = () => {
             "abilityCooldown": 0,
             "cooldown": 2.82,
             "abilityDescription": "<b>Multishot</b> : Attacks (Ability) extra units at random. Has a very small chance to fail.",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -875,7 +875,7 @@ export const getUnits = () => {
                     }
                 }
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -899,7 +899,7 @@ export const getUnits = () => {
             "abilityCooldown": 0,
             "cooldown": 5,
             "abilityDescription": "<b>Headshot</b> : Has 10% Chance to deal bonus (Crit. Damage * Damage * Ability) damage on hit. Can also Crit.",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
                 if(triggerChance(0.1 * unit.triggerChance)){
                     //unit.damage * unit.ability * unit.critDamage
                     let dam = unit.damage * unit.ability * unit.critDamage;
@@ -919,7 +919,7 @@ export const getUnits = () => {
                     });
                 }
             },
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -976,7 +976,7 @@ export const getUnits = () => {
                     });
                 }
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -1000,7 +1000,7 @@ export const getUnits = () => {
             "abilityCooldown": 0,
             "cooldown": 2.34,
             "abilityDescription": "Grenade! : Has 25% chance to use a grenade, dealing 125% ability to enemies nearby.",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
                 if(triggerChance(0.25 * unit.triggerChance)){
                     const splashRadius = (75); // how close other enemies must be (in pixels)
                     const splashDamage = parseFloat(unit.ability * 1.25);
@@ -1030,7 +1030,7 @@ export const getUnits = () => {
                 }
                 
             },
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -1087,7 +1087,7 @@ export const getUnits = () => {
                     });
                 }
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -1111,8 +1111,8 @@ export const getUnits = () => {
             "abilityCooldown": 1,
             "cooldown": 3.25,
             "abilityDescription": "<b>Fire Blast (Active)</b> : Fires a blast on the current target and nearby enemies (50) dealing 300% ability. <div class='flex justify-between'><div><b>Casting</b>: Has Enemy</div><div><b>Manacost</b>: 10</div><div><b>Cooldown</b>: 1</div></div>",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -1218,7 +1218,7 @@ export const getUnits = () => {
                 }
 
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -1242,11 +1242,11 @@ export const getUnits = () => {
             "abilityCooldown": 0,
             "cooldown": 3.57,
             "abilityDescription": "<b>Pierce</b> : Hits all enemies in a straight line. Has (40% * Ability) damage penalty modifier.",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
                 if(!unit.record.pierceHit) unit.record.pierceHit = 0;
                 unit.record.pierceHit += 1;
             },
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -1307,7 +1307,7 @@ export const getUnits = () => {
                     });
                 }
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -1331,7 +1331,7 @@ export const getUnits = () => {
             "abilityCooldown": 0,
             "cooldown": 3.58,
             "abilityDescription": "<b>Bash!</b> : Has 10% chance to stun target for 1s. Deals 300% ability at the end of stun.",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
                 if(triggerChance(0.1 * unit.triggerChance)){
                     if(!unit.record.bashHit) unit.record.bashHit = 0;
                     unit.record.bashHit += 1;
@@ -1358,7 +1358,7 @@ export const getUnits = () => {
                 }
                 
             },
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -1413,7 +1413,7 @@ export const getUnits = () => {
                     });
                 }
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -1437,8 +1437,8 @@ export const getUnits = () => {
             "abilityCooldown": 3,
             "cooldown": 3,
             "abilityDescription": "<b>Witch Curse (Active)</b> : Curse the current target slowing them for 10% and increasing drop rate by 20% and quality by 10% for 6s. <div class='flex justify-between'><div><b>Casting</b>: Has Enemy</div><div><b>Manacost</b>: 10</div><div><b>Cooldown</b>: 3</div></div>",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -1548,7 +1548,7 @@ export const getUnits = () => {
                     });
                 }
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -1572,8 +1572,8 @@ export const getUnits = () => {
             "abilityCooldown": 6,
             "cooldown": 3.69,
             "abilityDescription": "<b>Magic Storm (Active) </b>: Fires 1 (+1 per 5 level) ball towards current target dealing 200% ability to all enemies in the way. <div class='flex justify-between'><div><b>Casting</b>: Has Enemies</div><div><b>Manacost</b>: 15</div><div><b>Cooldown</b>: 6</div></div>",
-            onDamage: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
@@ -1685,7 +1685,469 @@ export const getUnits = () => {
                     });
                 }
             },
-            onKill: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+        },
+        {
+            "name": "Bard",
+            "resource": "Metio",
+            "image": {
+                source: "/Images/Animations/Bard.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Common",
+            "damageType": "Light",
+            "damage" : 2.65,
+            "ability" : 1,
+            "mana" : 6,
+            "manaRegen": 1,
+            "abilityCooldown": 5,
+            "cooldown": 3.35,
+            "abilityDescription": "<b>Battle Song</b>: Gives 10% (+1% per ability) XP Gain. <div class='flex justify-between'><div><b>Casting</b>: Has Enemies</div><div><b>Manacost</b>: 5</div><div><b>Cooldown</b>: 5</div></div>",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.abilityTimer >= unit.abilityCooldown){
+                    
+                    const manaCost = 5;
+                    if (unit.mana >= manaCost) {
+                        unit.abilityTimer -= unit.abilityCooldown;
+                        const target = nearest.enemy;
+                        unit.mana -= manaCost;
+                        unit.record.manaSpent += manaCost;
+                        
+                        if(!unit.record.abilityUses) unit.record.abilityUses = 0;
+                        unit.record.abilityUses += 1;
+
+                        unit.onCast(unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y);
+
+                        units.value.forEach(row => {
+                            row.forEach(unit => {
+                                unit.buffs.push({
+                                    name: "Battle Song",
+                                    description: "Gain 10% XP Gain",
+                                    duration: 4 * unit.buffDuration,
+                                    baseDuration: 4,
+                                    isApplied: false,
+                                    stacking: false,
+                                    source: unit,
+                                    owner: target,
+                                    variable: {}, // stores internal state
+                                    onApply: (p, buff) => {
+                                        buff.variable.gain = 0.1 + parseFloat(0.01 * buff.source.ability); // store how much was added
+                                        p.xpGain += buff.variable.gain;
+                                    },
+                                    onRemove: (p, buff) => {
+                                        p.xpGain -= buff.variable.gain;
+                                    },
+                                });
+                            })
+                        });
+                    }
+                }else{
+                    unit.abilityTimer += 0.1;
+                }
+
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                if (nearest) {
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 17,
+                        speed: 5 * (unit?.projectileSpeed),
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        image: "/Images/Projectiles/Sound.png",
+                        color: "purple",
+                        owner: unit,
+                    });
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+        },
+        {
+            "name": "Bowman",
+            "resource": "Natura",
+            "image": {
+                source: "/Images/Animations/Bowman.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Rare",
+            "damageType": "Piercing",
+            "damage" : 2.55,
+            "ability" : 1,
+            "mana" : 6,
+            "manaRegen": 1,
+            "abilityCooldown": 5,
+            "cooldown": 2.65,
+            "abilityDescription": "<b>Ascended Shot</b>: Deals 2x (+0.25x ability) damage every 5 hits.",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                if(!unit.variable.attackCounter && unit.variable.attackCounter != 0){
+                    unit.variable.attackCounter = 0;
+                }else{
+                    unit.variable.attackCounter += 1;
+                }
+
+                if (nearest) {
+                    if(unit.variable.attackCounter == 5){
+                        if(!unit.record.ascendedShots) unit.record.ascendedShots = 0;
+                        unit.record.ascendedShots += (1);
+
+                        if(!unit.record.ascendedShotsDamage) unit.record.ascendedShotsDamage = 0;
+                        unit.record.ascendedShotsDamage += parseFloat(((unit.damage) + ((unit.damage) * (0.25 * unit.ability))).toFixed(2));
+
+                        unit.variable.attackCounter = 0;
+                        projectiles.value.push({
+                            x: (x * 45) + 40,
+                            y: (y * 45) + 40,
+                            size: 22,
+                            speed: 10 * (unit?.projectileSpeed),
+                            damage: (unit.damage) + ((unit.damage) * (0.25 * unit.ability)),
+                            target: nearest.enemy,
+                            location: {x:x,y:y},
+                            image: "/Images/Projectiles/Arrow.png",
+                            color: "purple",
+                            owner: unit,
+                        });
+                    }else{
+                        projectiles.value.push({
+                            x: (x * 45) + 40,
+                            y: (y * 45) + 40,
+                            size: 13,
+                            speed: 8 * (unit?.projectileSpeed),
+                            damage: unit.damage,
+                            target: nearest.enemy,
+                            location: {x:x,y:y},
+                            image: "/Images/Projectiles/Arrow.png",
+                            color: "purple",
+                            owner: unit,
+                        });
+                    }
+                    
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+        },
+        {
+            "name": "Chariot",
+            "resource": "Metio",
+            "image": {
+                source: "/Images/Animations/Chariot.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Uncommon",
+            "damageType": "Normal",
+            "damage" : 2.82,
+            "ability" : 1,
+            "mana" : 6,
+            "manaRegen": 1,
+            "abilityCooldown": 5,
+            "cooldown": 3.65,
+            "abilityDescription": "<b>Bouncing Shot</b>: Attacks bounces 2 (+1 per ability) times dealing 50% (-1% per level) damage",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) return;
+                if (projectile.targets.length >= (2 + Math.floor(unit.ability))) return;
+
+                let nearest = enemies.value
+                    .filter((e) => !projectile.targets.includes(e))
+                    .reduce((closest, enemy) => {
+                        const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                        const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                        const dist = Math.sqrt(dx*dx + dy*dy);
+                        return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                    }, null);
+
+                if (nearest) {
+                    projectile.targets.push(nearest.enemy);
+
+                    projectiles.value.push({
+                        x: target.x + 15,
+                        y: target.y + 15,
+                        size: 20,
+                        speed: 10 * (unit?.projectileSpeed),
+                        damage: (projectile.damage * (0.5 + Math.min(0.01 * unit.level, 0.5))),
+                        targets: projectile.targets,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        image: "/Images/Projectiles/Cavalier.png",
+                        color: "purple",
+                        owner: unit,
+                    });
+                }
+                
+            },
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                if (nearest) {
+                    unit.variable.targets = [nearest.enemy];
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 20,
+                        speed: 10 * (unit?.projectileSpeed),
+                        targets: [nearest.enemy],
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        image: "/Images/Projectiles/Cavalier.png",
+                        color: "purple",
+                        owner: unit,
+                    });
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+        },
+        {
+            "name": "Executioner",
+            "resource": "Metio",
+            "image": {
+                source: "/Images/Animations/Executioner.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Rare",
+            "damageType": "Normal",
+            "damage" : 1.82,
+            "ability" : 1,
+            "mana" : 6,
+            "manaRegen": 1,
+            "abilityCooldown": 5,
+            "cooldown": 4.65,
+            "abilityDescription": "<b>Execute</b>: Has 0.1% chance to kill non-boss Enemy. Gains 2x (xp, coins...) rewards from executing.<br><b>Bounty Rewards</b>: Gains bonus 1 (+0.1 per ability) coins on kill.",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
+                if(triggerChance(0.01 * unit.triggerChance)){
+                    
+                    if(target.type == 'Boss') return;
+
+                    if(!unit.record.executedUnits) unit.record.executedUnits = 0;
+                    unit.record.executedUnits += (1);
+                
+                    damageTexts.value.push({
+                        x: target.x + 15,
+                        y: target.y,
+                        text: "Execute!",
+                        color: "red",
+                        size: 12,
+                        alpha: 1,
+                        vy: -0.8, // upward speed
+                    });
+
+                    target.onDeath(unit, null, damageTexts, hitEffects,  resource, enemies, units, projectiles, x, y);
+                }
+            },
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                if (nearest) {
+                    unit.variable.targets = [nearest.enemy];
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 23,
+                        speed: 12 * (unit?.projectileSpeed),
+                        targets: [nearest.enemy],
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        image: "/Images/Projectiles/Axeman.png",
+                        color: "purple",
+                        owner: unit,
+                    });
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                damageTexts.value.push({
+                    x: target.x + 15,
+                    y: target.y,
+                    text: "+"+(1 + (0.1 * unit.ability)).toFixed(0),
+                    color: "gold",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.8, // upward speed
+                });
+                if(!unit.record.bountyRewardsGained) unit.record.bountyRewardsGained = 0;
+                unit.record.bountyRewardsGained += parseFloat((1 + (0.1 * unit.ability)).toFixed(2));
+                resource.value.Coins += (1 + (0.1 * unit.ability));
+            },
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
         },
@@ -1703,23 +2165,23 @@ export const getUnits = () => {
         baseManaRegen: f.manaRegen,
         baseMaxmana: f.mana,
         baseCooldown: f.cooldown,
-        baseBuffDuration: 1,
-        baseDebuffDuration: 1,
-        baseTriggerChance: 0.1,
-        baseCritChance: 0.05,
-        baseCritDamage: 1.5,
+        baseBuffDuration: f?.buffDuration || 1,
+        baseDebuffDuration: f?.debuffDuration || 1,
+        baseTriggerChance: 1,
+        baseCritChance: f?.critChance || 0.05,
+        baseCritDamage: f?.critDamage || 1.5,
 
-        critChance: 0.05,
-        critDamage: 1.5,
+        critChance: f?.critChance || 0.05,
+        critDamage: f?.critDamage || 1.5,
 
-        projectileSpeed: 1,
-        buffDuration: 1,
-        debuffDuration: 1,
-        triggerChance: 1,
-        xpGain: 1,
-        bountyGain: 1,
-        dropChance: 1,
-        dropQuality: 1,
+        projectileSpeed: f?.projectileSpeed || 1,
+        buffDuration: f?.buffDuration || 1,
+        debuffDuration: f?.debuffDuration || 1,
+        triggerChance: f?.triggerChance || 1,
+        xpGain: f?.xpGain || 1,
+        bountyGain: f?.bountyGain || 1,
+        dropChance: f?.dropChance || 1,
+        dropQuality: f?.dropQuality || 1,
         buffs: [],
         debuffs: [],
         items: [],
@@ -1751,3 +2213,87 @@ export const getUnits = () => {
     }));
     return Units.sort((a, b) => a.name.localeCompare(b.name));
 }
+
+
+/*
+{
+            "name": "Assassin",
+            "resource": "Metio",
+            "image": {
+                source: "/Images/Animations/Assassin.png",
+                frame: 0,
+                frameCount: 6,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "A highly skilled individual trained in precision, and tactical execution. Excels at dealing critical strikes and quick attacks.",
+            "rarity": "Rare",
+            "damageType": "Pure",
+            "damage" : 5.65,
+            "ability" : 1,
+            "mana" : 0,
+            "manaRegen": 0,
+            "abilityCooldown": 0,
+            "cooldown": 3.8,
+            "abilityDescription": "<b>Quick Attack</b>: Whenever this unit crits, has 40% chance to attack again a random enemy",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) return;
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+
+                if (nearest) {
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 15,
+                        speed: 8 * (unit?.projectileSpeed),
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        image: "/Images/Projectiles/Crescent.png",
+                        color: "purple",
+                        owner: unit,
+                    });
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+        },
+        */
