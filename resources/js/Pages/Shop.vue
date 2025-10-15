@@ -56,7 +56,7 @@ onMounted(()=>{
             @click="dialog = false"
           ></v-btn>
 
-          <v-toolbar-title>Shop</v-toolbar-title>
+          <v-toolbar-title>Resource Shop</v-toolbar-title>
           <v-toolbar-items>
             <div class="flex items-center gap-1 pe-5" style="font-size: 30px;">
                   <img class="w-[50px]" :src="'/icons/Coins.png'"></img>

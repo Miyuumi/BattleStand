@@ -39,33 +39,68 @@ export const getEnemies = (wave) => {
             type = "Mass";
             break;
     }
-
-    let baseHealth = 1 + (wave * 0.625) +  (wave * wave * 0.1125);
     
     let enemies = [];
-    for(let i = 0; i < count; i++){
-        let enemy = new Enemy(
-            {
-                name: race.name,
-                health: baseHealth * balance,
-                mana: 10 * balance,
-                damage: 1 * balance,
-                wave: wave,
-                level: 1,
-                value: 1 * balance,
-                bounty: 1 * balance,
-                experience: 1 * balance,
-                type: type,
-                size: 30,
-                x: 1200,
-                y: 100,
-                speed: 1 * antibalance,
-                image: race.image,
-                race: race
-            }
-        );
-        enemies.push(enemy);
+
+    if(wave <= 10){
+        let baseHealth = 1 + (wave * 0.275);
+
+        count = 10;
+        balance = 1;
+        antibalance = 1;
+
+        for(let i = 0; i < count; i++){
+            let enemy = new Enemy(
+                {
+                    name: race.name,
+                    health: baseHealth * balance,
+                    mana: 10 * balance,
+                    damage: 1 * balance,
+                    wave: wave,
+                    level: 1,
+                    value: 1 * balance,
+                    bounty: 1 * balance,
+                    experience: 1 * balance,
+                    type: type,
+                    size: 30,
+                    x: 1200,
+                    y: 100,
+                    speed: 1 * antibalance,
+                    image: race.image,
+                    race: race
+                }
+            );
+            enemies.push(enemy);
+        }
+    }else{
+        let baseHealth = 1 + (wave * 0.275) +  (wave * wave * 0.1075);
+        
+        for(let i = 0; i < count; i++){
+            let enemy = new Enemy(
+                {
+                    name: race.name,
+                    health: baseHealth * balance,
+                    mana: 10 * balance,
+                    damage: 1 * balance,
+                    wave: wave,
+                    level: 1,
+                    value: 1 * balance,
+                    bounty: 1 * balance,
+                    experience: 1 * balance,
+                    type: type,
+                    size: 30,
+                    x: 1200,
+                    y: 100,
+                    speed: 1 * antibalance,
+                    image: race.image,
+                    race: race
+                }
+            );
+            enemies.push(enemy);
+        }
     }
+
+    
 
     return enemies;
 };

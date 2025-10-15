@@ -17,6 +17,7 @@ export const getUnits = () => {
             "description": "A skilled ranged fighter who strikes from afar with precise, rapid shots. Excels at shooting rapid shots to lightly armored foes.",
             "rarity": "Common",
             "damageType": "Piercing",
+            "cost" : 25,
             "damage" : 2.35,
             "ability" : 1,
             "mana" : 21,
@@ -36,7 +37,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -140,6 +141,7 @@ export const getUnits = () => {
             "description": "A highly skilled individual trained in precision, and tactical execution. Excels at dealing critical strikes and quick attacks.",
             "rarity": "Rare",
             "damageType": "Pure",
+            "cost" : 200,
             "damage" : 5.65,
             "ability" : 1,
             "mana" : 0,
@@ -197,7 +199,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -258,6 +260,7 @@ export const getUnits = () => {
             "description": "A strong fighter who wields axe with brute force. Excels at dealing heavy damage and grows stronger with each kill.",
             "rarity": "Uncommon",
             "damageType": "Normal",
+            "cost" : 155,
             "damage" : 3.15,
             "ability" : 1,
             "mana" : 0,
@@ -277,7 +280,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -351,7 +354,8 @@ export const getUnits = () => {
             "resource": "Metio",
             "description": "A swift fighter who fights by throwing spears at a lightning speed. Excels at dealing damage to many enemies.",
             "rarity": "Rare",
-            "damageType": "",
+            "damageType": "Normal",
+            "cost" : 250,
             "damage" : 0.75,
             "ability" : 1,
             "mana" : 0,
@@ -371,7 +375,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -430,7 +434,8 @@ export const getUnits = () => {
             "resource": "Metio",
             "description": "A skilled demolisher who bring damage and destruction to those nearby.",
             "rarity": "Common",
-            "damageType": "",
+            "damageType": "Normal",
+            "cost" : 100,
             "damage" : 2.65,
             "ability" : 1,
             "mana" : 0,
@@ -478,7 +483,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -537,7 +542,8 @@ export const getUnits = () => {
             "resource": "Metio",
             "description": "A skilled worker forging not only for himself but also for his allies.",
             "rarity": "Uncommon",
-            "damageType": "",
+            "damageType": "Normal",
+            "cost" : 85,
             "damage" : 3.5,
             "ability" : 1,
             "mana" : 4,
@@ -557,7 +563,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -653,7 +659,8 @@ export const getUnits = () => {
             "resource": "Natura",
             "description": "A mystical creature that supports allies with magical blessings. Excels at boosting attack speed for nearby units.",
             "rarity": "Uncommon",
-            "damageType": "",
+            "damageType": "Light",
+            "cost" : 135,
             "damage" : 2.18,
             "ability" : 1,
             "mana" : 6,
@@ -673,7 +680,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -769,6 +776,7 @@ export const getUnits = () => {
             "description": "A versatile marksman skilled at striking multiple foes from afar. Excels at attacking several enemies at once with piercing arrows.",
             "rarity": "Rare",
             "damageType": "Piercing",
+            "cost" : 275,
             "damage" : 3,
             "ability" : 1,
             "mana" : 0,
@@ -788,7 +796,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -892,6 +900,7 @@ export const getUnits = () => {
             "description": "A master marksman specializing in long-range precision shots. Excels at dealing massive damage with a chance for devastating headshots.",
             "rarity": "Rare",
             "damageType": "Pure",
+            "cost" : 240,
             "damage" : 12,
             "ability" : 1,
             "mana" : 0,
@@ -930,7 +939,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -992,14 +1001,15 @@ export const getUnits = () => {
             "resource": "Techno",
             "description": "A disciplined combatant trained in modern warfare. Excels at using grenades to damage multiple enemies in close proximity.",
             "rarity": "Common",
-            "damageType": "",
+            "damageType": "Normal",
+            "cost" : 35,
             "damage" : 1.94,
             "ability" : 1,
             "mana" : 0,
             "manaRegen": 0,
             "abilityCooldown": 0,
             "cooldown": 2.34,
-            "abilityDescription": "Grenade! : Has 25% chance to use a grenade, dealing 125% ability to enemies nearby.",
+            "abilityDescription": "<b>Grenade! </b>: Has 25% chance to use a grenade, dealing 125% ability to enemies nearby.",
             onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
                 if(triggerChance(0.25 * unit.triggerChance)){
                     const splashRadius = (75); // how close other enemies must be (in pixels)
@@ -1041,7 +1051,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -1103,7 +1113,8 @@ export const getUnits = () => {
             "resource": "Magika",
             "description": "A master of elemental magic, unleashing powerful fire blasts on her enemies and those nearby.",
             "rarity": "Common",
-            "damageType": "",
+            "damageType": "Magic",
+            "cost" : 45,
             "damage" : 2.85,
             "ability" : 1,
             "mana" : 10,
@@ -1123,7 +1134,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -1234,7 +1245,8 @@ export const getUnits = () => {
             "resource": "Metio",
             "description": "A disciplined fighter specializing in piercing attacks. Excels at hitting all enemies in a straight line, though with reduced damage.",
             "rarity": "Uncommon",
-            "damageType": "",
+            "damageType": "Piercing",
+            "cost" : 170,
             "damage" : 3.75,
             "ability" : 1,
             "mana" : 0,
@@ -1257,7 +1269,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -1323,7 +1335,8 @@ export const getUnits = () => {
             "resource": "Metio",
             "description": "A sturdy melee fighter with a chance to stun enemies and deal bonus damage after the stun ends.",
             "rarity": "Common",
-            "damageType": "",
+            "damageType": "Normal",
+            "cost" : 50,
             "damage" : 1.12,
             "ability" : 1,
             "mana" : 0,
@@ -1369,7 +1382,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -1430,6 +1443,7 @@ export const getUnits = () => {
             "description": "A cunning spellcaster who curses enemies, slowing them and increasing their drop rate and quality.",
             "rarity": "Uncommon",
             "damageType": "Magic",
+            "cost" : 105,
             "damage" : 3.4,
             "ability" : 1,
             "mana" : 11,
@@ -1449,7 +1463,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -1565,6 +1579,7 @@ export const getUnits = () => {
             "description": "A master of arcane arts who conjures powerful magic storms, dealing massive area damage to enemies in the way.",
             "rarity": "Rare",
             "damageType": "Magic",
+            "cost" : 300,
             "damage" : 2.3,
             "ability" : 1,
             "mana" : 20,
@@ -1584,7 +1599,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -1699,9 +1714,10 @@ export const getUnits = () => {
                 frameWidth: 64,
                 frameHeight: 96,
             },
-            "description": "",
+            "description": "A musical support unit who inspires allies with magical songs. Excels at boosting XP gain for all friendly units.",
             "rarity": "Common",
             "damageType": "Light",
+            "cost" : 60,
             "damage" : 2.65,
             "ability" : 1,
             "mana" : 6,
@@ -1721,7 +1737,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -1821,13 +1837,14 @@ export const getUnits = () => {
                 frameWidth: 64,
                 frameHeight: 96,
             },
-            "description": "",
+            "description": "A master archer who unleashes powerful ascended shots. Every fifth attack deals double damage plus a bonus based on ability.",
             "rarity": "Rare",
             "damageType": "Piercing",
+            "cost" : 325,
             "damage" : 2.55,
             "ability" : 1,
-            "mana" : 6,
-            "manaRegen": 1,
+            "mana" : 0,
+            "manaRegen": 0,
             "abilityCooldown": 5,
             "cooldown": 2.65,
             "abilityDescription": "<b>Ascended Shot</b>: Deals 2x (+0.25x ability) damage every 5 hits.",
@@ -1843,7 +1860,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -1931,13 +1948,14 @@ export const getUnits = () => {
                 frameWidth: 64,
                 frameHeight: 96,
             },
-            "description": "",
+            "description": "A fast-moving unit whose attacks bounce between multiple enemies, dealing reduced damage with each bounce. Excels at hitting several targets in succession.",
             "rarity": "Uncommon",
             "damageType": "Normal",
+            "cost" : 100,
             "damage" : 2.82,
             "ability" : 1,
-            "mana" : 6,
-            "manaRegen": 1,
+            "mana" : 0,
+            "manaRegen": 0,
             "abilityCooldown": 5,
             "cooldown": 3.65,
             "abilityDescription": "<b>Bouncing Shot</b>: Attacks bounces 2 (+1 per ability) times dealing 50% (-1% per level) damage",
@@ -1984,7 +2002,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -2045,16 +2063,17 @@ export const getUnits = () => {
                 frameWidth: 64,
                 frameHeight: 96,
             },
-            "description": "",
+            "description": "A ruthless warrior who specializes in executing weakened enemies. Has a small chance to instantly kill non-boss enemies and gains double rewards from executions. Also receives bonus coins on every kill.",
             "rarity": "Rare",
             "damageType": "Normal",
+            "cost" : 295,
             "damage" : 1.82,
             "ability" : 1,
-            "mana" : 6,
-            "manaRegen": 1,
+            "mana" : 0,
+            "manaRegen": 0,
             "abilityCooldown": 5,
             "cooldown": 4.65,
-            "abilityDescription": "<b>Execute</b>: Has 0.1% chance to kill non-boss Enemy. Gains 2x (xp, coins...) rewards from executing.<br><b>Bounty Rewards</b>: Gains bonus 1 (+0.1 per ability) coins on kill.",
+            "abilityDescription": "<b>Execute</b>: Has 0.1% chance to kill non-boss Enemy. Gains 2x (xp, coins...) rewards from executing.<br><hr><b>Bounty Rewards</b>: Gains bonus 1 (+0.1 per ability) coins on kill.",
             onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
                 if(triggerChance(0.01 * unit.triggerChance)){
                     
@@ -2087,7 +2106,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,
@@ -2248,7 +2267,7 @@ export const getUnits = () => {
                 unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
-                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.2);
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
                 damageTexts.value.push({
                     x: (x * 45) + 45,
                     y: (y * 45) + 40,

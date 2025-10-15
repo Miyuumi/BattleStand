@@ -262,7 +262,7 @@ const start = ()=>{
     <List v-model:show="listDialog"></List>
     <Shop v-model:show="shopDialog" v-model:inventory="inventory" v-model:resources="resources"></Shop>
     <Merchant v-model:show="merchantDialog" v-model:items="items" v-model:resources="resources" v-model:stage="stage"></Merchant>
-    <Roll v-model:show="rollDialog" v-model:inventory="inventory" v-model:resources="resources"></Roll>
+    <Roll v-model:show="rollDialog" v-model:inventory="inventory" v-model:resources="resources" v-model:stage="stage"></Roll>
     <UnitDescription v-model:show="descriptionDialog" v-model:unit="description" v-model:location="location" v-model:resources="resources" v-model:fields="fields" v-model:items="items" @dig="digPlant"></UnitDescription>
     <Game v-model:show="gameDialog" v-model:fields="fields" v-model:resources="resources" v-model:stage="stage" v-model:inventory="inventory"></Game>
 </template>
