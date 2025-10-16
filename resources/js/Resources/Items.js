@@ -172,18 +172,18 @@ export const getItems = () => {
         {
             "name": "Flag",
             "image": "/Images/Items/Whiteflag.png",
-            "cost": 10,
-            "level": 1,
+            "cost": 38,
+            "level": 6,
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
-            "abilityDescription": "+5% Damage",
+            "abilityDescription": "+10% Trigger Chance",
             onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseDamage * 0.05);
-                unit.damage += item.variable.gain;
+                item.variable.gain = (0.1);
+                unit.triggerChance += item.variable.gain;
             },
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.damage -= item.variable.gain;
+                unit.triggerChance -= item.variable.gain;
             },
             onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
@@ -204,13 +204,16 @@ export const getItems = () => {
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
-            "abilityDescription": "+10% Ability",
+            "abilityDescription": "+10% Mana<br>+10% Manaregen",
             onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseAbility * 0.1);
-                unit.ability += item.variable.gain;
+                item.variable.gain = (unit.baseMaxmana * 0.1);
+                item.variable.gain2 = (unit.baseManaRegen * 0.1);
+                unit.maxMana += item.variable.gain;
+                unit.manaRegen += item.variable.gain2;
             },
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.ability -= item.variable.gain;
+                unit.maxMana -= item.variable.gain;
+                unit.manaRegen -= item.variable.gain2;
             },
             onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},

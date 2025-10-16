@@ -27,10 +27,11 @@ export class Enemy {
     this.dropChance = 1;
     this.dropQuality = 1;
     this.slowEffectivity = 1;
+    this.isDead = false;
   }
 
   onTakeDamage(damage, projectile, damageTexts, hitEffects,  resources, plants, enemies, source, projectiles, x, y, recurse = true) {
-    let dam = damage;
+    let dam = parseFloat(damage);
     let self = this;
     
     if(critChance(source.critChance)){
@@ -52,9 +53,10 @@ export class Enemy {
     source.record.damageDealt += parseFloat((dam).toFixed(2));
     if(recurse) {
       source.onDamage(source, this, projectile, damageTexts, hitEffects,  resources, plants, enemies, projectiles, x, y);
-      if (isNaN(this.health) || this.health <= 0) {
-        this.onDeath(source, damage, damageTexts, hitEffects,  resources, enemies, plants, projectiles, x, y);
-      }
+    }
+
+    if (isNaN(this.health) || this.health <= 0) {
+      this.onDeath(source, damage, damageTexts, hitEffects,  resources, enemies, plants, projectiles, x, y);
     }
   }
 
@@ -63,6 +65,8 @@ export class Enemy {
   }
 
   onDeath(source, damage, damageTexts, hitEffects,  resources, enemies, plants, projectiles, x, y) {
+    if(this.isDead) return;
+    this.isDead = true;
     source.record.kills += 1;
     source.record.xpGained += parseFloat(this.experience * source.xpGain);
     source.record.coinsGained += parseFloat(this.bounty * source.bountyGain);

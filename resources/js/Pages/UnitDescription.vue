@@ -145,7 +145,7 @@ onMounted(()=>{
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">Trigger Chance</td>
-                          <td class="border-b p-2" >{{ (unit?.triggerChance).toFixed(2) }}</td>
+                          <td class="border-b p-2" >{{ (unit?.triggerChance * 100).toFixed(2) }}%</td>
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">Buff / Debuff Duration</td>

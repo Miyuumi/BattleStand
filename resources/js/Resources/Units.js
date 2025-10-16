@@ -1149,7 +1149,6 @@ export const getUnits = () => {
 
                 if (enemies.value.length === 0) return;
 
-                
                 let nearest = enemies.value.reduce((closest, enemy) => {
                     const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
                     const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
@@ -1364,7 +1363,7 @@ export const getUnits = () => {
                             p.speed -= buff.variable.lostSpeed; // stun = can't move
                         },
                         onRemove: (p, buff) => {
-                            p.health -= (buff.source.ability * 3);
+                            p.onTakeDamage((buff.source.ability * 3),p,damageTexts, hitEffects, resource,units,enemies,unit,projectiles,x, y, false);
                             p.speed += buff.variable.lostSpeed; // restore
                         },
                     });
@@ -2063,11 +2062,11 @@ export const getUnits = () => {
                 frameWidth: 64,
                 frameHeight: 96,
             },
-            "description": "A ruthless warrior who specializes in executing weakened enemies. Has a small chance to instantly kill non-boss enemies and gains double rewards from executions. Also receives bonus coins on every kill.",
+            "description": "A ruthless warrior who specializes in executing weakened enemies. Has a small chance to instantly kill non-boss enemies. Also receives bonus coins on every kill.",
             "rarity": "Rare",
             "damageType": "Normal",
             "cost" : 295,
-            "damage" : 1.82,
+            "damage" : 4.82,
             "ability" : 1,
             "mana" : 0,
             "manaRegen": 0,
@@ -2309,8 +2308,8 @@ export const getUnits = () => {
             "abilityDescription": "<b>Smash!</b>: Has 10% chance when damaging an enemy to stun enemies by 1s on 60 (+1 per ability) area.",
             onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
                 if(triggerChance(0.1 * unit.triggerChance)){
-                    if(!unit.record.abilityUses) unit.record.abilityUses = 0;
-                    unit.record.abilityUses += 1;
+                    if(!unit.record.smashHit) unit.record.smashHit = 0;
+                    unit.record.smashHit += 1;
                     // Only stun enemies within a certain radius (AOE)
                     const smashRadius = 60 * unit.ability; // adjust radius as needed
                     hitEffects.value.push({
@@ -2422,16 +2421,124 @@ export const getUnits = () => {
                 frameHeight: 96,
             },
             "description": "",
-            "rarity": "Rare",
+            "rarity": "Uncommon",
             "damageType": "Normal",
-            "cost" : 295,
+            "cost" : 10,
+            "damage" : 2.22,
+            "ability" : 1,
+            "mana" : 0,
+            "manaRegen": 0,
+            "abilityCooldown": 5,
+            "cooldown": 3.22,
+            "abilityDescription": "<b>Greater Bash</b>: Has 10% chance on stunning an enemy.",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{
+                if(triggerChance(0.1 * unit.triggerChance)){
+                    if(!unit.record.bashHit) unit.record.bashHit = 0;
+                    unit.record.bashHit += 1;
+
+                    target.buffs.push({
+                        name: "Bash!",
+                        description: "Stunned.",
+                        duration: (1 * unit.buffDuration) * target.debuffDuration,
+                        baseDuration: 1,
+                        isApplied: false,
+                        stacking: false,
+                        variable: {},
+                        source: unit,
+                        owner: target,
+                        onApply: (p, buff) => {
+                            buff.variable.lostSpeed = (parseFloat(p.speed) * 1.1); // store original speed
+                            p.speed -= buff.variable.lostSpeed; // stun = can't move
+                        },
+                        onRemove: (p, buff) => {
+                            p.speed += buff.variable.lostSpeed; // restore
+                        },
+                    });
+                }
+            },
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                if (nearest) {
+                    unit.variable.targets = [nearest.enemy];
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 20,
+                        speed: 11 * (unit?.projectileSpeed),
+                        targets: [nearest.enemy],
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        image: "/Images/Projectiles/Cavalier.png",
+                        color: "purple",
+                        owner: unit,
+                    });
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+        },
+        {
+            "name": "Gunner",
+            "resource": "Metio",
+            "image": {
+                source: "/Images/Animations/Gunner.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Common",
+            "damageType": "Normal",
+            "cost" : 10,
             "damage" : 1.82,
             "ability" : 1,
             "mana" : 0,
             "manaRegen": 0,
             "abilityCooldown": 5,
             "cooldown": 4.65,
-            "abilityDescription": "<b>Morale Boost</b>: Has 10% chance when damaging an enemy to give 10% (+1% per ability) attackspeed buff to all allies.",
+            "abilityDescription": "<b>Spread Shot</b>: Has 10% chance to fire a 2 (+1 per ability) spread shot dealing 20% (+1% per Level) damage.",
             onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
             onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
@@ -2485,11 +2592,601 @@ export const getUnits = () => {
                         damage: unit.damage,
                         target: nearest.enemy,
                         location: {x:x,y:y},
-                        image: "/Images/Projectiles/Axeman.png",
+                        image: "/Images/Projectiles/Bullet.png",
                         color: "purple",
                         owner: unit,
                     });
                 }
+
+                if(nearest){
+                    if(triggerChance(0.1 * unit.triggerChance)){
+                        if(!unit.record.spreadShotCount) unit.record.spreadShotCount = 0;
+                        unit.record.spreadShotCount += 1;
+
+                        let shotCount = (2 + Math.floor(unit.ability));
+                        const baseAngle = Math.atan2(
+                            nearest.enemy.y - (y * 45),
+                            nearest.enemy.x - (x * 45)
+                        );
+
+                        const spread = Math.PI / 30; 
+                        const halfSpread = (shotCount - 1) / 2;
+
+                        for (let j = 0; j < shotCount; j++) {
+                            const offset = (j - halfSpread) * spread;
+
+                            const finalAngle = baseAngle + offset;
+
+                            projectiles.value.push({
+                                x: (x * 45) + 40,
+                                y: (y * 45) + 40,
+                                size: 23,
+                                speed: 12 * (unit?.projectileSpeed),
+                                damage: (unit.damage * (0.2 + (0.01 * unit.level))),
+                                direction: finalAngle,     
+                                location: { x: x, y: y },
+                                image: "/Images/Projectiles/Bullet.png",
+                                owner: unit,
+                                piercing: true,                 
+                                lifetime: 90,                  
+                                hitEnemies: new Set(),         
+                            });
+                        }
+                    }
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+        },
+        {
+            "name": "Halberdier",
+            "resource": "Metio",
+            "image": {
+                source: "/Images/Animations/Halberdier.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Uncommon",
+            "damageType": "Normal",
+            "cost" : 10,
+            "damage" : 1.62,
+            "ability" : 1,
+            "mana" : 0,
+            "manaRegen": 0,
+            "abilityCooldown": 0,
+            "cooldown": 2.95,
+            "abilityDescription": "<b>Cull</b>: Deals extra 9% (+1% per ability) current health of the enemy.",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                if (nearest) {
+                    unit.variable.targets = [nearest.enemy];
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 20,
+                        speed: 12 * (unit?.projectileSpeed),
+                        targets: [nearest.enemy],
+                        damage: unit.damage + parseFloat(nearest.enemy.health * (0.09 + (0.01 * unit.ability))),
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        image: "/Images/Projectiles/Crescent.png",
+                        color: "purple",
+                        owner: unit,
+                    });
+
+                    if(!unit.record.cullDamage) unit.record.cullDamage = 0;
+                    unit.record.cullDamage += parseFloat((nearest.enemy.health * (0.09 + (0.01 * unit.ability))).toFixed(2));
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+        },
+        {
+            "name": "Island",
+            "resource": "Natura",
+            "image": {
+                source: "/Images/Animations/Island.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Epic",
+            "damageType": "Pure",
+            "cost" : 385,
+            "damage" : 0,
+            "ability" : 1,
+            "mana" : 60,
+            "manaRegen": 2,
+            "abilityCooldown": 0,
+            "cooldown": 10,
+            "abilityDescription": "<b>Mana Well</b>: Gives all other allies 25% (+10% per ability) of their maxmana. Does not include the same units. <div class='flex justify-between'><div><b>Casting</b>: Anytime</div><div><b>Manacost</b>: 50</div><div><b>Cooldown</b>: 0</div></div><br><hr><b>Natural Growth</b>: Does not attack but gains 5% maxmana as experience and restores 10% maxmana.</b>",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                
+                const manaCost = 50; // adjust as needed
+                if (unit.mana >= manaCost) {
+                    unit.mana -= manaCost;
+                    unit.record.manaSpent += manaCost;
+                    if(!unit.record.abilityUses) unit.record.abilityUses = 0;
+                    unit.record.abilityUses += 1;
+
+                    
+                    hitEffects.value.push({
+                        x: (x * 45) + 45,
+                        y: (y * 45) + 40,
+                        radius: 25,
+                        alpha: 1,
+                        color: "rgba(5, 125, 255, 1)", // yellowish glow
+                        decay: 0.03, // how fast it fades
+                        grow: 0.5, // how fast it expands
+                    });
+
+                    units.value.forEach(row => {
+                        row.forEach(target => {
+                            if(target){
+                                if(target.name != "Island"){
+                                    target.mana += target.maxmana * (0.25 + (0.1 * unit.ability));
+                                    if(target.mana > target.maxmana){
+                                        target.mana = target.maxmana;
+                                    }
+                                }
+                            }
+                        })
+                    })
+                };
+
+                
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                unit.experience += parseFloat((unit.maxmana * 0.05) * (unit.cooldown / unit.baseCooldown));
+                unit.mana += unit.maxmana * (0.1);
+                if(unit.mana > unit.maxmana){
+                    unit.mana = unit.maxmana;
+                }
+                if(unit.experience >= unit.nextLevelExp){
+                    unit.onLevel(unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y);
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+        },
+        {
+            "name": "Laser Turret",
+            "resource": "Metio",
+            "image": {
+                source: "/Images/Animations/Laser_Turret.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Uncommon",
+            "damageType": "Pure",
+            "cost" : 150,
+            "damage" : 2.82,
+            "ability" : 1,
+            "mana" : 20,
+            "manaRegen": 1,
+            "abilityCooldown": 5,
+            "cooldown": 0.25,
+            "abilityDescription": "<b>Plasma Battery</b>: Attacks at the cost of Mana.",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                if(unit.mana < 2){
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+                unit.mana -= 2;
+
+                if (nearest) {
+                    unit.variable.targets = [nearest.enemy];
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 10,
+                        speed: 20 * (unit?.projectileSpeed),
+                        targets: [nearest.enemy],
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        color: "red",
+                        owner: unit,
+                    });
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+        },
+        {
+            "name": "Lord",
+            "resource": "Metio",
+            "image": {
+                source: "/Images/Animations/Lord.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Uncommon",
+            "damageType": "Normal",
+            "cost" : 125,
+            "damage" : 2.92,
+            "ability" : 1,
+            "mana" : 21,
+            "manaRegen": 1,
+            "abilityCooldown": 5,
+            "cooldown": 2.61,
+            "abilityDescription": "<b>Selfish Leader</b>: Gains 20% damage of all units and flat (200% ability) damage. <div class='flex justify-between'><div><b>Casting</b>: On Attack</div><div><b>Manacost</b>: 20</div><div><b>Cooldown</b>: 0</div></div>",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                if (nearest) {
+                    unit.variable.targets = [nearest.enemy];
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 15,
+                        speed: 15 * (unit?.projectileSpeed),
+                        targets: [nearest.enemy],
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        image: "/Images/Projectiles/Crescent.png",
+                        color: "purple",
+                        owner: unit,
+                    });
+                }
+
+                const manaCost = 20; // adjust as needed
+                if (unit.mana < manaCost) return; // not enough mana
+
+                unit.mana -= manaCost;
+                unit.record.manaSpent += manaCost;
+                if(!unit.record.abilityUses) unit.record.abilityUses = 0;
+                unit.record.abilityUses += 1;
+
+                let gain = 0;
+                units.value.forEach(row => {
+                    row.forEach(target => {
+                        if(target && target.name != "Lord"){
+                            target.buffs = target.buffs || [];
+                            gain += parseFloat(target.damage * 0.2)
+                            target.buffs.push({
+                                name: "Obligation",
+                                description: "Loses Damage",
+                                duration: (10 * unit.buffDuration) * target.debuffDuration,
+                                baseDuration: 10,
+                                isApplied: false,
+                                stacking: false,
+                                source: unit,
+                                owner: target,
+                                variable: {}, // stores internal state
+                                onApply: (p, buff) => {
+                                    buff.variable.damageLose = parseFloat(p.damage * 0.2); // store how much was added
+                                    p.damage -= parseFloat(buff?.variable?.damageLose || 0);
+                                },
+                                onRemove: (p, buff) => {
+                                    p.damage += parseFloat(buff?.variable?.damageLose || 0);
+                                },
+                            });
+                        }
+                    })
+                });
+
+                gain += parseFloat(2 * unit.ability);
+                
+                unit.buffs.push({
+                    name: "Leadership",
+                    description: "Gains Damage",
+                    duration: 10 * unit.buffDuration,
+                    baseDuration: 10,
+                    isApplied: false,
+                    stacking: false,
+                    source: unit,
+                    owner: unit,
+                    variable: {}, // stores internal state
+                    onApply: (p, buff) => {
+                        buff.variable.damageGain = parseFloat(gain); // store how much was added
+                        p.damage += parseFloat(buff?.variable?.damageGain || 0);
+                    },
+                    onRemove: (p, buff) => {
+                        p.damage -= parseFloat(buff?.variable?.damageGain || 0);
+                    },
+                });
+                
+            },
+            onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+        },
+        {
+            "name": "Mage",
+            "resource": "Metio",
+            "image": {
+                source: "/Images/Animations/Mage.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Uncommon",
+            "damageType": "Normal",
+            "cost" : 60,
+            "damage" : 2.32,
+            "ability" : 1,
+            "mana" : 12,
+            "manaRegen": 1,
+            "abilityCooldown": 6,
+            "cooldown": 4.25,
+            "abilityDescription": "<b>Fire Burst (Active)</b> : Fires a blast on the current target and nearby enemies (75 (+50 per ability)) dealing distributed (1000% ability) damage. <div class='flex justify-between'><div><b>Casting</b>: Has Enemy</div><div><b>Manacost</b>: 10</div><div><b>Cooldown</b>: 6</div></div>",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onEffect: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.abilityTimer >= unit.abilityCooldown){
+                    
+                    const manaCost = 11;
+                    if (unit.mana >= manaCost) {
+                        unit.abilityTimer -= unit.abilityCooldown;
+                        const target = nearest.enemy;
+                        unit.mana -= manaCost;
+                        unit.record.manaSpent += manaCost;
+                        
+                        if(!unit.record.abilityUses) unit.record.abilityUses = 0;
+                        unit.record.abilityUses += 1;
+
+                        unit.attacking = true;
+                        unit.image.frame = 0;
+
+                        unit.onCast(unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y);
+
+                        const splashRadius = 75 + parseFloat(50 * unit.ability); // how close other enemies must be (in pixels)
+                        const splashDamage = unit.ability * 10;
+
+                        hitEffects.value.push({
+                            x: target.x + target.size / 2,
+                            y: target.y + target.size / 2,
+                            radius: 30 + parseFloat(25 * unit.ability),
+                            alpha: 1,
+                            color: "rgba(255, 200, 0, 1)", // yellowish glow
+                            decay: 0.03, // how fast it fades
+                            grow: 0.5, // how fast it expands
+                        });
+
+                        let affectedEnemies = [];
+                        
+                        enemies.value.forEach((enemy) => {
+                            const dx = (enemy.x + enemy.size / 2) - (target.x + target.size / 2);
+                            const dy = (enemy.y + enemy.size / 2) - (target.y + target.size / 2);
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+
+                            if (dist <= splashRadius) {
+                                affectedEnemies.push(enemy);
+                            }
+                        });
+
+                        affectedEnemies.forEach(enemy => {
+                            if(!unit.record.abilityTotalDamage) unit.record.abilityTotalDamage = 0;
+                            unit.record.abilityTotalDamage += parseFloat((splashDamage / affectedEnemies.length).toFixed(2));
+                            enemy.onTakeDamage(parseFloat(splashDamage / affectedEnemies.length),null,damageTexts, hitEffects, resource,units,enemies,unit,projectiles,x,y, false);
+                        })
+
+                    }
+                    }else{
+                        unit.abilityTimer += 0.1;
+                    }
+
+                    if(unit.timer < unit.cooldown){
+                        unit.timer += 0.1;
+                        return;
+                    }
+
+                    unit.attacking = true;
+                    unit.image.frame = 0;
+                    unit.timer -= unit.cooldown;
+
+
+                    if (nearest) {
+                        projectiles.value.push({
+                            x: (x * 45) + 40,
+                            y: (y * 45) + 40,
+                            size: 8,
+                            speed: 6 * (unit?.projectileSpeed),
+                            damage: unit.damage,
+                            target: nearest.enemy,
+                            location: {x:x,y:y},
+                            color: "blue",
+                            owner: unit,
+                        });
+                    }
             },
             onKill: (unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onTrigger: (unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
