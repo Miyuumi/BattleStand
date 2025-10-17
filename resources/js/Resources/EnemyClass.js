@@ -30,7 +30,7 @@ export class Enemy {
     this.isDead = false;
   }
 
-  onTakeDamage(damage, projectile, damageTexts, hitEffects,  resources, plants, enemies, source, projectiles, x, y, recurse = true) {
+  onTakeDamage(damage, projectile, damageTexts, hitEffects, areaFields,  resources, plants, enemies, source, projectiles, x, y, recurse = true) {
     let dam = parseFloat(damage);
     let self = this;
     
@@ -47,24 +47,24 @@ export class Enemy {
         vy: -0.8, // upward speed
       });
 
-      source.onCrit(source, this, projectile, damageTexts, hitEffects,  resources, plants, enemies, projectiles, x, y);
+      source.onCrit(source, this, projectile, damageTexts, hitEffects, areaFields,  resources, plants, enemies, projectiles, x, y);
     }
     this.health -= dam;
     source.record.damageDealt += parseFloat((dam).toFixed(2));
     if(recurse) {
-      source.onDamage(source, this, projectile, damageTexts, hitEffects,  resources, plants, enemies, projectiles, x, y);
+      source.onDamage(source, this, projectile, damageTexts, hitEffects, areaFields,  resources, plants, enemies, projectiles, x, y);
     }
 
     if (isNaN(this.health) || this.health <= 0) {
-      this.onDeath(source, damage, damageTexts, hitEffects,  resources, enemies, plants, projectiles, x, y);
+      this.onDeath(source, damage, damageTexts, hitEffects, areaFields,  resources, enemies, plants, projectiles, x, y);
     }
   }
 
-  onTurn(damage, damageTexts, hitEffects,  resources, plants, enemies, source, projectiles, x, y) {
+  onTurn(damage, damageTexts, hitEffects, areaFields,  resources, plants, enemies, source, projectiles, x, y) {
     // custom AI per tick
   }
 
-  onDeath(source, damage, damageTexts, hitEffects,  resources, enemies, plants, projectiles, x, y) {
+  onDeath(source, damage, damageTexts, hitEffects, areaFields,  resources, enemies, plants, projectiles, x, y) {
     if(this.isDead) return;
     this.isDead = true;
     source.record.kills += 1;
@@ -75,10 +75,10 @@ export class Enemy {
     resources.value.Coins += parseFloat(this.bounty * source.bountyGain);
 
     if(source.experience >= source.nextLevelExp){
-      source.onLevel(source, damageTexts, hitEffects, resources, plants, enemies, projectiles, x, y);
+      source.onLevel(source, damageTexts, hitEffects, areaFields, resources, plants, enemies, projectiles, x, y);
     }
     
-    source.onKill(source, this, damageTexts, hitEffects,  resources, plants, enemies, projectiles, x, y)
+    source.onKill(source, this, damageTexts, hitEffects, areaFields,  resources, plants, enemies, projectiles, x, y)
     enemies.value = enemies.value.filter(e => e !== this);
   }
 }

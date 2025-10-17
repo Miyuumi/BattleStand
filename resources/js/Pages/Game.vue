@@ -14,6 +14,7 @@ const stage = defineModel("stage");
 const enemies = ref([]);
 const Enemies = ref([]);
 const enemyValue = ref(0);
+const areaFields = ref([]);
 const projectiles = ref([]);
 const gameUpdate = ref(()=>{});
 const damageTexts = ref([]);
@@ -32,7 +33,7 @@ const battleField = ref({
 const update = ()=>{
   console.log("Turn");
   
-  enemies.value.forEach((enem) => {
+  enemies.value.forEach(async (enem) => {
     if (enem && typeof enem.onTurn === "function") {
 
       if (enem.buffs && enem.buffs.length > 0) {
@@ -44,6 +45,7 @@ const update = ()=>{
               const otherBuff = enem.buffs.find(b => b !== buff && b.name === buff.name);
               if (otherBuff) {
                 buff.duration = Math.max(buff.duration, otherBuff.duration);
+                buff.variable = {...otherBuff.variable};
                 enem.buffs.splice(enem.buffs.indexOf(otherBuff), 1);
 
                 damageTexts.value.push({
@@ -91,6 +93,7 @@ const update = ()=>{
           // ④ Remove when finished
           if (buff.duration <= 0) {
             if (buff.onRemove) buff.onRemove(enem, buff);
+            await nextTick();
             enem.buffs.splice(i, 1);
             damageTexts.value.push({
               x: enem.x + enem.size / 2,
@@ -106,9 +109,11 @@ const update = ()=>{
       }
 
       // === Enemy behavior ===
-      enem.onTurn(enem, damageTexts, hitEffects, resources, fields, enemies, projectiles, enem.x, enem.y);
+      enem.onTurn(enem, damageTexts, hitEffects, areaFields, resources, fields, enemies, projectiles, enem.x, enem.y);
     }
   });
+
+  updateFields(areaFields.value, enemies, damageTexts, hitEffects, resources, 0.1);
 
   fields.value.forEach((row, rowIndex) => {
     row.forEach((plant, colIndex) => {
@@ -181,7 +186,7 @@ const update = ()=>{
           }
         }
 
-        plant.onTurn(plant, damageTexts, hitEffects, resources, fields, enemies, projectiles, rowIndex, colIndex);
+        plant.onTurn(plant, damageTexts, hitEffects, areaFields, resources, fields, enemies, projectiles, rowIndex, colIndex);
 
         if(plant.mana < plant.maxmana){
           plant.mana += (0.1 * plant.manaRegen);
@@ -250,6 +255,16 @@ function draw() {
     });
   });
 
+  // === DRAW FIELDS ===
+  for (let field of areaFields.value) {
+    ctx.globalAlpha = 0.3;
+    ctx.beginPath();
+    ctx.arc(field.x, field.y, field.radius, 0, Math.PI * 2);
+    ctx.fillStyle = field?.color || "orange";
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+
   projectiles.value.forEach((proj, index) => {
     // === Lifetime system ===
     if (proj.lifetime !== undefined) {
@@ -280,7 +295,7 @@ function draw() {
       if (dist < proj.speed) {
         // Hit!
         let source = fields.value[proj.location.x][proj.location.y];
-        proj.target.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, resources, fields, enemies, source, projectiles, proj.location.x, proj.location.y);
+        proj.target.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, areaFields, resources, fields, enemies, source, projectiles, proj.location.x, proj.location.y);
         projectiles.value.splice(index, 1);
         return;
       } else {
@@ -288,6 +303,8 @@ function draw() {
         proj.y += (dy / dist) * proj.speed;
       }
     }
+
+    
 
     // === COLLISION HANDLING ===
     if (proj.piercing) {
@@ -302,7 +319,7 @@ function draw() {
           if (!proj.hitEnemies.has(enemy)) {
             proj.hitEnemies.add(enemy);
             let source = fields.value[proj.location.x][proj.location.y];
-            enemy.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, resources, fields, enemies, source, projectiles, proj.location.x, proj.location.y);
+            enemy.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, areaFields, resources, fields, enemies, source, projectiles, proj.location.x, proj.location.y);
 
             // Add fading hit effect
             hitEffects.value.push({
@@ -454,6 +471,42 @@ function drawPlant(ctx, plant, gridX, gridY) {
     // Energy fill
     ctx.fillStyle = "rgba(255, 215, 0, 0.9)";
     ctx.fillRect(x, energyY, barWidth * energyPercent, barHeight);
+  }
+}
+
+function isInField(unit, field) {
+  const dx = unit.x - field.x;
+  const dy = unit.y - field.y;
+  return Math.sqrt(dx * dx + dy * dy) <= field.radius;
+}
+
+function updateFields(fields, enemies, damageTexts, hitEffects, resources, deltaTime = 0.1) {
+  for (let field of [...fields]) {
+    field.elapsed += deltaTime;
+
+    // Remove expired fields
+    if (field.elapsed >= field.duration) {
+      fields.splice(fields.indexOf(field), 1);
+      continue;
+    }
+
+    // Check each enemy for enter/leave
+    for (let enemy of enemies.value) {
+      const inside = isInField(enemy, field);
+      const wasInside = field.affectedUnits.has(enemy);
+
+      if (inside && !wasInside) {
+        field.affectedUnits.add(enemy);
+        field.onEnter?.(enemy, field, damageTexts, hitEffects, resources, enemies);
+      } 
+      else if (!inside && wasInside) {
+        field.affectedUnits.delete(enemy);
+        field.onLeave?.(enemy, field, damageTexts, hitEffects, resources, enemies);
+      }
+    }
+
+    // Call onTurn periodically (per tick)
+    field.onTurn?.(field, damageTexts, hitEffects, resources, enemies);
   }
 }
 
