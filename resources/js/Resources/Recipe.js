@@ -2,7 +2,7 @@ import { priorityBuffs } from "./Buff";
 import { triggerChance } from "./Trigger";
 
 
-export const getItems = () => {
+export const getRecipes = () => {
     let Items = [
         {
             "name": "Armor",
@@ -50,12 +50,34 @@ export const getItems = () => {
         },
         {
             "name": "The Wizard",
-            "image": "/Images/Items/Poor_man.png",
+            "image": "/Images/Items/The_Wizard.png",
             "cost": 0,
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
             "requirements": ['Wizard Cape','Wizard Boots','Wizard Hat','Wizard Necklace','Wizard Orb','Wizard Staff','Wizard Book'],
+            "abilityDescription": "<b>Title</b>: Description.",
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+        },
+        {
+            "name": "Ultimate Orb",
+            "image": "/Images/Items/Ultimate_Orb.png",
+            "cost": 0,
+            "description": "",
+            "rarity": "Common",
+            "cooldown": 0,
+            "requirements": ['Wizard Orb','Magical Orb','Nature Orb','Clay Orb','Sky Orb','Ocean Orb','Sun Orb','Lava Orb'],
             "abilityDescription": "<b>Title</b>: Description.",
             onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},

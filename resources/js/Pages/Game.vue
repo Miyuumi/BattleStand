@@ -31,7 +31,7 @@ const battleField = ref({
 });
 
 const update = ()=>{
-  console.log("Turn");
+  // console.log("Turn");
   
   enemies.value.forEach(async (enem) => {
     if (enem && typeof enem.onTurn === "function") {

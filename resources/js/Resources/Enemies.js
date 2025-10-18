@@ -59,7 +59,7 @@ export const getEnemies = (wave) => {
                     wave: wave,
                     level: 1,
                     value: 1 * balance,
-                    bounty: 1 * balance,
+                    bounty: (1 * balance) * Math.floor(1 + (wave / 20)),
                     experience: 1 * balance,
                     type: type,
                     size: 30,
