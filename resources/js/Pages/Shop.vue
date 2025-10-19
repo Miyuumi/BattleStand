@@ -16,11 +16,11 @@ const canClose = ref(true);
 const description = ref("Pick a Resource");
 const locked = ref([]);
 const pick = (res)=>{
-  if(resources.value['Coins'] < 10){
+  if(resources.value['Coins'] < 100){
     description.value = "Not Enough Coins";
     return;
   }else{
-    resources.value['Coins'] -= 10;
+    resources.value['Coins'] -= 100;
     resources.value[res] += 1;
   }
 }
@@ -74,7 +74,7 @@ onMounted(()=>{
             <v-card v-for="res in Object.entries(resources).filter(([key, value]) => key !== 'Coins' && key !== 'Water' && key !== 'Life' && key !== 'currentSeason')" @click="pick(res[0])">
               <div class="flex flex-col items-center p-5 gap-1">
                   <img class="w-[150px]" :src="'/icons/'+res[0]+'.png'"></img>
-                  <span style="font-size:30px;">{{ res[1].toFixed(2) }}</span>
+                  <span style="font-size:30px;">{{ res[1].toFixed(0) }}</span>
               </div>
             </v-card>
           </div>

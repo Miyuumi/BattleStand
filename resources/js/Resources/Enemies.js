@@ -9,6 +9,7 @@ export const getEnemies = (wave) => {
     
     let rand = Math.floor(Math.random() * 4);
     let count = 10;
+    let drop = 2;
     let balance = 1;
     let antibalance = 1;
     let type = "Normal";
@@ -18,24 +19,28 @@ export const getEnemies = (wave) => {
             count = 10;
             balance = 1;
             antibalance = 1;
+            drop = 2;
             type = "Normal";
             break;
         case 1:
             count = 10;
             balance = 1;
             antibalance = 1;
+            drop = 2;
             type = "Normal";
             break;
         case 2:
             count = 1;
             balance = 10;
             antibalance = 0.5;
+            drop = 5;
             type = "Boss";
             break;
         case 3:
             count = 20;
             balance = 0.5;
             antibalance = 1;
+            drop = 1;
             type = "Mass";
             break;
     }
@@ -57,6 +62,7 @@ export const getEnemies = (wave) => {
                     mana: 10 * balance,
                     damage: 1 * balance,
                     wave: wave,
+                    maxDrop: 1,
                     level: 1,
                     value: 1 * balance,
                     bounty: (1 * balance) * Math.floor(1 + (wave / 20)),
@@ -83,6 +89,7 @@ export const getEnemies = (wave) => {
                     mana: 10 * balance,
                     damage: 1 * balance,
                     wave: wave,
+                    maxDrop: drop,
                     level: 1,
                     value: 1 * balance,
                     bounty: 1 * balance,

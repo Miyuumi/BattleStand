@@ -12,6 +12,8 @@ import Shop from './Shop.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import Merchant from './Merchant.vue';
+import Crafting from './Crafting.vue';
+import { getItems } from '@/Resources/Items';
 
 const Units = getUnits();
 
@@ -32,6 +34,7 @@ const rollDialog = ref(false);
 const descriptionDialog = ref(false);
 const shopDialog = ref(false);
 const merchantDialog = ref(false);
+const craftingDialog = ref(false);
 const gameDialog = ref(false);
 
 const logout = ()=>{
@@ -84,6 +87,7 @@ const digPlant = ()=>{
 
 onMounted(()=>{
     inventory.value.push(...Units);
+    items.value.push(...getItems());
 });
 
 const start = ()=>{
@@ -131,8 +135,9 @@ const start = ()=>{
             <div class="flex gap-2">
                 <v-btn icon @click="inventoryDialog = true"><v-icon>mdi-apps-box</v-icon></v-btn>
                 <v-btn icon @click="rollDialog = true"><v-icon>mdi-basket-fill</v-icon></v-btn>
-                <v-btn icon @click="shopDialog = true"><v-icon>mdi-swap-horizontal</v-icon></v-btn>
                 <v-btn icon @click="merchantDialog = true"><v-icon>mdi-store</v-icon></v-btn>
+                <v-btn icon @click="shopDialog = true"><v-icon>mdi-swap-horizontal</v-icon></v-btn>
+                <v-btn icon @click="craftingDialog = true"><v-icon>mdi-anvil</v-icon></v-btn>
                 <v-btn icon @click="start">{{stage + 1}}</v-btn>
             </div>
             <div class="flex gap-2">
@@ -263,6 +268,7 @@ const start = ()=>{
     <Shop v-model:show="shopDialog" v-model:inventory="inventory" v-model:resources="resources"></Shop>
     <Merchant v-model:show="merchantDialog" v-model:items="items" v-model:resources="resources" v-model:stage="stage"></Merchant>
     <Roll v-model:show="rollDialog" v-model:inventory="inventory" v-model:resources="resources" v-model:stage="stage"></Roll>
+    <Crafting v-model:show="craftingDialog" v-model:items="items" v-model:resources="resources" v-model:stage="stage"></Crafting>
     <UnitDescription v-model:show="descriptionDialog" v-model:unit="description" v-model:location="location" v-model:resources="resources" v-model:fields="fields" v-model:items="items" @dig="digPlant"></UnitDescription>
-    <Game v-model:show="gameDialog" v-model:fields="fields" v-model:resources="resources" v-model:stage="stage" v-model:inventory="inventory"></Game>
+    <Game v-model:show="gameDialog" v-model:fields="fields"  v-model:items="items" v-model:resources="resources" v-model:stage="stage" v-model:inventory="inventory"></Game>
 </template>

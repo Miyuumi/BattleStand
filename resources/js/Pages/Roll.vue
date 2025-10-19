@@ -19,10 +19,15 @@ const pick = (res)=>{
     description.value = "Not Enough Coins";
     return;
   }else{
-    resources.value['Coins'] -= res.cost;
-    inventory.value.push(res);
-    const index = shop.value.indexOf(res);
-    if (index !== -1) shop.value.splice(index, 1);
+    Swal.fire({ title: `${res.name}`, text: `Are you sure you want to buy this item?`, icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes, buy it!', cancelButtonText: 'Cancel', }).then((result) => {
+      if (result.isConfirmed) {
+        resources.value['Coins'] -= res.cost;
+        inventory.value.push(res);
+        const index = shop.value.indexOf(res);
+        if (index !== -1) shop.value.splice(index, 1);
+      }
+    });
+    
   }
 }
 

@@ -28,6 +28,14 @@ const formatLabel = (key) => {
       .replace(/^./, str => str.toUpperCase()); // capitalize first letter
   }
 
+  const formatValue = (val) => {
+    if (typeof val === 'number') {
+      return val.toFixed(2);
+    } else if (typeof val === 'string') {
+      return val.charAt(0).toUpperCase() + val.slice(1);
+    }
+    return val;
+};
 onMounted(()=>{
   
 })
@@ -56,7 +64,7 @@ onMounted(()=>{
 
         <v-card class="w-full h-full m-5 p-5">
           <div class="flex">
-            <div class="w-[50%] flex justify-center">
+            <div class="w-[50%] max-w-[600px] max-h-[675px] flex justify-center">
               <img :src="'/images/'+unit?.name+'.png'" style="object-fit: contain; height: 100%"></img> 
             </div>
             <div class="w-full p-5 overflow-y-auto">
@@ -170,7 +178,7 @@ onMounted(()=>{
                       <tbody>
                         <tr v-for="record in Object.entries(unit.record)" :key="record[0]">
                           <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">{{ formatLabel(record[0]) }}</td>
-                          <td class="border-b p-2">{{ record[1] }}</td>
+                          <td class="border-b p-2">{{ formatValue(record[1]) }}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -193,14 +201,20 @@ onMounted(()=>{
                     <table class="w-full border-collapse" style="font-size: 18px">
                       <tbody>
                         <tr v-for="item in unit?.items">
-                          <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">
+                          <td class="font-bold border-b p-2 w-[250px]" style="font-size: 21px">
                             <div class="flex items-center">
                               <img class="w-[50px] min-h-[50px]" :src="item.image" style="object-fit: contain; height: 100%"/>
                               <span>{{item.name}}</span>
                             </div>
                             
                           </td>
-                          <td class="border-b p-2" v-html="item.abilityDescription"></td>
+                          <td class="border-b p-2 w-[350px]" v-html="item.abilityDescription"></td>
+                          <td class="border-b p-2">
+                            <div v-for="variable in Object.entries(item.variable)" :key="variable[0]">
+                              <span class="font-bold p-2" style="font-size: 21px">{{ formatLabel(variable[0]) }} :</span>
+                              <span class="">{{ formatValue(variable[1]) }}</span>
+                            </div>
+                          </td>
                           <td class="border-b p-2"><v-btn prepend-icon="mdi-shield-remove" @click="unequip(item)">Unequip</v-btn></td>
                         </tr>
                       </tbody>

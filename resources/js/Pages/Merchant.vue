@@ -14,17 +14,29 @@ const Items = getItems();
 const description = ref("Pick a Resource");
 const shop = ref([]);
 const current_stage = ref(null);
-const pick = (res)=>{
-  if(resources.value['Coins'] < res.cost){
-    description.value = "Not Enough Coins";
+
+const pick = (res) => {
+  if (resources.value['Coins'] < res.cost) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Not enough Coins!',
+    });
     return;
-  }else{
-    resources.value['Coins'] -= res.cost;
-    items.value.push(res);
-    const index = shop.value.indexOf(res);
-    if (index !== -1) shop.value.splice(index, 1);
   }
-}
+
+  Swal.fire({ title: `${res.name}`, text: `Are you sure you want to buy this item?`, icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes, buy it!', cancelButtonText: 'Cancel', }).then((result) => {
+    if (result.isConfirmed) {
+      resources.value['Coins'] -= res.cost;
+      items.value.push(res);
+
+      const index = shop.value.indexOf(res);
+      if (index !== -1) shop.value.splice(index, 1);
+    }
+  });
+
+  
+};
 
 watch(dialog, (newVal)=>{
   if(newVal){

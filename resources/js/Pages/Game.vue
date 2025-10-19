@@ -11,6 +11,7 @@ const inventory = defineModel("inventory");
 const resources = defineModel("resources");
 const fields = defineModel("fields");
 const stage = defineModel("stage");
+const items = defineModel("items");
 const enemies = ref([]);
 const Enemies = ref([]);
 const enemyValue = ref(0);
@@ -109,7 +110,7 @@ const update = ()=>{
       }
 
       // === Enemy behavior ===
-      enem.onTurn(enem, damageTexts, hitEffects, areaFields, resources, fields, enemies, projectiles, enem.x, enem.y);
+      enem.onTurn(enem, damageTexts, hitEffects, areaFields, resources, fields, enemies, projectiles, items, enem.x, enem.y);
     }
   });
 
@@ -186,7 +187,7 @@ const update = ()=>{
           }
         }
 
-        plant.onTurn(plant, damageTexts, hitEffects, areaFields, resources, fields, enemies, projectiles, rowIndex, colIndex);
+        plant.onTurn(plant, damageTexts, hitEffects, areaFields, resources, fields, enemies, projectiles, items, rowIndex, colIndex);
 
         if(plant.mana < plant.maxmana){
           plant.mana += (0.1 * plant.manaRegen);
@@ -295,7 +296,7 @@ function draw() {
       if (dist < proj.speed) {
         // Hit!
         let source = fields.value[proj.location.x][proj.location.y];
-        proj.target.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, areaFields, resources, fields, enemies, source, projectiles, proj.location.x, proj.location.y);
+        proj.target.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, areaFields, resources, fields, enemies, source, projectiles, items, proj.location.x, proj.location.y);
         projectiles.value.splice(index, 1);
         return;
       } else {
@@ -319,7 +320,7 @@ function draw() {
           if (!proj.hitEnemies.has(enemy)) {
             proj.hitEnemies.add(enemy);
             let source = fields.value[proj.location.x][proj.location.y];
-            enemy.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, areaFields, resources, fields, enemies, source, projectiles, proj.location.x, proj.location.y);
+            enemy.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, areaFields, resources, fields, enemies, source, projectiles, items, proj.location.x, proj.location.y);
 
             // Add fading hit effect
             hitEffects.value.push({

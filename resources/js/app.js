@@ -10,7 +10,17 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import vuetify from './Plugins/vuetify';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+import Swal from "sweetalert2";
+window.Swal = Swal;
+const toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+});
 
+window.toast = toast;
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

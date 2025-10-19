@@ -13,23 +13,23 @@ export const getItems = () => {
             "rarity": "Uncommon",
             "cooldown": 0,
             "abilityDescription": "+10% Projectile Speed",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.1);
-                unit.projectileSpeed += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.projectileSpeedGain = (0.1);
+                unit.projectileSpeed += item.variable.projectileSpeedGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.projectileSpeed -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.projectileSpeed -= item.variable.projectileSpeedGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Claws",
@@ -40,23 +40,23 @@ export const getItems = () => {
             "rarity": "Rare",
             "cooldown": 0,
             "abilityDescription": "+25% Damage",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseDamage * 0.25);
-                unit.damage += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.damageGain = (unit.baseDamage * 0.25);
+                unit.damage += item.variable.damageGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.damage -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.damage -= item.variable.damageGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Crossbow",
@@ -67,23 +67,23 @@ export const getItems = () => {
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+5% Crit Chance",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.05);
-                unit.critChance += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.critChanceGain = (0.05);
+                unit.critChance += item.variable.critChanceGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.critChance -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.critChance -= item.variable.critChanceGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Necklace",
@@ -94,23 +94,23 @@ export const getItems = () => {
             "rarity": "Uncommon",
             "cooldown": 0,
             "abilityDescription": "+25% Manaregen",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseManaRegen * 0.25);
-                unit.manaRegen += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.manaRegenGain = (unit.baseManaRegen * 0.25);
+                unit.manaRegen += item.variable.manaRegenGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.manaRegen -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.manaRegen -= item.variable.manaRegenGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Spear",
@@ -121,26 +121,26 @@ export const getItems = () => {
             "rarity": "Uncommon",
             "cooldown": 0,
             "abilityDescription": "+15% Crit Chance <br>+0.5 Crit Damage",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.15);
-                item.variable.gain2 = (0.5);
-                unit.critChance += item.variable.gain;
-                unit.critDamage += item.variable.gain2;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.critChanceGain = (0.15);
+                item.variable.critDamageGain = (0.5);
+                unit.critChance += item.variable.critChanceGain;
+                unit.critDamage += item.variable.critDamageGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.critChance -= item.variable.gain;
-                unit.critDamage -= item.variable.gain2;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.critChance -= item.variable.critChanceGain;
+                unit.critDamage -= item.variable.critDamageGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Gloves",
@@ -151,23 +151,23 @@ export const getItems = () => {
             "rarity": "Uncommon",
             "cooldown": 0,
             "abilityDescription": "+10% Attackspeed",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseCooldown * 0.1);
-                unit.cooldown -= item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.attackspeedGain = (unit.baseCooldown * 0.1);
+                unit.cooldown -= item.variable.attackspeedGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.cooldown += item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.cooldown += item.variable.attackspeedGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Flag",
@@ -178,23 +178,23 @@ export const getItems = () => {
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+10% Trigger Chance",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.1);
-                unit.triggerChance += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.triggerChanceGain = (0.1);
+                unit.triggerChance += item.variable.triggerChanceGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.triggerChance -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.triggerChance -= item.variable.triggerChanceGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Book of Wisdom",
@@ -205,23 +205,23 @@ export const getItems = () => {
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+10% Xp Gain",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.1);
-                unit.xpGain += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.xpGainGain = (0.1);
+                unit.xpGain += item.variable.xpGainGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.xpGain -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.xpGain -= item.variable.xpGainGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },       
         {
             "name": "Boxing Gloves",
@@ -232,23 +232,23 @@ export const getItems = () => {
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+5% Damage",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseDamage * 0.05);
-                unit.damage += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.damageGain = (unit.baseDamage * 0.05);
+                unit.damage += item.variable.damageGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.damage -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.damage -= item.variable.damageGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         }, 
         ////
         {
@@ -260,23 +260,23 @@ export const getItems = () => {
             "rarity": "Uncommon",
             "cooldown": 0,
             "abilityDescription": "+50% Mana",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseMaxmana * 0.5);
-                unit.maxMana += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.manaGain = (unit.baseMaxmana * 0.5);
+                unit.maxmana += item.variable.manaGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.maxMana -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.maxmana -= item.variable.manaGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Wizard Boots",
@@ -287,23 +287,23 @@ export const getItems = () => {
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+10% Manaregen",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseManaRegen * 0.10);
-                unit.manaRegen += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.manaRegenGain = (unit.baseManaRegen * 0.10);
+                unit.manaRegen += item.variable.manaRegenGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.manaRegen -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.manaRegen -= item.variable.manaRegenGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Wizard Hat",
@@ -314,23 +314,23 @@ export const getItems = () => {
             "rarity": "Rare",
             "cooldown": 0,
             "abilityDescription": "+1 Ability",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (1);
-                unit.ability += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.abilityGain = (1);
+                unit.ability += item.variable.abilityGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.ability -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.ability -= item.variable.abilityGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Wizard Necklace",
@@ -341,23 +341,23 @@ export const getItems = () => {
             "rarity": "Rare",
             "cooldown": 0,
             "abilityDescription": "+60% Manaregen",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseManaRegen * 0.6);
-                unit.manaRegen += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.manaRegenGain = (unit.baseManaRegen * 0.6);
+                unit.manaRegen += item.variable.manaRegenGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.manaRegen -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.manaRegen -= item.variable.manaRegenGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Wizard Orb",
@@ -368,23 +368,23 @@ export const getItems = () => {
             "rarity": "Uncommon",
             "cooldown": 0,
             "abilityDescription": "+0.5 Ability",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseAbility * 0.5);
-                unit.ability += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.abilityGain = (unit.baseAbility * 0.5);
+                unit.ability += item.variable.abilityGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.ability -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.ability -= item.variable.abilityGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Wizard Staff",
@@ -395,26 +395,26 @@ export const getItems = () => {
             "rarity": "Uncommon",
             "cooldown": 0,
             "abilityDescription": "+0.25 Ability<br>+15% Manaregen",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseAbility * 0.25);
-                item.variable.gain2 = (unit.baseManaRegen * 0.15);
-                unit.ability += item.variable.gain;
-                unit.manaRegen += item.variable.gain2;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.abilityGain = (unit.baseAbility * 0.25);
+                item.variable.manaRegenGain = (unit.baseManaRegen * 0.15);
+                unit.ability += item.variable.abilityGain;
+                unit.manaRegen += item.variable.manaRegenGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.ability -= item.variable.gain;
-                unit.manaRegen -= item.variable.gain2;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.ability -= item.variable.abilityGain;
+                unit.manaRegen -= item.variable.manaRegenGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Wizard Book",
@@ -424,24 +424,27 @@ export const getItems = () => {
             "description": "",
             "rarity": "Uncommon",
             "cooldown": 0,
-            "abilityDescription": "+50% Manaregen",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseManaRegen * 0.5);
-                unit.manaRegen += item.variable.gain;
+            "abilityDescription": "+50% Max Mana<br>+15% Manaregen",
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.manaRegenGain = (unit.baseManaRegen * 0.15);
+                item.variable.manaGain = (unit.baseMaxmana * 0.15);
+                unit.manaRegen += item.variable.manaRegenGain;
+                unit.maxmana += item.variable.manaGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.manaRegen -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.manaRegen -= item.variable.manaRegenGain;
+                unit.maxmana -= item.variable.manaGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         ////
         {
@@ -453,23 +456,23 @@ export const getItems = () => {
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+3% Attackspeed",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
                 item.variable.attackspeedGain = (unit.baseCooldown * 0.03);
                 unit.cooldown -= item.variable.attackspeedGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
                 unit.cooldown += item.variable.attackspeedGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Helmet",
@@ -480,22 +483,23 @@ export const getItems = () => {
             "rarity": "Uncommon",
             "cooldown": 0,
             "abilityDescription": "+0.75x Crit. Damage",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.critDamage += 0.75;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.critDamageGain = (0.75);
+                unit.critDamage += item.variable.critDamageGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.critDamage -= 0.75;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.critDamage -= item.variable.critDamageGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Shield",
@@ -506,22 +510,23 @@ export const getItems = () => {
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "-20% Debuff Duration",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.debuffDuration -= 0.2;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.debuffDurationGain = (0.2);
+                unit.debuffDuration -= item.variable.debuffDurationGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.debuffDuration += 0.2;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.debuffDuration += item.variable.debuffDurationGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Shoulderguard",
@@ -531,23 +536,51 @@ export const getItems = () => {
             "description": "",
             "rarity": "Uncommon",
             "cooldown": 0,
-            "abilityDescription": "+25 Buff Duration",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.buffDuration += 0.25;
+            "abilityDescription": "+25% Buff Duration",
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.buffDurationGain = (0.25);
+                unit.buffDuration += item.variable.buffDurationGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.buffDuration -= 0.25;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.buffDuration -= item.variable.buffDurationGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+        },
+        {
+            "name": "Armguard",
+            "image": "/Images/Items/Armguard.png",
+            "cost": 18,
+            "level": 2,
+            "description": "",
+            "rarity": "Common",
+            "cooldown": 0,
+            "abilityDescription": "+5% Attackspeed",
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.attackspeedGain = (unit.baseCooldown * 0.05);
+                unit.cooldown -= item.variable.attackspeedGain;
+            },
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.cooldown += item.variable.attackspeedGain;
+            },
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Sword",
@@ -558,23 +591,23 @@ export const getItems = () => {
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+10% Damage",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseDamage * 0.1);
-                unit.damage += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.damageGain = (unit.baseDamage * 0.1);
+                unit.damage += item.variable.damageGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.damage -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.damage -= item.variable.damageGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Neckguard",
@@ -584,78 +617,78 @@ export const getItems = () => {
             "description": "",
             "rarity": "Uncommon",
             "cooldown": 0,
-            "abilityDescription": "+35% Ability",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.35);
-                unit.ability += item.variable.gain;
+            "abilityDescription": "+0.25 Ability",
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.abilityGain = (0.25);
+                unit.ability += item.variable.abilityGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.ability -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.ability -= item.variable.abilityGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Waistguard",
             "image": "/Images/Items/Waistguard.png",
-            "cost": 30,
-            "level": 5,
+            "cost": 53,
+            "level": 7,
             "description": "",
-            "rarity": "Common",
+            "rarity": "Uncommon",
             "cooldown": 0,
-            "abilityDescription": "+30% Mana",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseMaxmana * 0.3);
-                unit.maxMana += item.variable.gain;
+            "abilityDescription": "+15% Trigger Chance",
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.triggerChance = (0.15);
+                unit.triggerChance += item.variable.triggerChance;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.maxMana -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.triggerChance -= item.variable.triggerChance;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Armor Pants",
             "image": "/Images/Items/Armor_Pants.png",
-            "cost": 45,
-            "level": 8,
+            "cost": 72,
+            "level": 11,
             "description": "",
-            "rarity": "Uncommon",
+            "rarity": "Rare",
             "cooldown": 0,
-            "abilityDescription": "+30% Debuff Duration",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.3);
-                unit.debuffDuration += item.variable.gain;
+            "abilityDescription": "+30% Crit Chance",
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.critChanceGain = (0.3);
+                unit.critChance += item.variable.critChanceGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.debuffDuration -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.critChance -= item.variable.critChanceGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         ////
 
@@ -667,24 +700,24 @@ export const getItems = () => {
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
-            "abilityDescription": "+20% Mana",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseMaxmana * 0.2);
-                unit.maxMana += item.variable.gain;
+            "abilityDescription": "+5% XP Gain",
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.xpGainGain = (0.05);
+                unit.xpGain += item.variable.xpGainGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.maxMana -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.xpGain -= item.variable.xpGainGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Shoes",
@@ -695,23 +728,23 @@ export const getItems = () => {
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+10% Buff Duration",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.1);
-                unit.buffDuration += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.buffDurationGain = (0.1);
+                unit.buffDuration += item.variable.buffDurationGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.buffDuration -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.buffDuration -= item.variable.buffDurationGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "TShirt",
@@ -722,23 +755,23 @@ export const getItems = () => {
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+10% Debuff Duration",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.1);
-                unit.debuffDuration += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.debuffDurationGain = (0.1);
+                unit.debuffDuration += item.variable.debuffDurationGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.debuffDuration -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.debuffDuration -= item.variable.debuffDurationGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Hat",
@@ -749,23 +782,23 @@ export const getItems = () => {
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+10% Drop Chance",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.1);
-                unit.dropChance += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.dropChanceGain = (0.1);
+                unit.dropChance += item.variable.dropChanceGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.dropChance -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.dropChance -= item.variable.dropChanceGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Shawl",
@@ -776,23 +809,23 @@ export const getItems = () => {
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+10% Drop Quality",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.1);
-                unit.dropQuality += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.dropQualityGain = (0.1);
+                unit.dropQuality += item.variable.dropQualityGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.dropQuality -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.dropQuality -= item.variable.dropQualityGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
 
         ////
@@ -800,194 +833,195 @@ export const getItems = () => {
         {
             "name": "Magical Orb",
             "image": "/Images/Items/Magical_Orb.png",
-            "cost": 21,
+            "cost": 52,
             "level": 3,
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+10% Mana<br>+10% Manaregen",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseMaxmana * 0.1);
-                item.variable.gain2 = (unit.baseManaRegen * 0.1);
-                unit.maxMana += item.variable.gain;
-                unit.manaRegen += item.variable.gain2;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.maxManaGain = (unit.baseMaxmana * 0.1);
+                item.variable.manaRegenGain = (unit.baseManaRegen * 0.1);
+                unit.maxmana += item.variable.maxManaGain;
+                unit.manaRegen += item.variable.manaRegenGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.maxMana -= item.variable.gain;
-                unit.manaRegen -= item.variable.gain2;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.maxmana -= item.variable.maxManaGain;
+                unit.manaRegen -= item.variable.manaRegenGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         }, 
         {
             "name": "Nature Orb",
             "image": "/Images/Items/Nature_Orb.png",
-            "cost": 33,
+            "cost": 40,
             "level": 10,
             "description": "",
             "rarity": "Uncommon",
             "cooldown": 0,
             "abilityDescription": "+10% Attackspeed",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (unit.baseCooldown * 0.1);
-                unit.cooldown -= item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.attackspeedGain = (unit.baseCooldown * 0.1);
+                unit.cooldown -= item.variable.attackspeedGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.cooldown += item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.cooldown += item.variable.attackspeedGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Sky Orb",
             "image": "/Images/Items/Sky_Orb.png",
-            "cost": 32,
+            "cost": 42,
             "level": 8,
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+12.5% Drop Chance",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.125);
-                unit.dropChance += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.dropChanceGain = (0.125);
+                unit.dropChance += item.variable.dropChanceGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.dropChance -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.dropChance -= item.variable.dropChanceGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Clay Orb",
             "image": "/Images/Items/Clay_Orb.png",
-            "cost": 39,
+            "cost": 57,
             "level": 8,
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+25% Bounty Gain",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.25);
-                unit.bountyGain += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.bountyGainGain = (0.25);
+                unit.bountyGain += item.variable.bountyGainGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.bountyGain -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.bountyGain -= item.variable.bountyGainGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Ocean Orb",
             "image": "/Images/Items/Ocean_Orb.png",
-            "cost": 44,
+            "cost": 46,
             "level": 10,
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+20% Buff Duration",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.2);
-                unit.buffDuration += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.buffDurationGain = (0.2);
+                unit.buffDuration += item.variable.buffDurationGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.buffDuration -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.buffDuration -= item.variable.buffDurationGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Sun Orb",
             "image": "/Images/Items/Sun_Orb.png",
-            "cost": 53,
+            "cost": 39,
             "level": 6,
             "description": "",
-            "rarity": "Uncommon",
+            "rarity": "Common",
             "cooldown": 0,
-            "abilityDescription": "+20% Crit Chance",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.2);
-                unit.critChance += item.variable.gain;
+            "abilityDescription": "+20% Debuff Duration",
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.debuffDurationGain = (0.20);
+                unit.debuffDuration += item.variable.debuffDurationGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.critChance -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.debuffDuration -= item.variable.debuffDurationGain;
+                
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         {
             "name": "Lava Orb",
             "image": "/Images/Items/Lava_Orb.png",
-            "cost": 32,
+            "cost": 38,
             "level": 6,
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
             "abilityDescription": "+10% Damage",
-            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                item.variable.gain = (0.1 * unit.baseDamage);
-                unit.damage += item.variable.gain;
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                item.variable.damageGain = (0.1 * unit.baseDamage);
+                unit.damage += item.variable.damageGain;
             },
-            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{
-                unit.damage -= item.variable.gain;
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.damage -= item.variable.damageGain;
             },
-            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCrit: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onAttack: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onKill: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, x, y)=>{},
-            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
-            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
         },
         
     ]
@@ -997,6 +1031,7 @@ export const getItems = () => {
         timer: 0,
         abilityTimer: 0,
         variable: {},
+        type: "Permanent"
     }));
 
     return Items;
