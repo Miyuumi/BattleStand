@@ -4222,7 +4222,7 @@ export const getUnits = () => {
                         y: (y * 45) + 40,
                         size: 15,
                         speed: 13 * (unit?.projectileSpeed),
-                        damage: unit.damage + (nearest.enemy.maxhealth * (0.5 + (0.01 * unit.level))),
+                        damage: (nearest.enemy.maxhealth * (0.5 + (0.01 * unit.level))),
                         target: nearest.enemy,
                         location: {x:x,y:y},
                         image: "/Images/Projectiles/Crescent.png",
