@@ -525,7 +525,7 @@ export const getUnits = () => {
                         // Deal splash damage
                         if(!unit.record.explosionTotalDamage) unit.record.explosionTotalDamage = 0;
                         unit.record.explosionTotalDamage += parseFloat((splashDamage).toFixed(2));
-                        enemy.onTakeDamage(splashDamage,null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,x, y, false);
+                        enemy.onTakeDamage(splashDamage,null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,items,x, y, false);
                     }
                 });
             },
@@ -1026,7 +1026,7 @@ export const getUnits = () => {
                 if(triggerChance(0.1 * unit.triggerChance)){
                     //unit.damage * unit.ability * unit.critDamage
                     let dam = unit.damage * unit.ability * unit.critDamage;
-                    target.onTakeDamage(dam, null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,x,y, false);
+                    target.onTakeDamage(dam, null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles, items,x,y, false);
 
                     if(!unit.record.headshotFired) unit.record.headshotFired = 0;
                     unit.record.headshotFired += 1;
@@ -1162,7 +1162,7 @@ export const getUnits = () => {
                             // Deal splash damage
                             if(!unit.record.explosionTotalDamage) unit.record.explosionTotalDamage = 0;
                             unit.record.explosionTotalDamage += parseFloat((splashDamage).toFixed(2));
-                            enemy.onTakeDamage(splashDamage,null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,x, y, false);
+                            enemy.onTakeDamage(splashDamage,null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,items, x, y, false);
                         }
                     });
                 }
@@ -1344,7 +1344,7 @@ export const getUnits = () => {
                             if (dist <= splashRadius) {
                                 if(!unit.record.abilityTotalDamage) unit.record.abilityTotalDamage = 0;
                                 unit.record.abilityTotalDamage += parseFloat((splashDamage).toFixed(2));
-                                enemy.onTakeDamage(splashDamage,null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,x,y, false);
+                                enemy.onTakeDamage(splashDamage,null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,items, x,y, false);
                             }
                         });
                     }
@@ -2830,7 +2830,7 @@ export const getUnits = () => {
         },
         {
             "name": "Gunner",
-            "resource": "Metio",
+            "resource": "Techno",
             "image": {
                 source: "/Images/Animations/Gunner.png",
                 frame: 0,
@@ -3540,7 +3540,7 @@ export const getUnits = () => {
                         affectedEnemies.forEach(enemy => {
                             if(!unit.record.abilityTotalDamage) unit.record.abilityTotalDamage = 0;
                             unit.record.abilityTotalDamage += parseFloat((splashDamage / affectedEnemies.length).toFixed(2));
-                            enemy.onTakeDamage(parseFloat(splashDamage / affectedEnemies.length),null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,x,y, false);
+                            enemy.onTakeDamage(parseFloat(splashDamage / affectedEnemies.length),null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,items, x,y, false);
                         })
 
                     }
@@ -3687,7 +3687,7 @@ export const getUnits = () => {
                                 if (dist <= splashRadius) {
                                     if(!unit.record.abilityTotalDamage) unit.record.abilityTotalDamage = 0;
                                     unit.record.abilityTotalDamage += parseFloat((splashDamage).toFixed(2));
-                                    enemy.onTakeDamage(parseFloat(splashDamage),null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,x,y, false);
+                                    enemy.onTakeDamage(parseFloat(splashDamage),null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,items, x,y, false);
                                 }
                             });
                         }
@@ -4067,7 +4067,7 @@ export const getUnits = () => {
                         source: unit,
                         owner: target,
                         onTurn: (p, buff) => {
-                            p.onTakeDamage(parseFloat(p.maxhealth * 0.005),null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,x, y, false);
+                            p.onTakeDamage(parseFloat(p.maxhealth * 0.005),null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,items, x, y, false);
                         },
                     });
                 }
@@ -4334,7 +4334,7 @@ export const getUnits = () => {
                             onTurn: (field) => {
                                 for (let enemy of enemies.value) {
                                     if (isInField(enemy, field)) {
-                                        enemy.onTakeDamage(parseFloat(0.1 + (0.1 * unit.ability)),null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,x, y, false);
+                                        enemy.onTakeDamage(parseFloat(0.1 + (0.1 * unit.ability)),null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,items, x, y, false);
                                     }
                                 }
                             },
@@ -4657,7 +4657,7 @@ export const getUnits = () => {
                         source: unit,
                         owner: target,
                         onTurn: (p, buff) => {
-                            p.onTakeDamage(parseFloat(0.1 + (0.1 * buff.source.ability)),null,damageTexts, hitEffects, areaFields, resource,units,enemies,buff.source,projectiles,x, y, false);
+                            p.onTakeDamage(parseFloat(0.1 + (0.1 * buff.source.ability)),null,damageTexts, hitEffects, areaFields, resource,units,enemies,buff.source,projectiles,items, x, y, false);
                         },
                     });
                 }
@@ -4854,6 +4854,1209 @@ export const getUnits = () => {
                         location: {x:x,y:y},
                         image: "/Images/Projectiles/Arrow.png",
                         color: "purple",
+                        owner: unit,
+                    });
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCast(item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+            },
+        },
+        {
+            "name": "Beacon",
+            "resource": "Machina",
+            "image": {
+                source: "/Images/Animations/Beacon.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Rare",
+            "damageType": "Normal",
+            "cost" : 325,
+            "damage" : 1.23,
+            "ability" : 1,
+            "mana" : 0,
+            "manaRegen": 0,
+            "abilityCooldown": 5,
+            "cooldown": 2.35,
+            "abilityDescription": "<b>Scan</b>: Has 10% chance when damaging an enemy to give 10% (+1% per ability) trigger chance buff to all allies.<br><b>Obliterating Strikes</b>: Attacks damages enemies in an area. Has diminishing 20% chance attack random enemy, can repeat 10 times.",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                if(triggerChance(0.1 * unit.triggerChance)){
+
+                    if(!unit.record.abilityUses) unit.record.abilityUses = 0;
+                    unit.record.abilityUses += 1;
+                    
+                    units.value.forEach(row => {
+                        row.forEach(target => {
+                            if(target){
+                            target.buffs = target.buffs || [];
+                            target.buffs.push({
+                                name: "Scanned!",
+                                description: "Gain increased Trigger Chance",
+                                duration: 3 * unit.buffDuration,
+                                baseDuration: 3,
+                                isApplied: false,
+                                stacking: false,
+                                source: unit,
+                                owner: target,
+                                variable: {}, // stores internal state
+                                onApply: (p, buff) => {
+                                    buff.variable.triggerChanceGained = parseFloat((0.1 + (0.01 * buff.source.ability))); // store how much was added
+                                    p.triggerChance -= parseFloat(buff?.variable?.triggerChanceGained || 0);
+                                },
+                                onRemove: (p, buff) => {
+                                    p.triggerChance += parseFloat(buff?.variable?.triggerChanceGained || 0);
+                                },
+                            });
+                        }
+                        })
+                    })
+                };
+            },
+            onCrit: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCrit(item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+                })
+            },
+            onEffect: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onTurn(item, unit, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                if (nearest) {
+                    unit.items.forEach(item => {
+                        item.onAttack(item, unit, nearest.enemy, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                    });
+
+                    let target = nearest.enemy;
+                    const splashRadius = (50);
+                    const splashDamage = unit.damage;
+
+                    hitEffects.value.push({
+                            x: target.x + target.size / 2,
+                            y: target.y + target.size / 2,
+                            radius: 10,
+                            alpha: 1,
+                            color: "rgba(108, 189, 255, 1)", // yellowish glow
+                            decay: 0.03, // how fast it fades
+                            grow: 0.5, // how fast it expands
+                        });
+                        
+                        enemies.value.forEach((enemy) => {
+                            const dx = (enemy.x + enemy.size / 2) - (target.x + target.size / 2);
+                            const dy = (enemy.y + enemy.size / 2) - (target.y + target.size / 2);
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+
+                            if (dist <= splashRadius) {
+                                enemy.onTakeDamage(splashDamage,null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,items, x, y, false);
+                            }
+                        });
+
+                    for(let j = 0; j < 10; j++){
+                        if(triggerChance((0.2 * unit.triggerChance) / (j + 1))){
+                            if(!unit.record.obliterateStrikes) unit.record.obliterateStrikes = 0;
+                            unit.record.obliterateStrikes += 1;
+
+                            let randomIndex = Math.floor(Math.random() * enemies.value.length);
+                            nearest = { 
+                                enemy: enemies.value[randomIndex], 
+                                dist: 0 // dist doesn’t matter anymore
+                            };
+                            target = nearest.enemy;
+                            hitEffects.value.push({
+                                x: target.x + target.size / 2,
+                                y: target.y + target.size / 2,
+                                radius: 10,
+                                alpha: 1,
+                                color: "rgba(108, 189, 255, 1)", // yellowish glow
+                                decay: 0.03, // how fast it fades
+                                grow: 0.5, // how fast it expands
+                            });
+                            
+                            enemies.value.forEach((enemy) => {
+                                const dx = (enemy.x + enemy.size / 2) - (target.x + target.size / 2);
+                                const dy = (enemy.y + enemy.size / 2) - (target.y + target.size / 2);
+                                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                                if (dist <= splashRadius) {
+                                    enemy.onTakeDamage(splashDamage,null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,items, x, y, false);
+                                }
+                            });
+                        }else{
+                            break;
+                        }
+                        
+                    }
+
+                    
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCast(item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+            },
+        },
+        {
+            "name": "Beggar",
+            "image": {
+                source: "/Images/Animations/Beggar.png",
+                frame: 0,
+                frameCount: 6,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "resource": "Metio",
+            "description": "",
+            "rarity": "Common",
+            "damageType": "Normal",
+            "cost" : 60,
+            "damage" : 1.32,
+            "ability" : 1,
+            "mana" : 0,
+            "manaRegen": 0,
+            "abilityCooldown": 0,
+            "cooldown": 2.88,
+            "abilityDescription": "<b>Beg!</b> : Gains 0.1 (+0.1 per Ability) Coins per attack.",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                if(!unit.record.beggedCoins) unit.record.beggedCoins = 0;
+                unit.record.beggedCoins += (0.2 + (0.1 * unit.ability));
+                resource.value.Coins += (0.2 + (0.1 * unit.ability));
+            },
+            onCrit: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCrit(item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+                })
+            },
+            onEffect: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onTurn(item, unit, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+                if (enemies.value.length === 0) return;
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+
+                if (nearest) {
+                    unit.items.forEach(item => {
+                        item.onAttack(item, unit, nearest.enemy, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                    });
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 20,
+                        speed: 13 * (unit?.projectileSpeed),
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        image: "/Images/Projectiles/Cup.png",
+                        color: "purple",
+                        owner: unit,
+                    });
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCast(item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+            },
+        },
+        {
+            "name": "Catapult",
+            "image": {
+                source: "/Images/Animations/Catapult.png",
+                frame: 0,
+                frameCount: 6,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "resource": "Machina",
+            "description": "",
+            "rarity": "Common",
+            "damageType": "Normal",
+            "cost" : 90,
+            "damage" : 3.75,
+            "ability" : 1,
+            "mana" : 0,
+            "manaRegen": 0,
+            "abilityCooldown": 0,
+            "cooldown": 3.825,
+            "abilityDescription": "<b>Explosion</b> : Attacks deals extra damage to all enemies in 50 range of the target, dealing 25% area damage.",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                const splashRadius = 50; // how close other enemies must be (in pixels)
+                const splashPercent = 0.25 ; // nearby enemies take 50% damage
+                const splashDamage = unit.damage * splashPercent;
+
+                hitEffects.value.push({
+                    x: target.x + target.size / 2,
+                    y: target.y + target.size / 2,
+                    radius: 10,
+                    alpha: 1,
+                    color: "rgba(255, 200, 0, 1)", // yellowish glow
+                    decay: 0.03, // how fast it fades
+                    grow: 0.5, // how fast it expands
+                });
+                
+                enemies.value.forEach((enemy) => {
+                    const dx = (enemy.x + enemy.size / 2) - (target.x + target.size / 2);
+                    const dy = (enemy.y + enemy.size / 2) - (target.y + target.size / 2);
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist <= splashRadius) {
+                        // Deal splash damage
+                        if(!unit.record.explosionTotalDamage) unit.record.explosionTotalDamage = 0;
+                        unit.record.explosionTotalDamage += parseFloat((splashDamage).toFixed(2));
+                        enemy.onTakeDamage(splashDamage,null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,items, x, y, false);
+                    }
+                });
+            },
+            onCrit: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCrit(item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+                })
+            },
+            onEffect: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onTurn(item, unit, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+                if (enemies.value.length === 0) return;
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+
+                if (nearest) {
+                    unit.items.forEach(item => {
+                        item.onAttack(item, unit, nearest.enemy, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                    });
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 13,
+                        speed: 7 * (unit?.projectileSpeed),
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        color: "black",
+                        owner: unit,
+                    });
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCast(item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+            },
+        },
+        {
+            "name": "Commando",
+            "image": {
+                source: "/Images/Animations/Commando.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "resource": "Techno",
+            "description": "",
+            "rarity": "Rare",
+            "damageType": "Piercing",
+            "cost" : 330,
+            "damage" : 2.75,
+            "ability" : 1,
+            "mana" : 41,
+            "manaRegen": 1,
+            "abilityCooldown": 3,
+            "cooldown": 4.75,
+            "abilityDescription": "<b>Piercing Bullet</b> : Hits all enemies in a straight line.<br><b>Steam Pack</b>: Gains 75% (+1% per Level) Attackspeed for 10 turns. <div class='flex justify-between'><div><b>Casting</b>: On Attack</div><div><b>Manacost</b>: 40</div><div><b>Cooldown</b>: 3</div></div>",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                if(!unit.record.pierceHit) unit.record.pierceHit = 0;
+                unit.record.pierceHit += 1;
+            },
+            onCrit: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCrit(item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+                })
+            },
+            onEffect: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onTurn(item, unit, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+                if (enemies.value.length === 0) {
+                    return;
+                };
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+
+                unit.timer = 0;
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+
+                if (nearest) {
+                    unit.items.forEach(item => {
+                        item.onAttack(item, unit, nearest.enemy, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                    });
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 15,
+                        speed: 13 * (unit?.projectileSpeed),
+                        damage: (unit.damage),
+                        target: nearest.enemy, // optional — might not be needed for straight-line shots
+                        direction: nearest.enemy ? Math.atan2(nearest.enemy.y - (y * 45), nearest.enemy.x - (x * 45)) : 0,
+                        location: { x: x, y: y },
+                        image: "/Images/Projectiles/Bullet.png",
+                        color: "blue",
+                        owner: unit,
+                        piercing: true,        // ✅ pass-through capability
+                        lifetime: 90,          // ✅ stays alive for 60 frames (~1s at 60fps)
+                        hitEnemies: new Set(), // ✅ track already hit enemies
+                    });
+                }
+
+                const manaCost = 40;
+                if (unit.mana < manaCost) return;
+
+                unit.mana -= manaCost;
+                unit.record.manaSpent += manaCost;
+                if(!unit.record.abilityUses) unit.record.abilityUses = 0;
+                unit.record.abilityUses += 1;
+
+                unit.buffs = unit.buffs || [];
+                unit.buffs.push({
+                    name: "Steam Pack!",
+                    description: "Gain increased attackspeed",
+                    duration: 10 * unit.buffDuration,
+                    baseDuration: 10,
+                    isApplied: false,
+                    stacking: false,
+                    source: unit,
+                    owner: unit,
+                    variable: {}, // stores internal state
+                    onApply: (p, buff) => {
+                        buff.variable.cooldownGained = parseFloat(p.baseCooldown * 0.75) + (0.01 * buff.source.level); // store how much was added
+                        p.cooldown -= parseFloat(buff?.variable?.cooldownGained || 0);
+                    },
+                    onRemove: (p, buff) => {
+                        p.cooldown += parseFloat(buff?.variable?.cooldownGained || 0);
+                    },
+                });
+                
+            },
+            onKill: (unit, target, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCast(item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+            },
+        },
+        {
+            "name": "Elf Queen",
+            "image": {
+                source: "/Images/Animations/Elf_Queen.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "resource": "Natura",
+            "description": "",
+            "rarity": "Epic",
+            "damageType": "Pure",
+            "cost" : 525,
+            "damage" : 5.27,
+            "ability" : 1,
+            "mana" : 21,
+            "manaRegen": 1,
+            "abilityCooldown": 5,
+            "cooldown": 2.25,
+            "abilityDescription": "<b>Protection of the Forest (Active)</b>: Pushes all enemies and dealing 5 (+1 per Ability) damage. <div class='flex justify-between'><div><b>Casting</b>: On Attack</div><div><b>Manacost</b>: 20</div><div><b>Cooldown</b>: 5</div></div>",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCrit(item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+                })
+            },
+            onEffect: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onTurn(item, unit, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+                if (enemies.value.length === 0) {
+                    return;
+                };
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    unit.abilityTimer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+
+
+                if (nearest) {
+                    unit.items.forEach(item => {
+                        item.onAttack(item, unit, nearest.enemy, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                    });
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 8,
+                        speed: 7 * (unit?.projectileSpeed),
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        color: "green",
+                        owner: unit,
+                    });
+                }
+
+                if(unit.abilityTimer < unit.abilityCooldown){
+                    return;
+                }
+
+                unit.abilityTimer -= unit.abilityCooldown;
+                  // === Buff allies ===
+                const manaCost = 20; // adjust as needed
+                if (unit.mana < manaCost) return; // not enough mana
+
+                const target = unit;
+
+                unit.mana -= manaCost;
+                unit.record.manaSpent += manaCost;
+                if(!unit.record.abilityUses) unit.record.abilityUses = 0;
+                unit.record.abilityUses += 1;
+                unit.onCast(unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+
+                enemies.value.forEach(enemy => {
+                    enemy.buffs.push({
+                        name: "Queen Authority",
+                        description: "Loses Speed",
+                        duration: 1 * unit.buffDuration * enemy.debuffDuration,
+                        baseDuration: 1,
+                        isApplied: false,
+                        stacking: false,
+                        source: unit,
+                        owner: enemy,
+                        variable: {}, // stores internal state
+                        onApply: (p, buff) => {
+                            buff.variable.originalSpeed = (p.speed * 1.5); // store how much was added
+                            p.speed -= buff.variable.originalSpeed;
+                        },
+                        onRemove: (p, buff) => {
+                            p.onTakeDamage((5 + (1 * buff.source.ability)),null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,items, x, y, false);
+                            p.speed += buff.variable.originalSpeed;
+                        },
+                    });
+                });
+            },
+            onKill: (unit, target, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCast(item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+            },
+        },
+        {
+            "name": "Ice Queen",
+            "image": {
+                source: "/Images/Animations/Ice_Queen.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "resource": "Natura",
+            "description": "",
+            "rarity": "Epic",
+            "damageType": "Pure",
+            "cost" : 550,
+            "damage" : 2.75,
+            "ability" : 1,
+            "mana" : 21,
+            "manaRegen": 1,
+            "abilityCooldown": 5,
+            "cooldown": 2,
+            "abilityDescription": "<b>Shatter</b>: Deals bonus 5 (+1 per ability) to the frosted target.<br><b>Freezing Winds (Active)</b>: Slows all enemies by 30% for 10 turns. <div class='flex justify-between'><div><b>Casting</b>: On Attack</div><div><b>Manacost</b>: 20</div><div><b>Cooldown</b>: 5</div></div>",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                if(target.buffs.some(buff => buff.name === 'Frost' || buff.name == 'Queens Frost')){
+                    target.onTakeDamage((5 + (1 * unit.ability)),null,damageTexts, hitEffects, areaFields, resource,units,enemies,unit,projectiles,items, x, y, false, false);
+                }
+            },
+            onCrit: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCrit(item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+                })
+            },
+            onEffect: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onTurn(item, unit, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+                if (enemies.value.length === 0) {
+                    return;
+                };
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    unit.abilityTimer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+
+
+                if (nearest) {
+                    unit.items.forEach(item => {
+                        item.onAttack(item, unit, nearest.enemy, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                    });
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 8,
+                        speed: 7 * (unit?.projectileSpeed),
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        color: "green",
+                        owner: unit,
+                    });
+                }
+
+                if(unit.abilityTimer < unit.abilityCooldown){
+                    return;
+                }
+
+                unit.abilityTimer -= unit.abilityCooldown;
+                  // === Buff allies ===
+                const manaCost = 20; // adjust as needed
+                if (unit.mana < manaCost) return; // not enough mana
+
+                const target = unit;
+
+                unit.mana -= manaCost;
+                unit.record.manaSpent += manaCost;
+                if(!unit.record.abilityUses) unit.record.abilityUses = 0;
+                unit.record.abilityUses += 1;
+                unit.onCast(unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+
+                enemies.value.forEach(enemy => {
+                    enemy.buffs.push({
+                        name: "Queens Frost",
+                        description: "Loses Speed",
+                        duration: 10 * unit.buffDuration * enemy.debuffDuration,
+                        baseDuration: 10,
+                        isApplied: false,
+                        stacking: false,
+                        source: unit,
+                        owner: enemy,
+                        variable: {}, // stores internal state
+                        onApply: (p, buff) => {
+                            buff.variable.frostSlow = ((p.speed * 0.5) * enemy.slowEffectivity); // store how much was added
+                            p.speed -= buff.variable.frostSlow;
+                        },
+                        onRemove: (p, buff) => {
+                            p.speed += buff.variable.frostSlow;
+                        },
+                    });
+                });
+            },
+            onKill: (unit, target, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCast(item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+            },
+        },
+        {
+            "name": "Merchant",
+            "resource": "Metio",
+            "image": {
+                source: "/Images/Animations/Merchant.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Common",
+            "damageType": "Light",
+            "cost" : 62,
+            "damage" : 2.15,
+            "ability" : 1,
+            "mana" : 6,
+            "manaRegen": 1,
+            "abilityCooldown": 5,
+            "cooldown": 3.15,
+            "abilityDescription": "<b>Business Minded</b>: Gives 10% (+1% per ability) Bounty Gain. <div class='flex justify-between'><div><b>Casting</b>: Has Enemies</div><div><b>Manacost</b>: 5</div><div><b>Cooldown</b>: 5</div></div>",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCrit(item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+                })
+            },
+            onEffect: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onTurn(item, unit, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.abilityTimer >= unit.abilityCooldown){
+                    
+                    const manaCost = 5;
+                    if (unit.mana >= manaCost) {
+                        unit.abilityTimer -= unit.abilityCooldown;
+                        const target = nearest.enemy;
+                        unit.mana -= manaCost;
+                        unit.record.manaSpent += manaCost;
+                        
+                        if(!unit.record.abilityUses) unit.record.abilityUses = 0;
+                        unit.record.abilityUses += 1;
+
+                        unit.onCast(unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+
+                        const targets = priorityBuffs(units.value, [{ name: "Business" }]);
+
+                        if (targets.length > 0) {
+                            const tart = targets[Math.floor(Math.random() * targets.length)];
+
+                            tart.buffs = tart.buffs || [];
+                            tart.buffs.push({
+                                name: "Business",
+                                description: "Gain 10% Bounty Gain",
+                                duration: 4 * unit.buffDuration,
+                                baseDuration: 4,
+                                isApplied: false,
+                                stacking: false,
+                                source: unit,
+                                owner: tart,
+                                variable: {}, // stores internal state
+                                onApply: (p, buff) => {
+                                    buff.variable.gain = 0.1 + parseFloat(0.01 * buff.source.ability); // store how much was added
+                                    p.bountyGain += buff.variable.gain;
+                                },
+                                onRemove: (p, buff) => {
+                                    p.bountyGain -= buff.variable.gain;
+                                },
+                            });
+                        }
+                    }
+                }else{
+                    unit.abilityTimer += 0.1;
+                }
+
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                if (nearest) {
+                    unit.items.forEach(item => {
+                        item.onAttack(item, unit, nearest.enemy, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                    });
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 12,
+                        speed: 12 * (unit?.projectileSpeed),
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        color: "gold",
+                        owner: unit,
+                    });
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCast(item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+            },
+        },
+        {
+            "name": "Peddler",
+            "resource": "Metio",
+            "image": {
+                source: "/Images/Animations/Peddler.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Common",
+            "damageType": "Light",
+            "cost" : 65,
+            "damage" : 2.75,
+            "ability" : 1,
+            "mana" : 6,
+            "manaRegen": 1,
+            "abilityCooldown": 5,
+            "cooldown": 3.85,
+            "abilityDescription": "<b>Fair Trade</b>: Gives 10% (+1% per ability) Drop Chance. <div class='flex justify-between'><div><b>Casting</b>: Has Enemies</div><div><b>Manacost</b>: 5</div><div><b>Cooldown</b>: 5</div></div>",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCrit(item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+                })
+            },
+            onEffect: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onTurn(item, unit, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.abilityTimer >= unit.abilityCooldown){
+                    
+                    const manaCost = 5;
+                    if (unit.mana >= manaCost) {
+                        unit.abilityTimer -= unit.abilityCooldown;
+                        const target = nearest.enemy;
+                        unit.mana -= manaCost;
+                        unit.record.manaSpent += manaCost;
+                        
+                        if(!unit.record.abilityUses) unit.record.abilityUses = 0;
+                        unit.record.abilityUses += 1;
+
+                        unit.onCast(unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+
+                        const targets = priorityBuffs(units.value, [{ name: "Fair Trade" }]);
+
+                        if (targets.length > 0) {
+                            const tart = targets[Math.floor(Math.random() * targets.length)];
+
+                            tart.buffs = tart.buffs || [];
+                            tart.buffs.push({
+                                name: "Fair Trade",
+                                description: "Gain 10% Drop Chance",
+                                duration: 4 * unit.buffDuration,
+                                baseDuration: 4,
+                                isApplied: false,
+                                stacking: false,
+                                source: unit,
+                                owner: tart,
+                                variable: {}, // stores internal state
+                                onApply: (p, buff) => {
+                                    buff.variable.gain = 0.1 + parseFloat(0.01 * buff.source.ability); // store how much was added
+                                    p.dropChance += buff.variable.gain;
+                                },
+                                onRemove: (p, buff) => {
+                                    p.dropChance -= buff.variable.gain;
+                                },
+                            });
+                        }
+
+                    }
+                }else{
+                    unit.abilityTimer += 0.1;
+                }
+
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                if (nearest) {
+                    unit.items.forEach(item => {
+                        item.onAttack(item, unit, nearest.enemy, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                    });
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 17,
+                        speed: 8 * (unit?.projectileSpeed),
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        image: "/Images/Projectiles/Pouch.png",
+                        color: "purple",
+                        owner: unit,
+                    });
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCast(item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+            },
+        },
+        {
+            "name": "Pedestal",
+            "resource": "Metio",
+            "image": {
+                source: "/Images/Animations/Pedestal.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Epic",
+            "damageType": "Pure",
+            "cost" : 625,
+            "damage" : 22.75,
+            "ability" : 1,
+            "mana" : 0,
+            "manaRegen": 0,
+            "abilityCooldown": 0,
+            "cooldown": 7,
+            "abilityDescription": "<b>Rewind</b>: Marks the Location of the unit, returns when it ends.",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                target.buffs.push({
+                    name: "Rewind",
+                    description: "Returns to the marked location",
+                    duration: (4 * target.debuffDuration),
+                    baseDuration: 4,
+                    isApplied: false,
+                    stacking: false,
+                    source: unit,
+                    owner: target,
+                    variable: {}, // stores internal state
+                    onApply: (p, buff) => {
+                        buff.variable.xMark = p.x;
+                        buff.variable.yMark = p.y;
+                    },
+                    onRemove: (p, buff) => {
+                        p.x = buff.variable.xMark;
+                        p.y = buff.variable.yMark;
+                    },
+                });
+            },
+            onCrit: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCrit(item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+                })
+            },
+            onEffect: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onTurn(item, unit, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                if (nearest) {
+                    unit.items.forEach(item => {
+                        item.onAttack(item, unit, nearest.enemy, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                    });
+                    projectiles.value.push({
+                        x: (x * 45) + 40,
+                        y: (y * 45) + 40,
+                        size: 10,
+                        speed: 8 * (unit?.projectileSpeed),
+                        damage: unit.damage,
+                        target: nearest.enemy,
+                        location: {x:x,y:y},
+                        color: "gray",
                         owner: unit,
                     });
                 }
