@@ -121,7 +121,7 @@ onMounted(()=>{
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">Experience</td>
-                          <td class="border-b p-2" >{{ unit?.experience }} / {{ unit?.nextLevelExp }}</td>
+                          <td class="border-b p-2" >{{ unit?.experience }} / {{ (unit?.nextLevelExp).toFixed(0) }}</td>
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">Ability Description</td>
@@ -190,7 +190,15 @@ onMounted(()=>{
                       <tbody>
                         <tr v-for="buff in unit?.buffs">
                           <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">{{buff.name}}</td>
-                          <td class="border-b p-2">{{ buff.description }}. Duration: {{ (buff.duration).toFixed(2) }}</td>
+                          <td class="border-b p-2">{{ buff.description }}.</td>
+                          <!-- <td>{{ buff.variable }}</td> -->
+                          <td class="border-b p-2">
+                            <div v-for="variable in Object.entries(buff.variable)" :key="variable[0]">
+                              <span class="font-bold p-2" style="font-size: 21px">{{ formatLabel(variable[0]) }} :</span>
+                              <span class="">{{ formatValue(variable[1]) }}</span>
+                            </div>
+                          </td>
+                          <td>Duration: {{ (buff.duration).toFixed(2) }}</td>
                         </tr>
                       </tbody>
                     </table>

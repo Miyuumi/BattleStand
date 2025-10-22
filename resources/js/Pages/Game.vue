@@ -47,8 +47,9 @@ const update = ()=>{
               if (otherBuff) {
                 buff.duration = Math.max(buff.duration, otherBuff.duration);
                 buff.variable = {...otherBuff.variable};
-                enem.buffs.splice(enem.buffs.indexOf(otherBuff), 1);
+                if(buff.onRefresh) buff.onRefresh(enem, buff);
 
+                enem.buffs.splice(enem.buffs.indexOf(otherBuff), 1);
                 damageTexts.value.push({
                   x: enem.x + enem.size / 2,
                   y: enem.y - 10,
@@ -130,10 +131,14 @@ const update = ()=>{
                 const otherBuff = plant.buffs.find(b => b !== buff && b.name === buff.name);
                 if (otherBuff) {
                   buff.duration = Math.max(buff.duration, otherBuff.duration);
+                  buff.variable = {...otherBuff.variable};
                   plant.buffs.splice(plant.buffs.indexOf(otherBuff), 1);
+                  if(buff.onRefresh) buff.onRefresh(plant, buff);
                   damageTexts.value.push({
-                    x: (colIndex * 32) + 65,
-                    y: (rowIndex * 32) + 60,
+                    x: (rowIndex * 32) + 65,
+                    y: (colIndex * 32) + 55,
+                    // x: (colIndex * 32) + 65,
+                    // y: (rowIndex * 32) + 60,
                     text: buff.name + " Refreshed",
                     color: "green",
                     size: 12,
@@ -143,8 +148,8 @@ const update = ()=>{
                 }else{
                   if (buff.onApply) buff.onApply(plant, buff);
                   damageTexts.value.push({
-                    x: colIndex * 32 + 65,
-                    y: rowIndex * 32 + 60,
+                    x: rowIndex * 32 + 65,
+                    y: colIndex * 32 + 55,
                     text: buff.name + " Applied",
                     color: "green",
                     size: 12,
@@ -155,8 +160,8 @@ const update = ()=>{
               }else{
                 if (buff.onApply) buff.onApply(plant, buff);
                 damageTexts.value.push({
-                  x: (colIndex * 32) + 65,
-                  y: (rowIndex * 32) + 60,
+                  x: (rowIndex * 32) + 65,
+                  y: (colIndex * 32) + 55,
                   text: buff.name + " Applied",
                   color: "green",
                   size: 12,
@@ -175,8 +180,8 @@ const update = ()=>{
               if (buff.onRemove) buff.onRemove(plant, buff);
               plant.buffs.splice(i, 1);
               damageTexts.value.push({
-                  x: (colIndex * 32) + 65,
-                  y: (rowIndex * 32) + 60,
+                  x: (rowIndex * 32) + 65,
+                  y: (colIndex * 32) + 55,
                   text: buff.name + " Ended",
                   color: "red",
                   size: 12,
@@ -276,9 +281,51 @@ function draw() {
       }
     }
 
+    // === LASER PROJECTILE ===
+    if (proj.type === "laser") {
+      proj.lifetime--;
+      if (proj.lifetime <= 0) {
+        projectiles.value.splice(index, 1);
+        return;
+      }
+
+      const dx = Math.cos(proj.direction) * proj.length;
+      const dy = Math.sin(proj.direction) * proj.length;
+
+      enemies.value.forEach(enemy => {
+        if (proj.hitEnemies?.has(enemy)) return;
+
+        const ex = enemy.x + enemy.size / 2;
+        const ey = enemy.y + enemy.size / 2;
+        const dist = Math.abs((dy)*(proj.x - ex) - (dx)*(proj.y - ey)) / Math.sqrt(dx*dx + dy*dy);
+        const projLen = ((ex - proj.x) * dx + (ey - proj.y) * dy) / (dx*dx + dy*dy);
+
+        if (projLen >= 0 && projLen <= 1 && dist < enemy.size / 2) {
+          if (!proj.hitEnemies) proj.hitEnemies = new Set();
+          proj.hitEnemies.add(enemy);
+          let source = fields.value[proj.location.x][proj.location.y];
+          enemy.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, areaFields, resources, fields, enemies, source, projectiles, items, proj.location.x, proj.location.y);
+        }
+      });
+
+      // DRAW LASER BEAM
+      ctx.save();
+      ctx.globalAlpha = Math.max(proj.lifetime / 10, 0.1);
+      ctx.strokeStyle = proj.color || "cyan";
+      ctx.lineWidth = proj.size || 4;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = proj.color || "cyan";
+      ctx.beginPath();
+      ctx.moveTo(proj.x, proj.y);
+      ctx.lineTo(proj.x + Math.cos(proj.direction) * proj.length, proj.y + Math.sin(proj.direction) * proj.length);
+      ctx.stroke();
+      ctx.restore();
+      return;
+    }
+
     // === MOVEMENT ===
     if (proj.direction !== undefined) {
-      // ➤ Directional projectile (like Cavalier)
+      // ➤ Directional projectile (straight shot)
       proj.x += Math.cos(proj.direction) * proj.speed;
       proj.y += Math.sin(proj.direction) * proj.speed;
     } 
@@ -305,11 +352,8 @@ function draw() {
       }
     }
 
-    
-
     // === COLLISION HANDLING ===
-    if (proj.piercing) {
-      // Only for directional or piercing projectiles
+    if (proj.direction !== undefined) {
       enemies.value.forEach(enemy => {
         const dx = (enemy.x + enemy.size / 2) - proj.x;
         const dy = (enemy.y + enemy.size / 2) - proj.y;
@@ -317,21 +361,26 @@ function draw() {
 
         if (dist < (proj.size + enemy.size) / 2) {
           if (!proj.hitEnemies) proj.hitEnemies = new Set();
-          if (!proj.hitEnemies.has(enemy)) {
-            proj.hitEnemies.add(enemy);
-            let source = fields.value[proj.location.x][proj.location.y];
-            enemy.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, areaFields, resources, fields, enemies, source, projectiles, items, proj.location.x, proj.location.y);
+          if (proj.hitEnemies.has(enemy)) return;
 
-            // Add fading hit effect
-            hitEffects.value.push({
-              x: proj.x,
-              y: proj.y,
-              radius: 5,
-              alpha: 0.6,
-              decay: 0.05,
-              grow: 0.8,
-              color: "white",
-            });
+          proj.hitEnemies.add(enemy);
+          let source = fields.value[proj.location.x][proj.location.y];
+          enemy.onTakeDamage(proj.damage, proj, damageTexts, hitEffects, areaFields, resources, fields, enemies, source, projectiles, items, proj.location.x, proj.location.y);
+
+          // 🔹 Add fading hit effect
+          hitEffects.value.push({
+            x: proj.x,
+            y: proj.y,
+            radius: 5,
+            alpha: 0.6,
+            decay: 0.05,
+            grow: 0.8,
+            color: "white",
+          });
+
+          // ✅ Remove projectile if not piercing
+          if (!proj.piercing) {
+            projectiles.value.splice(index, 1);
           }
         }
       });

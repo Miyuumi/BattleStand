@@ -150,9 +150,9 @@ export const getItems = () => {
             "description": "",
             "rarity": "Uncommon",
             "cooldown": 0,
-            "abilityDescription": "+10% Attackspeed",
+            "abilityDescription": "+8% Attackspeed",
             onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
-                item.variable.attackspeedGain = (unit.baseCooldown * 0.1);
+                item.variable.attackspeedGain = (unit.baseCooldown * 0.08);
                 unit.cooldown -= item.variable.attackspeedGain;
             },
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
@@ -455,9 +455,9 @@ export const getItems = () => {
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
-            "abilityDescription": "+3% Attackspeed",
+            "abilityDescription": "+2% Attackspeed",
             onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
-                item.variable.attackspeedGain = (unit.baseCooldown * 0.03);
+                item.variable.attackspeedGain = (unit.baseCooldown * 0.02);
                 unit.cooldown -= item.variable.attackspeedGain;
             },
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
@@ -509,9 +509,9 @@ export const getItems = () => {
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
-            "abilityDescription": "-20% Debuff Duration",
+            "abilityDescription": "-10% Debuff Duration",
             onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
-                item.variable.debuffDurationGain = (0.2);
+                item.variable.debuffDurationGain = (0.1);
                 unit.debuffDuration -= item.variable.debuffDurationGain;
             },
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
@@ -563,9 +563,9 @@ export const getItems = () => {
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
-            "abilityDescription": "+5% Attackspeed",
+            "abilityDescription": "+3% Attackspeed",
             onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
-                item.variable.attackspeedGain = (unit.baseCooldown * 0.05);
+                item.variable.attackspeedGain = (unit.baseCooldown * 0.03);
                 unit.cooldown -= item.variable.attackspeedGain;
             },
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
@@ -754,13 +754,13 @@ export const getItems = () => {
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
-            "abilityDescription": "+10% Debuff Duration",
+            "abilityDescription": "-5% Debuff Duration",
             onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
-                item.variable.debuffDurationGain = (0.1);
-                unit.debuffDuration += item.variable.debuffDurationGain;
+                item.variable.debuffDurationGain = (0.05);
+                unit.debuffDuration -= item.variable.debuffDurationGain;
             },
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
-                unit.debuffDuration -= item.variable.debuffDurationGain;
+                unit.debuffDuration += item.variable.debuffDurationGain;
             },
             onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
             onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
@@ -868,9 +868,9 @@ export const getItems = () => {
             "description": "",
             "rarity": "Uncommon",
             "cooldown": 0,
-            "abilityDescription": "+10% Attackspeed",
+            "abilityDescription": "+7% Attackspeed",
             onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
-                item.variable.attackspeedGain = (unit.baseCooldown * 0.1);
+                item.variable.attackspeedGain = (unit.baseCooldown * 0.07);
                 unit.cooldown -= item.variable.attackspeedGain;
             },
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
@@ -976,13 +976,13 @@ export const getItems = () => {
             "description": "",
             "rarity": "Common",
             "cooldown": 0,
-            "abilityDescription": "+20% Debuff Duration",
+            "abilityDescription": "-7% Debuff Duration",
             onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
-                item.variable.debuffDurationGain = (0.20);
-                unit.debuffDuration += item.variable.debuffDurationGain;
+                item.variable.debuffDurationGain = (0.07);
+                unit.debuffDuration -= item.variable.debuffDurationGain;
             },
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
-                unit.debuffDuration -= item.variable.debuffDurationGain;
+                unit.debuffDuration += item.variable.debuffDurationGain;
                 
             },
             onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},

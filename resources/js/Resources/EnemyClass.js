@@ -56,6 +56,14 @@ export class Enemy {
     source.record.damageDealt += parseFloat((dam).toFixed(2));
     if(recurse) {
       source.onDamage(source, this, projectile, damageTexts, hitEffects, areaFields,  resources, plants, enemies, projectiles, items, x, y);
+      source.items.forEach(item => {
+        item.onDamage(source, this, projectile, damageTexts, hitEffects, areaFields,  resources, plants, enemies, projectiles, items, x, y);
+      });
+      source.buffs.forEach(buff => {
+        if(buff.onDamage){
+          buff.onDamage(buff, source, this, projectile, damageTexts, hitEffects, areaFields,  resources, plants, enemies, projectiles, items, x, y);
+        }
+      })
     }
 
     if (isNaN(this.health) || this.health <= 0) {
@@ -77,6 +85,12 @@ export class Enemy {
     source.onKill(source, this, damageTexts, hitEffects, areaFields,  resources, plants, enemies, projectiles, items, x, y);
     source.items.forEach(item => {
       item.onKill(item, source, this, damageTexts, hitEffects,  resources, plants, enemies, projectiles, items, x, y);
+    });
+
+    this.buffs.forEach((buff)=>{
+      if(buff.onDeath){
+        buff.onDeath(this, buff);
+      }
     });
 
     source.experience += parseFloat(this.experience * source.xpGain);

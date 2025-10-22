@@ -16,21 +16,21 @@ export const getRecipes = () => {
             "resource": "Metio",
             "abilityCooldown": 0,
             "requirements": ['Armguard','Boots','Helmet','Shield','Shoulderguard','Sword', 'Neckguard', 'Waistguard', 'Armor Pants'],
-            "abilityDescription": "<b>Warrior Blessing</b>: Whenever crits, damages an Area dealing (100% Damage).<br>+10% Attackspeed<br>+40% Crit Chance<br>+25% Buff Duration<br>+25% Debuff Duration<br>+15% Damage<br>+0.25 Ability<br>+20% Trigger Chance",
+            "abilityDescription": "<b>Warrior Blessing</b>: Whenever crits, damages an Area dealing (100% Damage).<br>+10% Attackspeed<br>+40% Crit Chance<br>+25% Buff Duration<br>+15% Debuff Duration<br>+15% Damage<br>+0.25 Ability<br>+20% Trigger Chance",
             onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
                 item.variable.attackspeedGain = (unit.baseCooldown * 0.1);
                 item.variable.damageGain = (unit.baseDamage * 0.1);
                 item.variable.triggerChanceGain = (0.2);
                 item.variable.critChanceGain = (0.4);
                 item.variable.buffDurationGain = (0.25);
-                item.variable.debuffDurationGain = (0.25);
+                item.variable.debuffDurationGain = (0.15);
 
                 unit.cooldown -= item.variable.attackspeedGain;
                 unit.damage += item.variable.damageGain;
                 unit.triggerChance += item.variable.triggerChanceGain;
                 unit.critChance += item.variable.critChanceGain;
                 unit.buffDuration += item.variable.buffDurationGain;
-                unit.debuffDuration += item.variable.debuffDurationGain;
+                unit.debuffDuration -= item.variable.debuffDurationGain;
             },
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
                 unit.cooldown += item.variable.attackspeedGain;
@@ -38,7 +38,7 @@ export const getRecipes = () => {
                 unit.triggerChance -= item.variable.triggerChanceGain;
                 unit.critChance -= item.variable.critChanceGain;
                 unit.buffDuration -= item.variable.buffDurationGain;
-                unit.debuffDuration -= item.variable.debuffDurationGain;
+                unit.debuffDuration += item.variable.debuffDurationGain;
             },
             onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
             onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
@@ -98,14 +98,14 @@ export const getRecipes = () => {
                 unit.dropChance += item.variable.dropChanceGain;
                 unit.dropQuality += item.variable.dropQualityGain;
                 unit.buffDuration += item.variable.buffDurationGain;
-                unit.debuffDuration += item.variable.debuffDurationGain;
+                unit.debuffDuration -= item.variable.debuffDurationGain;
             },
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
                 unit.xpGain -= item.variable.xpGainGain;
                 unit.dropChance -= item.variable.dropChanceGain;
                 unit.dropQuality -= item.variable.dropQualityGain;
                 unit.buffDuration -= item.variable.buffDurationGain;
-                unit.debuffDuration -= item.variable.debuffDurationGain;
+                unit.debuffDuration += item.variable.debuffDurationGain;
             },
             onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
             onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
@@ -199,6 +199,14 @@ export const getRecipes = () => {
                         p.damage -= buff.variable.damageLost;
                         p.ability += buff.variable.abilityGain;
                     },
+                    onRefresh: (p, buff)=>{
+                        p.damage += buff.variable.damageLost;
+                        p.ability -= buff.variable.abilityGain;
+                        buff.variable.damageLost = parseFloat(buff.source.damage);
+                        buff.variable.abilityGain = parseFloat(buff.source.damage / Math.max(buff.source.cooldown, 0.15));
+                        p.damage -= buff.variable.damageLost;
+                        p.ability += buff.variable.abilityGain;
+                    },
                     onRemove: (p, buff) => {
                        p.damage += buff.variable.damageLost;
                        p.ability -= buff.variable.abilityGain;
@@ -238,7 +246,7 @@ export const getRecipes = () => {
                 unit.dropQuality += item.variable.dropQualityGain;
                 unit.bountyGain += item.variable.bountyGainGain;
                 unit.buffDuration += item.variable.buffDurationGain;
-                unit.debuffDuration += item.variable.debuffDurationGain;
+                unit.debuffDuration -= item.variable.debuffDurationGain;
             },
             onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{
                 unit.damage -= item.variable.damageGain;
@@ -250,7 +258,7 @@ export const getRecipes = () => {
                 unit.dropQuality -= item.variable.dropQualityGain;
                 unit.bountyGain -= item.variable.bountyGainGain;
                 unit.buffDuration -= item.variable.buffDurationGain;
-                unit.debuffDuration -= item.variable.debuffDurationGain;
+                unit.debuffDuration += item.variable.debuffDurationGain;
             },
             onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
             onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},

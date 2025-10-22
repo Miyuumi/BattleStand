@@ -48,7 +48,7 @@ export const getEnemies = (wave) => {
     let enemies = [];
 
     if(wave <= 10){
-        let baseHealth = 1 + (wave * 0.275);
+        let baseHealth = 1 + (wave * 0.225);
 
         count = 10;
         balance = 1;
@@ -65,7 +65,7 @@ export const getEnemies = (wave) => {
                     maxDrop: 1,
                     level: 1,
                     value: 1 * balance,
-                    bounty: (1 * balance) * Math.floor(1 + (wave / 20)),
+                    bounty: (1 * balance) * Math.floor(1 + (wave / 10)),
                     experience: 1 * balance,
                     type: type,
                     size: 30,
@@ -79,7 +79,7 @@ export const getEnemies = (wave) => {
             enemies.push(enemy);
         }
     }else{
-        let baseHealth = 1 + (wave * 0.275) +  (wave * wave * 0.1075);
+        let baseHealth = 1 + (wave * 0.205) +  (wave * wave * 0.1020);
         
         for(let i = 0; i < count; i++){
             let enemy = new Enemy(
