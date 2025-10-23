@@ -37,8 +37,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -214,8 +214,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -309,8 +309,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -418,8 +418,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -540,8 +540,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -634,8 +634,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -765,8 +765,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -895,8 +895,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -1053,8 +1053,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -1179,8 +1179,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -1276,8 +1276,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -1424,8 +1424,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -1551,8 +1551,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -1646,8 +1646,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -1797,8 +1797,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -1949,8 +1949,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -2088,8 +2088,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -2245,8 +2245,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -2363,8 +2363,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -2506,8 +2506,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -2647,8 +2647,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -2769,8 +2769,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -2867,8 +2867,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -3002,8 +3002,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -3103,8 +3103,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -3215,8 +3215,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -3317,8 +3317,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -3474,8 +3474,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -3623,8 +3623,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -3773,8 +3773,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -3932,8 +3932,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -4092,8 +4092,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -4186,8 +4186,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -4283,8 +4283,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -4424,8 +4424,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -4568,8 +4568,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -4685,8 +4685,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -4812,8 +4812,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -4942,8 +4942,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -5092,8 +5092,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -5214,8 +5214,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -5311,8 +5311,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -5441,8 +5441,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -5583,8 +5583,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -5720,8 +5720,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -5859,8 +5859,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -6021,8 +6021,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -6159,8 +6159,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -6290,8 +6290,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -6430,8 +6430,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -6571,8 +6571,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -6728,8 +6728,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -6910,8 +6910,8 @@ export const getUnits = () => {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 // unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
@@ -7040,6 +7040,144 @@ export const getUnits = () => {
                 });
             },
         },
+        {
+            "name": "Turret_III",
+            "resource": "Machina",
+            "image": {
+                source: "/Images/Animations/Turret_III.png",
+                frame: 0,
+                frameCount: 5,
+                frameWidth: 64,
+                frameHeight: 96,
+            },
+            "description": "",
+            "rarity": "Common",
+            "damageType": "Pure",
+            "cost" : 75,
+            "damage" : 1,
+            "ability" : 1,
+            "mana" : 0,
+            "manaRegen": 0,
+            "abilityCooldown": 0,
+            "cooldown": 1,
+            "abilityDescription": "<b>Alternate Attack</b>: Deals 100% damage or 100% ability, alternately.",
+            onDamage: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCrit(item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y);
+                })
+            },
+            onEffect: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.level += 1;
+                unit.damage += parseFloat(unit.baseDamage * 0.1);
+                unit.ability += parseFloat(unit.baseAbility * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
+                unit.critChance += 0.001;
+                unit.critDamage += 0.01;
+                unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);
+                damageTexts.value.push({
+                    x: (x * 45) + 45,
+                    y: (y * 45) + 40,
+                    text: "Level Up!",
+                    color: "#000000ff",
+                    size: 12,
+                    alpha: 1,
+                    vy: -0.4, // upward speed
+                });
+            },
+            onTurn: (unit, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onTurn(item, unit, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+                if (enemies.value.length === 0) return;
+
+                let nearest = enemies.value.reduce((closest, enemy) => {
+                    const dx = (enemy.x + enemy.size/2) - (x * 100 + 50);
+                    const dy = (enemy.y + enemy.size/2) - (y * 100 + 50);
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    return (!closest || dist < closest.dist) ? { enemy, dist } : closest;
+                }, null);
+                
+                if(unit.timer < unit.cooldown){
+                    unit.timer += 0.1;
+                    return;
+                }
+
+                unit.attacking = true;
+                unit.image.frame = 0;
+                unit.timer -= unit.cooldown;
+
+                if(!unit.variable.attackCounter && unit.variable.attackCounter != 0){
+                    unit.variable.attackCounter = 0;
+                }else{
+                    unit.variable.attackCounter += 1;
+                }
+
+                if (nearest) {
+                    unit.items.forEach(item => {
+                        item.onAttack(item, unit, nearest.enemy, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                    });
+
+                    if(unit.variable.abilityNext){
+                        unit.variable.abilityNext = false;
+
+                        projectiles.value.push({
+                            x: (x * 45) + 40,
+                            y: (y * 45) + 40,
+                            size: 12,
+                            speed: 19 * (unit?.projectileSpeed),
+                            damage: unit.ability,
+                            target: nearest.enemy,
+                            location: {x:x,y:y},
+                            image: "/Images/Projectiles/Bullet.png",
+                            color: "purple",
+                            owner: unit,
+                        });
+                    }else{
+                        unit.variable.abilityNext = true;
+                        
+                        const startX = (x * 45) + 40;
+                        const startY = (y * 45) + 40;
+                        const targetX = nearest.enemy.x + nearest.enemy.size / 2;
+                        const targetY = nearest.enemy.y + nearest.enemy.size / 2;
+
+                        const dx = targetX - startX;
+                        const dy = targetY - startY;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        projectiles.value.push({
+                            type: "laser",
+                            x: startX,
+                            y: startY,
+                            size: 3,
+                            damage: unit.damage,
+                            target: nearest.enemy,
+                            targets: [nearest.enemy],
+                            location: { x, y },
+                            color: "red",
+                            isLightning: true,
+                            owner: unit,
+                            direction: Math.atan2(dy, dx),
+                            length: distance,       // ✅ beam length matches unit→target distance
+                            lifetime: 8,            // short visible duration
+                            hitEnemies: new Set(),
+                        });
+                    }
+
+                    
+                }
+            },
+            onKill: (unit, target, damageTexts, hitEffects, areaFields, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (unit, target, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{
+                unit.items.forEach(item => {
+                    item.onCast(item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y);
+                });
+            },
+        },
     ]
 
     Units = Units.map((f)=>({
@@ -7142,8 +7280,8 @@ function isInField(unit, field) {
                 unit.level += 1;
                 unit.damage += parseFloat(unit.baseDamage * 0.1);
                 unit.ability += parseFloat(unit.baseAbility * 0.1);
-                unit.maxmana += parseFloat(unit.baseMaxmana * 0.1);
-                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.1);
+                unit.maxmana += parseFloat(unit.baseMaxmana * 0.025);
+                unit.manaRegen += parseFloat(unit.baseManaRegen * 0.01);
                 unit.critChance += 0.001;
                 unit.critDamage += 0.01;
                 unit.nextLevelExp += parseFloat(unit.nextLevelExp * 1.1);

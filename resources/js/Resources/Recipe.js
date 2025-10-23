@@ -7,12 +7,38 @@ import { triggerChance } from "./Trigger";
 export const getRecipes = () => {
     let Items = [
         {
+            "name": "Craft Item",
+            "image": "/Images/Items/Item Craft.png",
+            "cost": 3,
+            "description": "",
+            "rarity": "Mythical",
+            "cooldown": 0,
+            "level": 0,
+            "resource": "Metio",
+            "abilityCooldown": 0,
+            "requirements": ['Strange Item','Strange Item','Strange Item','Strange Item','Strange Item'],
+            "abilityDescription": "<b>Craft</b>: Combines 5 items to an item of equal (p) Rarity.<br>Common = 1p<br>Uncommon = 5p<br>Rare = 25p<br>Epic = 125p<br>Legendary = 625p<br>Mythical = 3125p",
+            onEquip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onUnequip: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onDamage: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCrit: (item, unit, target, projectile, damageTexts, hitEffects, areaFields,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onEffect: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onGrowth: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onLevel: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTurn: (item, unit, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onAttack: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onKill: (item, unit, target, damageTexts, hitEffects, resource, units, enemies, projectiles, items, x, y)=>{},
+            onTrigger: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+            onCast: (item, unit, target, damageTexts, hitEffects,  resource, units, enemies, projectiles, items, x, y)=>{},
+        },
+        {
             "name": "Armor",
             "image": "/Images/Items/Armor.png",
             "cost": 3,
             "description": "",
             "rarity": "Mythical",
             "cooldown": 0,
+            "level": 95,
             "resource": "Metio",
             "abilityCooldown": 0,
             "requirements": ['Armguard','Boots','Helmet','Shield','Shoulderguard','Sword', 'Neckguard', 'Waistguard', 'Armor Pants'],
@@ -83,6 +109,7 @@ export const getRecipes = () => {
             "description": "",
             "rarity": "Mythical",
             "cooldown": 0,
+            "level": 90,
             "resource": "Metio",
             "abilityCooldown": 300,
             "requirements": ['Pants','Shoes','TShirt', 'Hat', 'Shawl'],
@@ -156,6 +183,7 @@ export const getRecipes = () => {
             "description": "",
             "rarity": "Mythical",
             "cooldown": 0,
+            "level": 99,
             "resource": "Magika",
             "abilityCooldown": 0,
             "requirements": ['Wizard Cape','Wizard Boots','Wizard Hat','Wizard Necklace','Wizard Orb','Wizard Staff','Wizard Book'],
@@ -221,6 +249,7 @@ export const getRecipes = () => {
             "description": "",
             "rarity": "Epic",
             "cooldown": 0,
+            "level": 75,
             "resource": "Techno",
             "abilityCooldown": 0,
             "requirements": ['Wizard Orb','Magical Orb','Nature Orb','Clay Orb','Sky Orb','Ocean Orb','Sun Orb','Lava Orb'],
@@ -281,5 +310,5 @@ export const getRecipes = () => {
         type: "Artifact"
     }));
 
-    return Items.sort((a, b) => a.name.localeCompare(b.name));
+    return Items;
 }
