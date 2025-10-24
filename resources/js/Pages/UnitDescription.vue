@@ -129,7 +129,7 @@ onMounted(()=>{
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">Ability Power</td>
-                          <td class="border-b p-2" >{{ (unit?.ability * 100).toFixed(2) }}% </td>
+                          <td class="border-b p-2" >{{ (unit?.ability).toFixed(2) }} </td>
                         </tr>
                         <tr>
                           <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">Damage</td>
@@ -231,14 +231,14 @@ onMounted(()=>{
                   </v-tabs-window-item>
                   <v-tabs-window-item value="six">
                     <div class="h-[675px] overflow-y-auto">
-                    <!-- <table class="w-full border-collapse" style="font-size: 18px">
+                    <table class="w-full border-collapse" style="font-size: 18px">
                       <tbody>
-                        <tr v-for="buff in unit?.buffs">
-                          <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">{{buff.name}}</td>
-                          <td class="border-b p-2">{{ buff.description }}. Duration: {{ (buff.duration).toFixed(2) }}</td>
+                        <tr v-for="upgrade in unit?.upgrades">
+                          <td class="font-bold border-b p-2 w-[300px]" style="font-size: 21px">{{upgrade.name}}</td>
+                          <td class="border-b p-2" v-html="upgrade.abilityDescription"></td>
                         </tr>
                       </tbody>
-                    </table> -->
+                    </table>
                     </div>
                   </v-tabs-window-item>
                 </v-tabs-window>

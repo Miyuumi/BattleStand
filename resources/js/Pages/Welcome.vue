@@ -9,11 +9,11 @@ import Roll from './Roll.vue';
 import UnitDescription from './UnitDescription.vue';
 import Game from './Game.vue';
 import Shop from './Shop.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
 import Merchant from './Merchant.vue';
 import Crafting from './Crafting.vue';
 import { getItems } from '@/Resources/Items';
+import Shelf from './Shelf.vue';
+import { getConsumables } from '@/Resources/Consumables';
 
 const Units = getUnits();
 
@@ -30,6 +30,7 @@ const location = ref({x:0,y:0});
 
 const inventoryDialog = ref(false);
 const listDialog = ref(false);
+const shelfDialog = ref(false);
 const rollDialog = ref(false);
 const descriptionDialog = ref(false);
 const shopDialog = ref(false);
@@ -60,11 +61,47 @@ const equipPlant = (index)=>{
     }
 
     // selected.value.location = [index[0], index[1]];
-    fields.value[index[0]][index[1]].items.push(selectedItem.value);
-    selectedItem.value.onEquip(selectedItem.value, fields.value[index[0]][index[1]], resources, fields, index[0], index[1]);
+    if(selectedItem.value.type === "Consumable"){
+        if(selectedItem.value.doesDisplay){
+            fields.value[index[0]][index[1]].upgrades.push({
+                ...selectedItem.value
+            });
+        }
+        
 
-    items.value = items.value.filter(f => f !== selectedItem.value);
-    selectedItem.value = null;
+        selectedItem.value.onEquip(selectedItem.value, fields.value[index[0]][index[1]], [], [], resources, fields, [], [], items, index[0], index[1]);
+        items.value = items.value.filter(f => f !== selectedItem.value);
+        selectedItem.value = null;
+    }else{
+        if(fields.value[index[0]][index[1]].items.length >= fields.value[index[0]][index[1]].inventorySize){
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'warning',
+                title: `${fields.value[index[0]][index[1]].name}\'s Inventory is Full`,
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+            });
+            return;
+        }
+        
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: `${selectedItem.value.name} is equipped to ${fields.value[index[0]][index[1]].name}`,
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+        });
+
+        fields.value[index[0]][index[1]].items.push(selectedItem.value);
+        selectedItem.value.onEquip(selectedItem.value, fields.value[index[0]][index[1]], [], [], resources, fields, [], [], items, index[0], index[1]);
+        items.value = items.value.filter(f => f !== selectedItem.value);
+        selectedItem.value = null;
+
+    }
 }
 
 const viewPlant = (plant,x ,y)=>{
@@ -86,8 +123,9 @@ const digPlant = ()=>{
 }
 
 onMounted(()=>{
-    inventory.value.push(...Units);
-    items.value.push(...getItems());
+    // inventory.value.push(...Units);
+    // items.value.push(...getItems());
+    // items.value.push(...getConsumables());
 });
 
 const start = ()=>{
@@ -99,6 +137,7 @@ const start = ()=>{
         });
     })
     gameDialog.value = true;
+    resources.value['Coins'] += (stage.value + (resources.value['Coins'] * 0.01));
     stage.value += 1;
 }
 </script>
@@ -142,6 +181,7 @@ const start = ()=>{
             </div>
             <div class="flex gap-2">
                 <v-btn icon @click="listDialog = true"><v-icon>mdi-account-multiple</v-icon></v-btn>
+                <v-btn icon @click="shelfDialog = true"><v-icon>mdi-bookshelf</v-icon></v-btn>
             </div>
         </div>
     </div>
@@ -265,6 +305,7 @@ const start = ()=>{
 
     <Inventory v-model:show="inventoryDialog" v-model:inventory="inventory" v-model:items="items" v-model:selected="selected" v-model:selectedItem="selectedItem"></Inventory>
     <List v-model:show="listDialog"></List>
+    <Shelf v-model:show="shelfDialog"></Shelf>
     <Shop v-model:show="shopDialog" v-model:inventory="inventory" v-model:resources="resources"></Shop>
     <Merchant v-model:show="merchantDialog" v-model:items="items" v-model:resources="resources" v-model:stage="stage"></Merchant>
     <Roll v-model:show="rollDialog" v-model:inventory="inventory" v-model:resources="resources" v-model:stage="stage"></Roll>

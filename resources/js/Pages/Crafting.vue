@@ -1,11 +1,12 @@
 <script setup>
 
 import { getUnits } from '@/Resources/Units';
-import { breakdownItem } from '@/Resources/Craft';
+import { breakdownConsumable, breakdownItem } from '@/Resources/Craft';
 import { Rarity } from '@/Resources/Rarity';
 import { onMounted, ref, watch } from 'vue';
 import { getItems } from '@/Resources/Items';
 import { getRecipes } from '@/Resources/Recipe';
+import { getConsumables } from '@/Resources/Consumables';
 
 const dialog = defineModel("show");
 const resources = defineModel("resources");
@@ -25,6 +26,24 @@ const pick = (res) => {
       return;
     }
   });
+
+  if(res.resource){
+    if(resources.value[res.resource] < res.cost){
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'warning',
+        title: `Not enough Resource!`,
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+      });
+      return;
+    }
+
+    resources.value[res.resource] -= res.cost
+  }
+  
 
   Swal.fire({ title: `${res.name}`, text: `Are you sure you want to craft this item?`, icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes, craft it!', cancelButtonText: 'Cancel', }).then((result) => {
     if (result.isConfirmed) {
@@ -61,6 +80,29 @@ const pick = (res) => {
             timer: 2000,
             timerProgressBar: true,
           });
+        }else if(res.name === "Craft Consumable"){
+          let highestRarity = null;
+          let highestPoints = 0;
+          for (const [rarity, data] of Object.entries(Rarity)) {
+            if (data.points <= totalPoints && data.points > highestPoints) {
+              highestRarity = rarity;
+              highestPoints = data.points;
+            }
+          }
+
+          const filteredItems = getConsumables().filter(i => i.rarity === highestRarity);
+          const craftedItem = filteredItems[Math.floor(Math.random() * filteredItems.length)];
+
+          items.value.push(craftedItem);
+          Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: `${craftedItem.name} crafted!`,
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+          });
         }else{
           items.value.push(res);
         }
@@ -84,16 +126,25 @@ const sell = (res) => {
 }
 
 const breakdown = (res) => {
-  Swal.fire({ title: `${res.name}`, text: `Are you sure you want to sell this item?`, icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes, break it!', cancelButtonText: 'Cancel', }).then((result) => {
+  Swal.fire({ title: `${res.name}`, text: `Are you sure you want to break this item?`, icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes, break it!', cancelButtonText: 'Cancel', }).then((result) => {
     if (result.isConfirmed) {
       const index = items.value.indexOf(res);
       if (index !== -1) {
         
-        let temp = {...breakdownItem};
-        temp.rarity = res.rarity;
-        temp.level = res.level;
-        items.value.splice(index, 1);
-        items.value.push(temp);
+        if(res.type == "Consumable"){
+          let temp = {...breakdownConsumable};
+          temp.rarity = res.rarity;
+          temp.level = res.level;
+          items.value.splice(index, 1);
+          items.value.push(temp);
+        }else{
+          let temp = {...breakdownItem};
+          temp.rarity = res.rarity;
+          temp.level = res.level;
+          items.value.splice(index, 1);
+          items.value.push(temp);
+        }
+        
         // resources.value.Coins += (res.cost * 0.5)
       }
     }
@@ -144,13 +195,20 @@ onMounted(()=>{
             </div>
           </v-toolbar-title>
           <v-toolbar-items>
-            <div class="flex items-center gap-1 pe-5" style="font-size: 30px;">
-                  <img class="w-[50px]" :src="'/icons/Coins.png'"></img>
-                  <span>{{ resources['Coins'].toFixed(0) }}</span>
+                  <!-- <img class="w-[50px]" :src="'/icons/Coins.png'"></img>
+                  <span>{{ resources['Coins'].toFixed(0) }}</span> -->
+            <div class="flex items-center gap-5 pe-5" style="font-size: 30px;" v-for="res in Object.entries(resources)">
+              <div class="flex gap-2 items-center">
+                
+                <v-divider vertical class="mx-2"></v-divider>
+                <img class="w-[30px] h-fit" :src="'/icons/'+res[0]+'.png'"></img>
+                <span>{{ res[1].toFixed(0) }}</span>
+                <v-spacer></v-spacer>
               </div>
+            </div>
           </v-toolbar-items>
         </v-toolbar>        
-        <v-card-text>
+        <v-card-text class="overflow-y-auto">
           <v-tabs-window v-model="tab">
             <v-tabs-window-item value="one">
               <div>
@@ -158,9 +216,9 @@ onMounted(()=>{
                   <v-card v-for="res in Recipes" :key="res.id" @click="pick(res)">
                     <v-card-title>
                       <div class="flex justify-between">
-                        <div class="w-fit"><v-icon size="30" :style="'color: '+Rarity[res?.rarity].color+';'">mdi-star</v-icon></div>
+                        <div class="w-fit"><v-chip size="30" :style="'color: '+Rarity[res?.rarity].color+';'" class="text-sm p-2"><span style="color:black;"><v-icon size="30" :style="'color: '+Rarity[res?.rarity].color+';'">mdi-star</v-icon>{{res?.rarity}}</span></v-chip></div>
                         <div class="w-full text-center">{{  res?.name }}</div>
-                        <div class="w-fit flex items-center"></div>
+                        <div class="w-fit flex items-center" v-if="res.resource"><img class="w-[30px]" :src="'/icons/'+res?.resource+'.png'"></img><span class="ms-2">{{ res?.cost }}</span></div>
                       </div>
                     </v-card-title>
                     <div class="flex h-[225px]">
@@ -191,7 +249,7 @@ onMounted(()=>{
                 <v-card v-for="res in items" :key="res.id" @click="breakdown(res)">
                   <v-card-title>
                     <div class="flex justify-between">
-                      <div class="w-fit"><v-icon size="30" :style="'color: '+Rarity[res?.rarity].color+';'">mdi-star</v-icon></div>
+                      <div class="w-fit"><v-chip size="30" :style="'color: '+Rarity[res?.rarity].color+';'" class="text-sm p-2"><span style="color:black;"><v-icon size="30" :style="'color: '+Rarity[res?.rarity].color+';'">mdi-star</v-icon>{{res?.rarity}}</span></v-chip></div>
                       <div class="w-full text-center">{{  res?.name }}</div>
                       <div class="w-fit flex items-center"></div>
                     </div>
@@ -217,7 +275,7 @@ onMounted(()=>{
                 <v-card v-for="res in items" :key="res.id" @click="sell(res)">
                   <v-card-title>
                     <div class="flex justify-between">
-                      <div class="w-fit"><v-icon size="30" :style="'color: '+Rarity[res?.rarity].color+';'">mdi-star</v-icon></div>
+                      <div class="w-fit"><v-chip size="30" :style="'color: '+Rarity[res?.rarity].color+';'" class="text-sm p-2"><span style="color:black;"><v-icon size="30" :style="'color: '+Rarity[res?.rarity].color+';'">mdi-star</v-icon>{{res?.rarity}}</span></v-chip></div>
                       <div class="w-full text-center">{{  res?.name }}</div>
                       <div class="w-fit flex items-center"></div>
                     </div>

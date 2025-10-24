@@ -102,14 +102,14 @@ onMounted(()=>{
               </div>
           </v-toolbar-items>
         </v-toolbar>        
-          <div>
+          <v-card-text class="overflow-y-auto">
             <div class="grid grid-cols-3 gap-4 w-full mt-4 mx-2">
-              <v-card v-for="res in shop" :key="res.id" @click="pick(res)" :disabled="res.cost > resources.Coins">
+              <v-card v-for="res in shop" :key="res.id" @click="pick(res)">
                 <v-card-title>
                   <div class="flex justify-between">
-                    <div class="w-fit"><v-icon size="30" :style="'color: '+Rarity[res?.rarity].color+';'">mdi-star</v-icon></div>
+                    <div class="w-fit"><v-chip size="30" :style="'color: '+Rarity[res?.rarity].color+';'" class="text-sm p-2"><span style="color:black;"><v-icon size="30" :style="'color: '+Rarity[res?.rarity].color+';'">mdi-star</v-icon>{{res?.rarity}}</span></v-chip></div>
                     <div class="w-full text-center">{{  res?.name }}</div>
-                    <div class="w-fit flex items-center"></div>
+                    <div class="w-fit flex items-center"><img class="w-[30px]" :src="'/icons/'+res?.resource+'.png'"></img></div>
                   </div>
                 </v-card-title>
                 <div class="flex h-[175px]">
@@ -126,7 +126,7 @@ onMounted(()=>{
                 </div>
               </v-card>
             </div>
-          </div>
+          </v-card-text>
       </v-card>
     </v-dialog>
 </template>

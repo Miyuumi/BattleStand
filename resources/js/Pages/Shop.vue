@@ -12,21 +12,32 @@ const plants = ref([null,null,null]);
 const rolling = ref(()=>{});
 const started = ref(false);
 const canClose = ref(true);
-
+const accumulation = ref(0);
 const description = ref("Pick a Resource");
 const locked = ref([]);
 const pick = (res)=>{
-  if(resources.value['Coins'] < 100){
-    description.value = "Not Enough Coins";
+  if(resources.value['Coins'] < (100 + accumulation.value)){
+    Swal.fire({
+      toast: true,
+      position: 'top-end',
+      icon: 'warning',
+      title: `Not enough Coins!`,
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+    });
     return;
   }else{
-    resources.value['Coins'] -= 100;
+    resources.value['Coins'] -= (100 + accumulation.value);
+    accumulation.value += 50;
+    description.value = `Costs ${100 + accumulation.value} Coins`;
     resources.value[res] += 1;
   }
 }
 
 watch(dialog, (newVal)=>{
   if(newVal){
+    description.value = `Costs ${100 + accumulation.value} Coins`;
     rolling.value = setInterval(()=>{
       let temp = plants.value;
       temp.forEach((plant, index)=>{

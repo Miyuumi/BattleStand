@@ -64,13 +64,14 @@ onMounted(()=>{
           </v-toolbar-title>
         </v-toolbar>
 
+        <v-card-text class="overflow-y-auto">
          <div class="flex flex-wrap justify-center items-center h-full w-full">
-            <v-card v-for="unit in FilteredUnits" class="m-2 w-64 h-64" @click="viewUnit(unit)">
+            <v-card v-for="unit in FilteredUnits" class="m-2 w-96 h-64" @click="viewUnit(unit)">
               <v-card-title>
                 <div class="flex justify-between">
-                  <div class="w-fit"><v-icon size="30" :style="'color: '+Rarity[unit.rarity].color+';'">mdi-flower</v-icon></div>
+                  <div class="w-fit"><v-chip size="30" :style="'color: '+Rarity[unit?.rarity].color+';'" class="text-sm p-2"><span style="color:black;"><v-icon size="30" :style="'color: '+Rarity[unit?.rarity].color+';'">mdi-star</v-icon>{{unit?.rarity}}</span></v-chip></div>
                   <div class="w-full text-center">{{  unit?.name }}</div>
-                  <div class="w-fit flex items-center"></div>
+                  <div class="w-fit flex items-center"><img class="w-[30px]" :src="'/icons/'+unit?.resource+'.png'"></img></div>
                 </div>
               </v-card-title>
               <v-card-text class="flex justify-center w-full h-full items-center" style="height: calc(100% - 24px);">
@@ -78,6 +79,7 @@ onMounted(()=>{
               </v-card-text>
             </v-card>
           </div>
+          </v-card-text>
       </v-card>
     </v-dialog>
 

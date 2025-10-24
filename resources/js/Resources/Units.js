@@ -2724,7 +2724,7 @@ export const getUnits = () => {
             "description": "",
             "rarity": "Uncommon",
             "damageType": "Normal",
-            "cost" : 10,
+            "cost" : 51,
             "damage" : 2.22,
             "ability" : 1,
             "mana" : 0,
@@ -7224,7 +7224,7 @@ export const getUnits = () => {
         sellValue: 0,
         sprite: null,
         count: 1,
-        upgrades: 0,
+        upgrades: [],
 
         record: {
             kills: 0,
@@ -7237,6 +7237,7 @@ export const getUnits = () => {
         experience: 0,
         nextLevelExp: 6,
         attacking: false,
+        inventorySize: 6,
     }));
     return Units.sort((a, b) => a.name.localeCompare(b.name));
 }

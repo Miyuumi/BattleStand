@@ -92,18 +92,18 @@ const select = (item)=>{
             </div>
           </v-toolbar-title>
         </v-toolbar>
-        <v-card-text>
+        <v-card-text class="overflow-y-auto">
           <v-tabs-window v-model="tab">
             <v-tabs-window-item value="one">
               <div class="flex flex-wrap justify-center items-center h-full w-full">
                 <div v-for="unit in FilteredUnits" >
                   <div class="flex justify-between">
-                    <v-card class="m-2 w-64 h-64" @click="select(unit)">
+                    <v-card class="m-2 w-96 h-64" @click="select(unit)">
                       <v-card-title>
                         <div class="flex justify-between">
                           <div class="w-fit"><v-icon size="30" :style="'color: '+Rarity[unit?.rarity].color+';'">mdi-star</v-icon></div>
                           <div class="w-full text-center">{{  unit?.name }}</div>
-                          <div class="w-fit flex items-center"></div>
+                          <div class="w-fit flex items-center"><img class="w-[30px]" :src="'/icons/'+unit?.resource+'.png'"></img></div>
                         </div>
                       </v-card-title>
                       <v-card-text class="flex justify-center w-full h-full items-center" style="height: calc(100% - 24px);">
